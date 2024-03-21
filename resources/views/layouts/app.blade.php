@@ -43,6 +43,9 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <a class="navbar-brand" href="{{ route('cars.index') }}">
+                            Autos
+                        </a>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
