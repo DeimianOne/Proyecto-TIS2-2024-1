@@ -1,17 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +11,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+<<<<<<< Updated upstream:proyecto/routes/web.php
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -28,3 +19,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+=======
+// returns the home page with all posts
+Route::get('/', PostController::class .'@index')->name('posts.index');
+// returns the form for adding a post
+Route::get('/posts/create', PostController::class . '@create')->name('posts.create');
+// adds a post to the database
+Route::post('/posts', PostController::class .'@store')->name('posts.store');
+// returns a page that shows a full post
+Route::get('/posts/{post}', PostController::class .'@show')->name('posts.show');
+// returns the form for editing a post
+Route::get('/posts/{post}/edit', PostController::class .'@edit')->name('posts.edit');
+// updates a post
+Route::put('/posts/{post}', PostController::class .'@update')->name('posts.update');
+// deletes a post
+Route::delete('/posts/{post}', PostController::class .'@destroy')->name('posts.destroy');
+>>>>>>> Stashed changes:prueba/routes/web.php
