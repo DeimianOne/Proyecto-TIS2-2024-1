@@ -4,6 +4,7 @@
     <div class="container">
         <div class="card mb-3">
             <div class="card-body table-responsive">
+                <h2>Listado de los vehiculos</h2>
                 <a href="{{ route('cars.create') }}" class="btn btn-outline-success"><i class="fa fa-plus"></i> Agregar</a>
                 <table class="table table-sm table-light table-hover pt-2 responsive" style="width:100%">
                     <thead>

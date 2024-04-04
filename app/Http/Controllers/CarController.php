@@ -25,7 +25,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create');
     }
 
     /**
@@ -36,7 +36,23 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'model' => 'required|string|max:20',
+            'brand' => 'required|string|max:20',
+        ], [
+            'model.required' => 'El modelo es obligatorio.',
+            'model.max' => 'El modelo no puede superar los 20 caracteres.',
+            'brand.required' => 'El modelo es obligatorio.',
+            'brand.max' => 'El modelo no puede superar los 20 caracteres.',
+        ]);
+
+        Car::create([
+            'model' => $request->input('model'),
+            'brand' => $request->input('brand'),
+            
+        ]);
+
+        return redirect()->route('cars.index')->with('success', 'Auto creado exitosamente.');
     }
 
     /**
@@ -58,7 +74,7 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        //
+        return view('cars.edit', compact('car'));
     }
 
     /**
@@ -70,7 +86,23 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car)
     {
-        //
+        $request->validate([
+            'model' => 'required|string|max:20',
+            'brand' => 'required|string|max:20',
+        ], [
+            'model.required' => 'El modelo es obligatorio.',
+            'model.max' => 'El modelo no puede superar los 20 caracteres.',
+            'brand.required' => 'El modelo es obligatorio.',
+            'brand.max' => 'El modelo no puede superar los 20 caracteres.',
+        ]);
+
+        $car->update([
+            'model' => $request->input('model'),
+            'brand' => $request->input('brand'),
+            
+        ]);
+
+        return redirect()->route('cars.index')->with('success', 'Auto creado exitosamente.');
     }
 
     /**
@@ -81,6 +113,7 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
-        //
+        $car->delete();
+        return redirect()->route('cars.index')->with('success', 'Auto eliminado exitosamente.');
     }
 }
