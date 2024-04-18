@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('type_product');
+            $table->unsignedBigInteger('type_product');
             $table->integer('value');
             $table->text('image')->nullable();
             $table->integer('view_count');

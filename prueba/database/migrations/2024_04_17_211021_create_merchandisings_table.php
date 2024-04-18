@@ -18,7 +18,7 @@ class CreateMerchandisingsTable extends Migration
             $table->text('image')->nullable();
             $table->integer('view_count');
             $table->bigInteger('stock');
-            $table->integer('type_product');
+            $table->unsignedBigInteger('type_product');
             $table->integer('merchandising_value');
             $table->timestamps();
 
