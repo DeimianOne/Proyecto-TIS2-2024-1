@@ -1,4 +1,3 @@
-// same as the previous file. Add the following after the nav tag and before the closing body tag.
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +20,7 @@ integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6
       </div>
     </div>
   </nav>
-  <div class="container h-100 mt-5">
+<div class="container h-100 mt-5">
   <div class="row h-100 justify-content-center align-items-center">
     <div class="col-10 col-md-8 col-lg-6">
       <h3>Add a Post</h3>
