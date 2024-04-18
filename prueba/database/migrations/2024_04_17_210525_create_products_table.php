@@ -21,6 +21,8 @@ class CreateProductsTable extends Migration
             $table->integer('view_count');
             $table->bigInteger('stock');
             $table->timestamps();
+
+            $table->foreign('type_product')->references('id')->on('product_types');
         });
     }
 

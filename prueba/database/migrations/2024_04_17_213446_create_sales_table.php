@@ -24,6 +24,11 @@ class CreateSalesTable extends Migration
             $table->unsignedBigInteger('branch_id');
             $table->unsignedBigInteger('payment_method_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('branch_id')->references('id')->on('branch_offices');
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
         });
     }
 

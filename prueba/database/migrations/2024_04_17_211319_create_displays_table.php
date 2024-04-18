@@ -20,6 +20,8 @@ class CreateDisplaysTable extends Migration
             $table->integer('display_quantity');
             $table->text('name');
             $table->timestamps();
+
+            $table->foreign('beer_id')->references('id')->on('beer_formats');
         });
     }
 

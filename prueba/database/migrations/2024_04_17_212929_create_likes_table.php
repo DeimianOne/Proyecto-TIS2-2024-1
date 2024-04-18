@@ -18,6 +18,9 @@ class CreateLikesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('like_count')->default(0);
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

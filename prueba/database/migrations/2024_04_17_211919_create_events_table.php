@@ -22,6 +22,9 @@ class CreateEventsTable extends Migration
             $table->text('location');
             $table->unsignedBigInteger('company_id');
             $table->timestamps();
+
+            // Clave externa
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 

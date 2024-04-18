@@ -24,6 +24,10 @@ class CreateBeersTable extends Migration
             $table->biginteger("stock");
             $table->integer("type_product");
             $table->timestamps();
+
+            $table->foreign('beer_style')->references('id')->on('beer_styles');
+            $table->foreign('format')->references('id')->on('beer_formats');
+            $table->foreign('type_product')->references('id')->on('product_types');
         });
     }
 

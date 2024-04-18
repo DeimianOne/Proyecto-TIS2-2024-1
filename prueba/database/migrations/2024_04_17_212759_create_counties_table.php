@@ -18,6 +18,9 @@ class CreateCountiesTable extends Migration
             $table->unsignedBigInteger('region_id');
             $table->text('commune_name');
             $table->timestamps();
+
+            // Clave externa
+            $table->foreign('region_id')->references('id')->on('regions');
         });
     }
 

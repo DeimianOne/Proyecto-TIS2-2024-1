@@ -21,6 +21,8 @@ class CreateMerchandisingsTable extends Migration
             $table->integer('type_product');
             $table->integer('merchandising_value');
             $table->timestamps();
+
+            $table->foreign('type_product')->references('id')->on('product_types');
         });
     }
 

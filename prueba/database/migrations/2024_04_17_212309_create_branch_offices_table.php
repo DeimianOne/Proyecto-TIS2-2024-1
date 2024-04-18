@@ -23,6 +23,10 @@ class CreateBranchOfficesTable extends Migration
             $table->string('branch_type', 255);
             $table->unsignedBigInteger('commune_id');
             $table->timestamps();
+
+            // Clave externa
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('commune_id')->references('id')->on('counties');
         });
     }
 

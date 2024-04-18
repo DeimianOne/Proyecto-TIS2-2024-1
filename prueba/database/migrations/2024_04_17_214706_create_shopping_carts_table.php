@@ -17,6 +17,8 @@ class CreateShoppingCartsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_sale');
             $table->timestamps();
+
+            $table->foreign('id_sale')->references('id')->on('sales');
         });
     }
 

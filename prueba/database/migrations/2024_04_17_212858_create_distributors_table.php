@@ -19,6 +19,8 @@ class CreateDistributorsTable extends Migration
             $table->text('distributor_name');
             $table->text('distributor_address');
             $table->timestamps();
+
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 
