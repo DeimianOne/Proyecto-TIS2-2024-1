@@ -38,17 +38,17 @@
             <a href="index.html" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-4 text-uppercase text-white">KOPPEE</h1>
             </a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav ml-auto p-4">
+                <div class="navbar-nav ms-auto p-4">
                     <a href="index.html" class="nav-item nav-link active">Home</a>
                     <a href="about.html" class="nav-item nav-link">About</a>
                     <a href="service.html" class="nav-item nav-link">Service</a>
                     <a href="menu.html" class="nav-item nav-link">Menu</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu text-capitalize">
                             <a href="reservation.html" class="dropdown-item">Reservation</a>
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
@@ -63,7 +63,7 @@
 
     <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5">
-        <div id="blog-carousel" class="carousel slide overlay-bottom" data-ride="carousel">
+        <div id="blog-carousel" class="carousel slide overlay-bottom" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img class="w-100" src="img/carousel-1.jpg" alt="Image">
@@ -82,10 +82,10 @@
                     </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#blog-carousel" data-slide="prev">
+            <a class="carousel-control-prev" href="#blog-carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </a>
-            <a class="carousel-control-next" href="#blog-carousel" data-slide="next">
+            <a class="carousel-control-next" href="#blog-carousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </a>
         </div>
@@ -105,7 +105,7 @@
                     <h1 class="mb-3">Our Story</h1>
                     <h5 class="mb-3">Eos kasd eos dolor vero vero, lorem stet diam rebum. Ipsum amet sed vero dolor sea</h5>
                     <p>Takimata sed vero vero no sit sed, justo clita duo no duo amet et, nonumy kasd sed dolor eos diam lorem eirmod. Amet sit amet amet no. Est nonumy sed labore eirmod sit magna. Erat at est justo sit ut. Labor diam sed ipsum et eirmod</p>
-                    <a href="" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">Learn More</a>
+                    <a href="" class="btn btn-secondary fw-bold py-2 px-4 mt-2">Learn More</a>
                 </div>
                 <div class="col-lg-4 py-5 py-lg-0" style="min-height: 500px;">
                     <div class="position-relative h-100">
@@ -115,10 +115,10 @@
                 <div class="col-lg-4 py-0 py-lg-5">
                     <h1 class="mb-3">Our Vision</h1>
                     <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos, ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est dolor</p>
-                    <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Lorem ipsum dolor sit amet</h5>
-                    <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Lorem ipsum dolor sit amet</h5>
-                    <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Lorem ipsum dolor sit amet</h5>
-                    <a href="" class="btn btn-primary font-weight-bold py-2 px-4 mt-2">Learn More</a>
+                    <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Lorem ipsum dolor sit amet</h5>
+                    <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Lorem ipsum dolor sit amet</h5>
+                    <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Lorem ipsum dolor sit amet</h5>
+                    <a href="" class="btn btn-primary fw-bold py-2 px-4 mt-2">Learn More</a>
                 </div>
             </div>
         </div>
@@ -193,12 +193,12 @@
         <div class="container py-5">
             <h1 class="display-3 text-primary mt-3">50% OFF</h1>
             <h1 class="text-white mb-3">Sunday Special Offer</h1>
-            <h4 class="text-white font-weight-normal mb-4 pb-3">Only for Sunday from 1st Jan to 30th Jan 2045</h4>
-            <form class="form-inline justify-content-center mb-4">
+            <h4 class="text-white fw-normal mb-4 pb-3">Only for Sunday from 1st Jan to 30th Jan 2045</h4>
+            <form class="d-flex align-items-center justify-content-center mb-4">
                 <div class="input-group">
                     <input type="text" class="form-control p-4" placeholder="Your Email" style="height: 60px;">
                     <div class="input-group-append">
-                        <button class="btn btn-primary font-weight-bold px-4" type="submit">Sign Up</button>
+                        <button class="btn btn-primary fw-bold px-4" type="submit">Sign Up</button>
                     </div>
                 </div>
             </form>
@@ -301,9 +301,9 @@
                             <p class="text-white">Lorem justo clita erat lorem labore ea, justo dolor lorem ipsum ut sed eos,
                                 ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea</p>
                             <ul class="list-inline text-white m-0">
-                                <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Lorem ipsum dolor sit amet</li>
-                                <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Lorem ipsum dolor sit amet</li>
-                                <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Lorem ipsum dolor sit amet</li>
+                                <li class="py-2"><i class="fa fa-check text-primary me-3"></i>Lorem ipsum dolor sit amet</li>
+                                <li class="py-2"><i class="fa fa-check text-primary me-3"></i>Lorem ipsum dolor sit amet</li>
+                                <li class="py-2"><i class="fa fa-check text-primary me-3"></i>Lorem ipsum dolor sit amet</li>
                             </ul>
                         </div>
                     </div>
@@ -311,26 +311,26 @@
                         <div class="text-center p-5" style="background: rgba(51, 33, 29, .8);">
                             <h1 class="text-white mb-4 mt-5">Book Your Table</h1>
                             <form class="mb-5">
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <input type="text" class="form-control bg-transparent border-primary p-4" placeholder="Name"
                                         required="required" />
                                 </div>
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <input type="email" class="form-control bg-transparent border-primary p-4" placeholder="Email"
                                         required="required" />
                                 </div>
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <div class="date" id="date" data-target-input="nearest">
-                                        <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
+                                        <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-bs-target="#date" data-bs-toggle="datetimepicker"/>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="mb-3">
                                     <div class="time" id="time" data-target-input="nearest">
-                                        <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Time" data-target="#time" data-toggle="datetimepicker"/>
+                                        <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Time" data-bs-target="#time" data-bs-toggle="datetimepicker"/>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <select class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
+                                <div class="mb-3">
+                                    <select class="form-select bg-transparent border-primary px-4" style="height: 49px;">
                                         <option selected>Person</option>
                                         <option value="1">Person 1</option>
                                         <option value="2">Person 2</option>
@@ -340,7 +340,7 @@
                                 </div>
 
                                 <div>
-                                    <button class="btn btn-primary btn-block font-weight-bold py-3" type="submit">Book Now</button>
+                                    <button class="btn btn-primary btn-block fw-bold py-3" type="submit">Book Now</button>
                                 </div>
                             </form>
                         </div>
@@ -363,7 +363,7 @@
                 <div class="testimonial-item">
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid" src="img/testimonial-1.jpg" alt="">
-                        <div class="ml-3">
+                        <div class="ms-3">
                             <h4>Client Name</h4>
                             <i>Profession</i>
                         </div>
@@ -373,7 +373,7 @@
                 <div class="testimonial-item">
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid" src="img/testimonial-2.jpg" alt="">
-                        <div class="ml-3">
+                        <div class="ms-3">
                             <h4>Client Name</h4>
                             <i>Profession</i>
                         </div>
@@ -383,7 +383,7 @@
                 <div class="testimonial-item">
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid" src="img/testimonial-3.jpg" alt="">
-                        <div class="ml-3">
+                        <div class="ms-3">
                             <h4>Client Name</h4>
                             <i>Profession</i>
                         </div>
@@ -393,7 +393,7 @@
                 <div class="testimonial-item">
                     <div class="d-flex align-items-center mb-3">
                         <img class="img-fluid" src="img/testimonial-4.jpg" alt="">
-                        <div class="ml-3">
+                        <div class="ms-3">
                             <h4>Client Name</h4>
                             <i>Profession</i>
                         </div>
@@ -411,17 +411,17 @@
         <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Get In Touch</h4>
-                <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
-                <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
-                <p class="m-0"><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+                <p><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</p>
+                <p><i class="fa fa-phone-alt me-2"></i>+012 345 67890</p>
+                <p class="m-0"><i class="fa fa-envelope me-2"></i>info@example.com</p>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Follow Us</h4>
                 <p>Amet elitr vero magna sed ipsum sit kasd sea elitr lorem rebum</p>
                 <div class="d-flex justify-content-start">
-                    <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-lg btn-outline-light btn-lg-square me-2" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-lg btn-outline-light btn-lg-square me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-lg btn-outline-light btn-lg-square me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
                     <a class="btn btn-lg btn-outline-light btn-lg-square" href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
@@ -441,15 +441,15 @@
                     <div class="input-group">
                         <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Your Email">
                         <div class="input-group-append">
-                            <button class="btn btn-primary font-weight-bold px-3">Sign Up</button>
+                            <button class="btn btn-primary fw-bold px-3">Sign Up</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
-            <p class="mb-2 text-white">Copyright &copy; <a class="font-weight-bold" href="#">Domain</a>. All Rights Reserved.</a></p>
-            <p class="m-0 text-white">Designed by <a class="font-weight-bold" href="https://htmlcodex.com">HTML Codex</a></p>
+            <p class="mb-2 text-white">Copyright &copy; <a class="fw-bold" href="#">Domain</a>. All Rights Reserved.</a></p>
+            <p class="m-0 text-white">Designed by <a class="fw-bold" href="https://htmlcodex.com">HTML Codex</a></p>
         </div>
     </div>
     <!-- Footer End -->
@@ -461,7 +461,6 @@
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
@@ -469,9 +468,9 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Contact Javascript File -->
+    {{-- <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+    <script src="mail/contact.js"></script> --}}
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
