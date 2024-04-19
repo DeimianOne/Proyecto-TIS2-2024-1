@@ -13,7 +13,7 @@
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.min.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -338,7 +338,7 @@
                                         <option value="3">Person 4</option>
                                     </select>
                                 </div>
-                                
+
                                 <div>
                                     <button class="btn btn-primary btn-block font-weight-bold py-3" type="submit">Book Now</button>
                                 </div>
