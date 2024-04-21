@@ -1,6 +1,6 @@
 (function ($) {
     "use strict";
-    
+
     // Dropdown on mouse hover
     $(document).ready(function () {
         function toggleNavbarMethod() {
@@ -17,8 +17,8 @@
         toggleNavbarMethod();
         $(window).resize(toggleNavbarMethod);
     });
-    
-    
+
+
     // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 100) {
@@ -31,14 +31,25 @@
         $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
         return false;
     });
-    
 
-    // Date and time picker
-    $('.date').datetimepicker({
-        format: 'L'
-    });
-    $('.time').datetimepicker({
-        format: 'LT'
+      new tempusDominus.TempusDominus(document.getElementById("date"), {
+        display: {
+            viewMode: "calendar",
+            components: {
+                decades: true,
+                year: true,
+                month: true,
+                date: true,
+                hours: false,
+                minutes: false,
+                seconds: false,
+                clock: false
+            },
+        },
+        localization: {
+            startOfTheWeek: 1,
+            format: 'dd/MM/yyyy'
+        }
     });
 
 
@@ -65,6 +76,6 @@
             }
         }
     });
-    
+
 })(jQuery);
 
