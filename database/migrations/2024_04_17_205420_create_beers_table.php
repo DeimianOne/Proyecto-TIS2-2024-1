@@ -16,7 +16,7 @@ class CreateBeersTable extends Migration
         Schema::create('beers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger("beer_style");
+            $table->unsignedBiginteger("beer_style");
             $table->unsignedBigInteger("format");
             $table->integer("litre_value");
             $table->text("image");
