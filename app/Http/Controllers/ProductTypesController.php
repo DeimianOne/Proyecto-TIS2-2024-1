@@ -2,84 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product_types;
 use Illuminate\Http\Request;
+use App\Models\Product_types; // Cambio de Product_Type a ProductType
 
-class ProductTypesController extends Controller
+class ProductTypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $types = Product_types::all(); // Cambio de Product_Type a ProductType
+        return view('product_types.index', compact('types'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('product_types.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        Product_types::create($request->all()); // Cambio de Product_Type a ProductType
+        return redirect()->route('product-types.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product_types  $product_types
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product_types $product_types)
+    public function show(Product_types $productType) // Cambio de Product_Type a ProductType
     {
-        //
+        return view('product_types.show', compact('productType'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product_types  $product_types
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product_types $product_types)
+    public function edit(Product_types $productType) // Cambio de Product_Type a ProductType
     {
-        //
+        return view('product_types.edit', compact('productType'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product_types  $product_types
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product_types $product_types)
+    public function update(Request $request, Product_types $productType) // Cambio de Product_Type a ProductType
     {
-        //
+        $productType->update($request->all());
+        return redirect()->route('product-types.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product_types  $product_types
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product_types $product_types)
+    public function destroy(Product_types $productType) // Cambio de Product_Type a ProductType
     {
-        //
+        $productType->delete();
+        return redirect()->route('product-types.index');
     }
 }
