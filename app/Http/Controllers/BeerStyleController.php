@@ -2,84 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Beer_style;
 use Illuminate\Http\Request;
+use App\Models\Beer_Style;
 
 class BeerStyleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $styles = Beer_Style::all();
+        return view('beer_styles.index', compact('styles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('beer_styles.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        Beer_Style::create($request->all());
+        return redirect()->route('beer-styles.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Beer_style  $beer_style
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Beer_style $beer_style)
+    public function show(Beer_Style $beerStyle)
     {
-        //
+        return view('beer_styles.show', compact('beerStyle'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Beer_style  $beer_style
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Beer_style $beer_style)
+    public function edit(Beer_Style $beerStyle)
     {
-        //
+        return view('beer_styles.edit', compact('beerStyle'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Beer_style  $beer_style
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Beer_style $beer_style)
+    public function update(Request $request, Beer_Style $beerStyle)
     {
-        //
+        $beerStyle->update($request->all());
+        return redirect()->route('beer-styles.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Beer_style  $beer_style
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Beer_style $beer_style)
+    public function destroy(Beer_Style $beerStyle)
     {
-        //
+        $beerStyle->delete();
+        return redirect()->route('beer-styles.index');
     }
 }
