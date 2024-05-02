@@ -14,7 +14,33 @@ use App\Http\Controllers\PostController;
 */
 Route::get('/', function () {
     return view('welcome');
+})->name('welcome');
+
+Route::get('/cervezas', function () {
+    return view('cervezas');
 });
+Route::get('/armatupack', function () {
+    return view('armatupack');
+});
+Route::get('/product-pack6', function () {
+    return view('product-pack6');
+});
+Route::get('/product-pack12', function () {
+    return view('product-pack12');
+});
+Route::get('/contacto', function () {
+    return view('contacto');
+});
+Route::get('/nosotros', function () {
+    return view('nosotros');
+});
+Route::get('/packs', function () {
+    return view('packs');
+});
+Route::get('/dondeestamos', function () {
+    return view('dondeestamos');
+});
+
 // returns the home page with all posts
 // Route::get('/', PostController::class .'@index')->name('posts.index');
 // returns the form for adding a post

@@ -4010,7 +4010,6 @@ input[type="button"].btn-block {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
 }
 
 .navbar .container,
@@ -4019,6 +4018,7 @@ input[type="button"].btn-block {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1000px;
 }
 
 .navbar-brand {
@@ -5836,8 +5836,10 @@ a.close.disabled {
   color: #555555;
 }
 
+
 .carousel {
   position: relative;
+
 }
 
 .carousel.pointer-event {
@@ -5864,6 +5866,12 @@ a.close.disabled {
   margin-right: -100%;
   backface-visibility: hidden;
   transition: transform 0.6s ease-in-out;
+}
+
+@media (min-width: 992px) {
+  .carousel-container {
+    margin-top: 100px; /* Ajusta el margen superior según sea necesario para evitar la superposición con el navbar */
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -9646,12 +9654,26 @@ h6,
   list-style-type: none;
 }
 
+.logo{
+  margin-left: 100px;
+  width: 100px;
+}
+
+
+.highlight-box {
+  background-color: #000;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 .reservation,
 .page-header,
 .offer,
 .footer {
-  background: linear-gradient(rgba(51, 33, 29, 0.9), rgba(51, 33, 29, 0.9)), url(../img/bg.jpg);
+  background-color: #000;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
+
 }
+
