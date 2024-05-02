@@ -15,10 +15,10 @@ class CreateShoppingCartsTable extends Migration
     {
         Schema::create('shopping_carts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_sale');
+            $table->unsignedBigInteger('sale_id');
             $table->timestamps();
 
-            $table->foreign('id_sale')->references('id')->on('sales');
+            $table->foreign('sale_id')->references('id')->on('sales');
         });
     }
 
