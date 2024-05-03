@@ -1,3 +1,3 @@
-@include('layouts.head')
-@include('layouts.navbar')
-@include('layouts.footer')
+@extends('layouts.head')
+@extends('layouts.navbar')
+@extends('layouts.footer')

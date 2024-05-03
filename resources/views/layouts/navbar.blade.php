@@ -1,4 +1,4 @@
-<!-- Navbar Start -->
+<!-- Navbar -->
 <div class="container-fluid p-0 nav-bar">
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
         <a href="{{ route('welcome') }}" class="navbar-brand px-lg-4 m-0">
@@ -24,9 +24,10 @@
                 <a href="dondeestamos" class="nav-item nav-link">¿Dónde estamos?</a>
                 <a href="contacto" class="nav-item nav-link">Contacto</a>
                 <a href="nosotros" class="nav-item nav-link">Nosotros</a>
+
+
             </div>
         </div>
     </nav>
 </div>
 <!-- Navbar End -->
-

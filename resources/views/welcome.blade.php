@@ -1,43 +1,39 @@
-<!-- Head Start -->
+@extends('layouts.head')
 
-@include('layouts.head')
-<!-- Head End -->
+<!-- Navbar Start -->
+@extends('layouts.navbar')
+<!-- Navbar End -->
 
-<body>
-    <!-- Navbar Start -->
-    @include('layouts.navbar')
-    <!-- Navbar End -->
-
-    <!-- Carousel Start -->
-    <div class="container-fluid p-0 mb-5">
-        <div id="blog-carousel" class="carousel slide overlay-bottom" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="img/fuzz/etiquetas/devil.png" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <h3 class="display-1 text-white m-0">Fuzz</h3>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="img/fuzz/etiquetas/elrucio.png" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <h3 class="display-1 text-white m-0">Fuzz</h3>
-                    </div>
+<!-- Carousel Start -->
+<div class="container-fluid p-0 mb-5">
+    <div id="blog-carousel" class="carousel slide overlay-bottom" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="w-100" src="img/fuzz/etiquetas/devil.png" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <h3 class="display-1 text-white m-0">Fuzz</h3>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#blog-carousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#blog-carousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </a>
+            <div class="carousel-item">
+                <img class="w-100" src="img/fuzz/etiquetas/elrucio.png" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <h3 class="display-1 text-white m-0">Fuzz</h3>
+                </div>
+            </div>
         </div>
+        <a class="carousel-control-prev" href="#blog-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#blog-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
     </div>
-    <!-- Carousel End -->
+</div>
+<!-- Carousel End -->
 
 
-    <!-- About Start -->
-    <!--
+<!-- About Start -->
+<!--
         <div class="container-fluid py-5">
         <div class="container">
             <div class="section-title">
@@ -68,70 +64,70 @@
         </div>
     </div>
     -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="section-title">
-                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packs</h4>
-                <h1 class="display-4">6 Packs</h1>
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="section-title">
+            <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packs</h4>
+            <h1 class="display-4">6 Packs</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <img src="img/fuzz/latas/devil.png" class="img-fluid" alt="Devil Pack">
             </div>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <img src="img/fuzz/latas/devil.png" class="img-fluid" alt="Devil Pack">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <img src="img/fuzz/latas/distorsion.png" class="img-fluid" alt="Devil Pack">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <img src="img/fuzz/latas/thewall.png" class="img-fluid" alt="Devil Pack">
-                </div>
+            <div class="col-md-4 mb-4">
+                <img src="img/fuzz/latas/distorsion.png" class="img-fluid" alt="Devil Pack">
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="img/fuzz/latas/thewall.png" class="img-fluid" alt="Devil Pack">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="section-title">
+            <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packs</h4>
+            <h1 class="display-4">12 Packs</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <img src="img/fuzz/latas/devil.png" class="img-fluid" alt="Devil Pack">
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="img/fuzz/latas/distorsion.png" class="img-fluid" alt="Devil Pack">
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="img/fuzz/latas/thewall.png" class="img-fluid" alt="Devil Pack">
             </div>
         </div>
     </div>
 
 
+    <!-- About End -->
+
+
+    <!-- Service Start -->
     <div class="container-fluid py-5">
         <div class="container">
             <div class="section-title">
                 <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packs</h4>
-                <h1 class="display-4">12 Packs</h1>
+                <h1 class="display-4">Arma tu Pack</h1>
             </div>
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <img src="img/fuzz/latas/devil.png" class="img-fluid" alt="Devil Pack">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <img src="img/fuzz/latas/distorsion.png" class="img-fluid" alt="Devil Pack">
-                </div>
-                <div class="col-md-4 mb-4">
                     <img src="img/fuzz/latas/thewall.png" class="img-fluid" alt="Devil Pack">
                 </div>
             </div>
         </div>
+        <!-- Service End -->
 
 
-        <!-- About End -->
-
-
-        <!-- Service Start -->
-        <div class="container-fluid py-5">
-            <div class="container">
-                <div class="section-title">
-                    <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packs</h4>
-                    <h1 class="display-4">Arma tu Pack</h1>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <img src="img/fuzz/latas/devil.png" class="img-fluid" alt="Devil Pack">
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <img src="img/fuzz/latas/thewall.png" class="img-fluid" alt="Devil Pack">
-                    </div>
-                </div>
-            </div>
-            <!-- Service End -->
-
-
-            <!-- Offer Start
+        <!-- Offer Start
             <div class="offer container-fluid my-5 py-5 text-center position-relative overlay-top overlay-bottom">
                 <div class="container py-5">
                     <h1 class="display-3 text-primary mt-3">50% OFF</h1>
@@ -150,7 +146,7 @@
             Offer End -->
 
 
-            <!-- Menu Start 
+        <!-- Menu Start 
     <div class="container-fluid pt-5">
         <div class="container">
             <div class="section-title">
@@ -236,7 +232,7 @@
   Menu End -->
 
 
-            <!-- Reservation Start
+        <!-- Reservation Start
     <div class="container-fluid my-5">
         <div class="container">
             <div class="reservation position-relative overlay-top overlay-bottom">
@@ -317,7 +313,7 @@
      Reservation End -->
 
 
-            <!-- Testimonial Start 
+        <!-- Testimonial Start 
     <div class="container-fluid py-5">
         <div class="container">
             <div class="section-title">
@@ -375,9 +371,9 @@
      Testimonial End -->
 
 
-            <!-- Footer Start -->
-            @include('layouts.footer')
-            <!-- Footer End -->
+        <!-- Footer Start -->
+        @extends('layouts.footer')
+        <!-- Footer End -->
 
 
-</html>
+        
