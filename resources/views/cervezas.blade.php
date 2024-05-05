@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@include('layouts.head')
+@include('layouts.navbar')
 
-@section('content')
+
+
 <div class="container-fluid py-5">
     <div class="container">
         <div class="section-title">
@@ -22,4 +24,5 @@
         </div>
     </div>
 </div>
-@endsection
+
+@include('layouts.footer')

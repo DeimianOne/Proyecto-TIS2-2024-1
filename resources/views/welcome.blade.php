@@ -1,7 +1,7 @@
-@extends('layouts.head')
+@include('layouts.head')
 
 <!-- Navbar Start -->
-@extends('layouts.navbar')
+@include('layouts.navbar')
 <!-- Navbar End -->
 
 <!-- Carousel Start -->
@@ -372,7 +372,7 @@
 
 
         <!-- Footer Start -->
-        @extends('layouts.footer')
+        @include('layouts.footer')
         <!-- Footer End -->
 
 

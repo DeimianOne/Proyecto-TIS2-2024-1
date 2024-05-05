@@ -1,5 +1,5 @@
-@extends('layouts.head')
-@extends('layouts.navbar')
+@include('layouts.head')
+@include('layouts.navbar')
 
 <div class="container-fluid py-5">
     <div class="container">
@@ -26,4 +26,4 @@
     </div>
 </div>
 
-@extends('layouts.footer')
+@include('layouts.footer')
