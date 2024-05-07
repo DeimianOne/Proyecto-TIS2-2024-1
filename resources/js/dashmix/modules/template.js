@@ -7,7 +7,7 @@
 
 // Imports
 import * as bootstrap from 'bootstrap';
-//import SimpleBar from 'simplebar';
+import SimpleBar from 'simplebar';
 import Helpers from './helpers';
 
 // Assignments

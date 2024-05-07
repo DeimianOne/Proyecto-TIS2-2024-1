@@ -21,5 +21,8 @@
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.77.0",
         "sass-loader": "^11.1.1"
+    },
+    "dependencies": {
+        "simplebar": "^5.3.9"
     }
 }
