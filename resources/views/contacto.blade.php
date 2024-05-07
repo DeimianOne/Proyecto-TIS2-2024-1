@@ -8,7 +8,8 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-md-6 mb-4">
                 <p>
-                    Si tienes alguna pregunta o deseas ponerte en contacto con nosotros, completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.
+                    Si tienes alguna pregunta o deseas ponerte en contacto con nosotros, completa el siguiente
+                    formulario y nos pondremos en contacto contigo lo antes posible.
                 </p>
                 <form action="" method="post">
                     @csrf
@@ -32,5 +33,6 @@
         </div>
     </div>
 </div>
+
 
 @include('layouts.footer')

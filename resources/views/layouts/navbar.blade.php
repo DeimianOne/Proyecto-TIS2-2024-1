@@ -1,33 +1,41 @@
 <!-- Navbar -->
-<div class="container-fluid p-0 nav-bar">
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
-        <a href="{{ route('welcome') }}" class="navbar-brand px-lg-4 m-0">
-            <img src="{{ asset('img/fuzz/logo4.png') }}" alt="Cerveza Fuzz Logo" class="logo">
+
+<div class="container-fluid p-0 nav-bar ">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 ">
+        <a href="{{ route('welcome') }}" class="navbar-brand px-lg-4 m-0 align-items-center d-flex">
+            <img src="{{ asset('img/fuzz/logo4.png') }}" alt="Cerveza Fuzz Logo" class="logo align-middle">
+            <span class="align-middle">Cerveza Fuzz</span>
         </a>
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <button type="button" class="navbar-toggler" aria-label="Toggle navigation" data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav p-4 justify-content-center">
-                <a href="packs" class="nav-item nav-link active">Packs</a>
-                <a href="armatupack" class="nav-item nav-link disabled">Arma tu Pack</a>
+                <a href="{{ route('packs') }}" class="nav-item nav-link active">Packs</a>
+                <a href="{{ route('armatupack') }}" class="nav-item nav-link disabled">Arma tu Pack</a>
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Tienda
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="cervezas">Cervezas</a>
-                        <a class="dropdown-item disabled" href="productos">Productos</a>
-                        <!-- Agrega más opciones si es necesario -->
+                        <a class="dropdown-item" href="{{ route('cervezas') }}">Cervezas</a>
+                        <!-- <a class="dropdown-item disable" href="productos">Productos</a> -->
                     </div>
                 </div>
-                <a href="dondeestamos" class="nav-item nav-link">¿Dónde estamos?</a>
-                <a href="contacto" class="nav-item nav-link">Contacto</a>
-                <a href="nosotros" class="nav-item nav-link">Nosotros</a>
-
-
+                <a href="{{ route('dondeestamos') }}" class="nav-item nav-link">¿Dónde estamos?</a>
+                <a href="{{ route('contacto') }}" class="nav-item nav-link">Contacto</a>
+            </div>
+            <div class="navbar-nav ml-auto">
+                <a href="{{ route('iniciarsesion') }}" class="nav-item nav-link">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                </a>
+                <a href="{{ route('registrate') }}" class="nav-item nav-link">
+                    <i class="fas fa-user-plus"></i> Registrarse
+                </a>
             </div>
         </div>
     </nav>
 </div>
-<!-- Navbar End -->
+
