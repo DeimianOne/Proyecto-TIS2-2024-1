@@ -84,12 +84,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 /*
 Route::resource('productType', ProductTypesController::class);
 Route::resource('beer', BeerController::class);     
-Route::resource('beerFormat', BeerFormatController::class);
+Route::resource('/pages/format', BeerFormatController::class);
 Route::resource('beerStyle', BeerStyleController::class);
 Route::resource('product', ProductController::class);
 Route::resource('landingEdit', LandingEditController::class);
 
 */
+
 
 Auth::routes();
 
@@ -100,7 +101,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::match(['get', 'post'], '/dashboard', function(){
     return view('dashboard');
 });
-Route::view('/pages/beer', 'pages.beer');
-Route::view('/pages/beer_style', 'pages.beer_style');
-Route::view('/pages/type_product', 'pages.type_product');
-Route::view('/pages/format', 'pages.format');
+Route::resource('/pages/beer', BeerController::class);
+Route::resource('/pages/beer_style', BeerStyleController::class);
+Route::resource('/pages/type_product', ProductTypesController::class);
+Route::resource('/pages/format', BeerFormatController::class);

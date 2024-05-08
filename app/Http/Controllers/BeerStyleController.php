@@ -10,7 +10,7 @@ class BeerStyleController extends Controller
     public function index()
     {
         $beerStyles = Beer_Style::all();
-        return view('beerStyle.index', compact('beerStyles'));
+        return view('pages.beer_style', compact('beerStyles'));
     }
 
     public function create()

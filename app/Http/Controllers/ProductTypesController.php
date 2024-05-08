@@ -15,9 +15,10 @@ class ProductTypesController extends Controller
     public function index()
     {
         //
-        $datos['productTypes'] = Product_types::paginate(5);
-        return view('productType.index',$datos);
+        $productTypes = Product_types::all();
+        return view('pages.type_product', compact('productTypes'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

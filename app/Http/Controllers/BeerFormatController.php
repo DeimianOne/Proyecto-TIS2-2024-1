@@ -9,8 +9,8 @@ class BeerFormatController extends Controller
 {
     public function index()
     {
-        $beerFormats = Beer_format::all();
-        return view('beerFormat.index', compact('beerFormats'));
+        $formats = Beer_format::all();
+        return view('pages.format', compact('formats'));
     }
 
     public function create()
@@ -54,7 +54,8 @@ class BeerFormatController extends Controller
 
     public function destroy($id)
     {
+
         Beer_format::destroy($id);
-        return redirect('beerFormat')->with('mensaje','Formato cerveza eliminado');
+        return redirect('pages.format');
     }
 }

@@ -12,8 +12,8 @@ class BeerController extends Controller
 {
     public function index()
     {
-        $datos['beers'] = Beer::paginate(5);
-        return view('beer.index',$datos);
+        $datosBeer = Beer::all();
+        return view('pages.beer', compact('datosBeer'));
     }
 
     public function create()

@@ -61,6 +61,7 @@
     <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">Cervezas<small></small></h3>
+        <button href="" class="btn btn-sm btn-outline-primary"> Crear</button>
       </div>
       <div class="block-content block-content-full">
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
@@ -80,39 +81,40 @@
             </tr>
           </thead>
           <tbody>
-            @for ($i = 1; $i < 21; $i++)
+            @foreach ($datosBeer as $beer)
               <tr>
-                <td class="text-center"><?php echo $i; ?></td>
+                <td class="text-center">{{$beer -> id}}</td>
                 <td class="fw-semibold">
-                  <a href="javascript:void(0)">cerveza ejemplo</a>
+                  <a href="javascript:void(0)">{{$beer -> name}}</a>
                 </td>
                 <td>
-                  <a>lopulo</a>
+                  <a>{{$beer -> beer_style}}</a>
                 </td>
                 <td>
-                  <a>6-12-24</a>
+                  <a>{{$beer -> format}}</a>
                 </td>
                 <td>
-                  <a>$1340</a>
+                  <a>{{$beer -> litre_value}}</a>
                 </td>
                 <td>
-                  <a>beer.jpg</a>
+                  <a>{{$beer -> img}}</a>
                 </td>
                 <td>
-                  <a>+999</a>
+                  <a>{{$beer -> count_views}}</a>
                 </td>
                 <td>
-                  <a>20</a>
+                  <a>{{$beer -> stock}}</a>
                 </td>
                 <td>
-                  <a>cerveza</a>
+                  <a>{{$beer -> type_product}}</a>
                 </td>
                 <td> <!-- Nueva columna para botones de editar y eliminar -->
-                 <a href="editar.php?id=<?php echo $i; ?>" class="btn btn-sm btn-outline-warning">Editar</a>
-                 <a href="eliminar.php?id=<?php echo $i; ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                  <a href="" class="btn btn-sm btn-outline-warning">Editar</a>
+                  
+                  <a href="" class="btn btn-sm btn-outline-danger">Eliminar</a>
                 </td>
                 </tr>
-            @endfor
+            @endforeach
           </tbody>
         </table>
       </div>

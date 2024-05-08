@@ -61,6 +61,8 @@
     <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">Formato contenedor<small></small></h3>
+        <button href="" class="btn btn-sm btn-outline-primary"> Crear</button>
+
       </div>
       <div class="block-content block-content-full">
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
@@ -74,21 +76,21 @@
             </tr>
           </thead>
           <tbody>
-            @for ($i = 1; $i < 21; $i++)
+              @foreach($formats as $format)
               <tr>
-                <td class="text-center"><?php echo $i; ?></td>
+                <td class="text-center">{{$format -> id}}</td>
                 <td class="fw-semibold">
-                  <a href="javascript:void(0)">cerveza ejemplo</a>
+                  <a href="javascript:void(0)">{{$format -> container}}</a>
                 </td>
                 <td>
-                  <a>lopulo</a>
+                  <a>{{$format -> liters}}</a>
                 </td>
                 <td> <!-- Nueva columna para botones de editar y eliminar -->
-                 <a href="editar.php?id=<?php echo $i; ?>" class="btn btn-sm btn-outline-warning">Editar</a>
-                 <a href="eliminar.php?id=<?php echo $i; ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                  <a href="" class="btn btn-sm btn-outline-warning">Editar</a>
+                  <a href="" class="btn btn-sm btn-outline-danger">Eliminar</a>
                 </td>
                 </tr>
-            @endfor
+            @endforeach
           </tbody>
         </table>
       </div>
