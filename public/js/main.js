@@ -5,7 +5,7 @@
     $(document).ready(function () {
         function toggleNavbarMethod() {
             if ($(window).width() > 992) {
-                $('.navbar .dropdown').on('mouseover', function () {
+                $('.nav-item .dropdown').on('mouseover', function () {
                     $('.dropdown-toggle', this).trigger('click');
                 }).on('mouseout', function () {
                     $('.dropdown-toggle', this).trigger('click').blur();
@@ -18,6 +18,24 @@
         $(window).resize(toggleNavbarMethod);
     });
 
+    // Verificar +18
+    $(document).ready(function() {
+        var $ageVerificationPopup = $("#ageVerificationPopup");
+        var $yesButton = $("#yesButton");
+
+        // Verificar si ya se ha verificado la edad
+        var ageVerified = localStorage.getItem("ageVerified");
+        if (ageVerified) {
+            // Si se ha verificado la edad, ocultar el popup
+            $ageVerificationPopup.hide();
+        }
+
+        $yesButton.on("click", function() {
+            // Al hacer clic en "Sí", ocultar el popup y guardar en el almacenamiento local
+            $ageVerificationPopup.hide();
+            localStorage.setItem("ageVerified", true);
+        });
+    });
 
     // Back to top button
     $(window).scroll(function () {
@@ -32,7 +50,8 @@
         return false;
     });
 
-      new tempusDominus.TempusDominus(document.getElementById("date"), {
+    //Config calendario
+    new tempusDominus.TempusDominus(document.getElementById("date"), {
         display: {
             viewMode: "calendar",
             components: {
@@ -52,30 +71,32 @@
         }
     });
 
-
     // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1500,
-        margin: 30,
-        dots: true,
-        loop: true,
-        center: true,
-        responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:1
-            },
-            768:{
-                items:2
-            },
-            992:{
-                items:3
-            }
-        }
-    });
+    // $(".testimonial-carousel").owlCarousel({
+    //     autoplay: true,
+    //     smartSpeed: 1500,
+    //     margin: 30,
+    //     dots: true,
+    //     loop: true,
+    //     center: true,
+    //     responsive: {
+    //         0:{
+    //             items:1
+    //         },
+    //         576:{
+    //             items:1
+    //         },
+    //         768:{
+    //             items:2
+    //         },
+    //         992:{
+    //             items:3
+    //         }
+    //     }
+    // });
 
 })(jQuery);
+
+
+
 

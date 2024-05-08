@@ -2,84 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Branch_office;
 use Illuminate\Http\Request;
+use App\Models\Branch_office;
 
 class BranchOfficeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $branchOffices = Branch_office::all();
+        return view('branch_offices.index', compact('branchOffices'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('branch_offices.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        Branch_office::create($request->all());
+        return redirect()->route('branch-offices.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Branch_office  $branch_office
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Branch_office $branch_office)
+    public function show(Branch_office $branchOffice)
     {
-        //
+        return view('branch_offices.show', compact('branchOffice'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Branch_office  $branch_office
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Branch_office $branch_office)
+    public function edit(Branch_office $branchOffice)
     {
-        //
+        return view('branch_offices.edit', compact('branchOffice'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Branch_office  $branch_office
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Branch_office $branch_office)
+    public function update(Request $request, Branch_office $branchOffice)
     {
-        //
+        $branchOffice->update($request->all());
+        return redirect()->route('branch-offices.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Branch_office  $branch_office
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Branch_office $branch_office)
+    public function destroy(Branch_office $branchOffice)
     {
-        //
+        $branchOffice->delete();
+        return redirect()->route('branch-offices.index');
     }
 }
