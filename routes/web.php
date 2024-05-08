@@ -105,3 +105,4 @@ Route::resource('/pages/beer', BeerController::class);
 Route::resource('/pages/beer_style', BeerStyleController::class);
 Route::resource('/pages/type_product', ProductTypesController::class);
 Route::resource('/pages/format', BeerFormatController::class);
+Route::get('/beer/create', 'beerController@create')->name('beer.create');

@@ -61,7 +61,7 @@
     <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">Cervezas<small></small></h3>
-        <button href="" class="btn btn-sm btn-outline-primary"> Crear</button>
+        <button href="{{ route('beer.create') }}" class="btn btn-sm btn-outline-primary"> Crear Nuevo +</button><!-- destina a el crear nuevo beer -->
       </div>
       <div class="block-content block-content-full">
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->

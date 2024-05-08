@@ -2,9 +2,9 @@
     <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">¿Necesitas ayuda?</h4>
-            <p><i class="fa fa-map-marker-alt me-2"></i>Direccion*</p>
-            <p><i class="fa fa-phone-alt me-2"></i>Numero*</p>
-            <p class="m-0"><i class="fa fa-envelope me-2"></i>Correo*</p>
+            <p><i class="fa fa-map-marker-alt me-2"></i>Direccion: Parque la madera N80, Penco</p>
+            <p><i class="fa fa-phone-alt me-2"></i>Numero: +56951106980</p>
+            <p class="m-0"><i class="fa fa-envelope me-2"></i>Correo: somos@cervezafuzz.com</p>
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Redes Sociales</h4>
@@ -18,13 +18,16 @@
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">¿Quieres trabajar con nosotros?</h4>
             <div>
-                <h6 class="text-white text-uppercase">@</h6>
+                <h6 class="text-white ">Contacto@cervezafuzz.com</h6>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Politica</h4>
             <div>
-                <a class="text-white text-uppercase" href="#">Monday - Friday</a>
+                <a class="text-white " href="#">terminos y condiciones</a><br>
+                <a class="text-white " href="#">ley 19.995</a><br>
+                <a class="text-white " href="#">terminos del servicio</a><br>
+                <a class="text-white " href="#">politica de reembolso</a>
 
             </div>
         </div>
