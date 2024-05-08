@@ -10,39 +10,60 @@ class BeerFormatController extends Controller
     public function index()
     {
         $formats = Beer_format::all();
-        return view('beer_format.index', compact('formats'));
+        return view('pages.format', compact('formats'));
     }
 
     public function create()
     {
-        return view('beer_format.create');
+        return view('beerFormat.create');
     }
 
     public function store(Request $request)
     {
-        Beer_format::create($request->all());
-        return redirect()->route('beer-format.index');
+        $request->validate([
+            'container' => 'required|string|max:100',
+            'liters' => 'required|numeric|max:50'
+        ], [
+            'container.required' => 'El Contenedor es obligatorio.',
+            'container.max' => 'El nombre no puede superar los 100 caracteres.',
+            'liters.required' => 'Los Litros son obligatorio.',
+            'liters.max' => 'Los litros no puede superar los 20 caracteres.',
+        ]);
+
+        Beer_format::create([
+            'container' => $request->input('container'),
+            'liters' => $request->input('liters'),
+        ]);
+
+        return redirect()->route('format.index')->with('mensaje','Formato de cerveza agregado con éxito');
+
+        //return redirect('beerFormat')->with('mensaje','Formato cerveza agregado con éxito');
     }
 
     public function show(Beer_format $beerFormat)
     {
-        return view('beer_format.show', compact('beerFormat'));
+        return view('beerFormat.show', compact('beerFormat'));
     }
 
-    public function edit(Beer_format $beerFormat)
+    public function edit($id)
     {
-        return view('beer_format.edit', compact('beerFormat'));
+        $beerFormat = Beer_format::findOrFail($id);
+        return view('beerFormat.edit', compact('beerFormat'));
     }
 
-    public function update(Request $request, Beer_format $beerFormat)
+    public function update(Request $request, $id)
     {
-        $beerFormat->update($request->all());
-        return redirect()->route('beer-format.index');
+        $datosbeerFormat = $request->except(['_token', '_method']);
+        Beer_format::where('id', '=', $id)->update($datosbeerFormat);
+    
+        $beerFormat = Beer_format::findOrFail($id);
+        return view('beerFormat.edit', compact('beerFormat'));
     }
 
-    public function destroy(Beer_format $beerFormat)
+    public function destroy($id)
     {
-        $beerFormat->delete();
-        return redirect()->route('beer-format.index');
+
+        Beer_format::destroy($id);
+        return redirect('pages.format');
     }
 }

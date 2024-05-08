@@ -2,47 +2,72 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product_types;
 use Illuminate\Http\Request;
-use App\Models\Product_types; // Cambio de Product_Type a ProductType
 
-class ProductTypeController extends Controller
+class ProductTypesController extends Controller
 {
+
     public function index()
     {
-        $types = Product_types::all(); // Cambio de Product_Type a ProductType
-        return view('product_types.index', compact('types'));
+        $productTypes = Product_types::all();
+        return view('pages.type_product', compact('productTypes'));
     }
-
+    
     public function create()
     {
-        return view('product_types.create');
+        return view('productType.create');
+
     }
 
     public function store(Request $request)
     {
-        Product_types::create($request->all()); // Cambio de Product_Type a ProductType
-        return redirect()->route('product-types.index');
+
+        $request->validate([
+            'name' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+        ]);
+
+        Product_types::create([
+            'name' => $request->input('name'),
+        ]);
+
+        return redirect()->route('type_product.store')->with('mensaje','Tipo de producto agregado con éxito');
     }
 
-    public function show(Product_types $productType) // Cambio de Product_Type a ProductType
+
+ 
+    public function show(Product_types $product_types)
     {
-        return view('product_types.show', compact('productType'));
+        //
     }
 
-    public function edit(Product_types $productType) // Cambio de Product_Type a ProductType
+
+    public function edit($id)
     {
-        return view('product_types.edit', compact('productType'));
+        //
+        $productType = Product_types::findOrFail($id);
+        return view('productType.edit', compact('productType'));
+
     }
 
-    public function update(Request $request, Product_types $productType) // Cambio de Product_Type a ProductType
+
+    public function update(Request $request, $id)
     {
-        $productType->update($request->all());
-        return redirect()->route('product-types.index');
+        // Obtener los datos del formulario excluyendo el campo _method
+        $datosProductType = $request->except(['_token', '_method']);
+        Product_types::where('id', '=', $id)->update($datosProductType);
+    
+        $productType = Product_types::findOrFail($id);
+        return view('productType.edit', compact('productType'));
     }
 
-    public function destroy(Product_types $productType) // Cambio de Product_Type a ProductType
+    public function destroy($id)
     {
-        $productType->delete();
-        return redirect()->route('product-types.index');
+        //
+        Product_types::destroy($id);
+        return redirect('productType')->with('mensaje','Tipo producto eliminado');
     }
 }
