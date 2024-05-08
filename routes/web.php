@@ -79,6 +79,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::match(['get', 'post'], '/dashboard', function(){
     return view('dashboard');
 });
-Route::view('/pages/slick', 'pages.slick');
-Route::view('/pages/datatables', 'pages.datatables');
-Route::view('/pages/blank', 'pages.blank');
+Route::view('/pages/beer', 'pages.beer');
+Route::view('/pages/beer_style', 'pages.beer_style');
+Route::view('/pages/type_product', 'pages.type_product');
+Route::view('/pages/format', 'pages.format');

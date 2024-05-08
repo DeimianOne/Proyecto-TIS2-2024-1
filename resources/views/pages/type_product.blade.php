@@ -30,7 +30,7 @@
   <div class="bg-body-light">
     <div class="content content-full">
       <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-        <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">DataTables Example</h1>
+        <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">CERVECERIA FUZZ</h1>
         <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">Examples</li>
@@ -44,7 +44,7 @@
 
   <!-- Page Content -->
   <div class="content">
-    <!-- Info -->
+    <!-- Info 
     <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">Plugin Example</h3>
@@ -55,22 +55,21 @@
         </p>
       </div>
     </div>
-    <!-- END Info -->
+    END Info -->
 
     <!-- Dynamic Table Full -->
     <div class="block block-rounded">
       <div class="block-header block-header-default">
-        <h3 class="block-title">Dynamic Table <small>Full</small></h3>
+        <h3 class="block-title">Tipos de productos<small></small></h3>
       </div>
       <div class="block-content block-content-full">
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
         <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
           <thead>
             <tr>
-              <th class="text-center" style="width: 80px;">#</th>
-              <th>Name</th>
-              <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-              <th style="width: 15%;">Registered</th>
+              <th class="text-center" style="width: 80px;">id</th>
+              <th>Nombre</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -78,58 +77,16 @@
               <tr>
                 <td class="text-center"><?php echo $i; ?></td>
                 <td class="fw-semibold">
-                  <a href="javascript:void(0)">John Doe</a>
+                  <a href="javascript:void(0)">cerveza</a>
                 </td>
-                <td class="d-none d-sm-table-cell">
-                  client{{ $i }}<em class="text-muted">@example.com</em>
+                <td> <!-- Nueva columna para botones de editar y eliminar -->
+                 <a href="editar.php?id=<?php echo $i; ?>" class="btn btn-sm btn-outline-warning">Editar</a>
+                 <a href="eliminar.php?id=<?php echo $i; ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
                 </td>
-                <td>
-                  <em class="text-muted">{{ rand(2, 10) }} days ago</em>
-                </td>
-              </tr>
+                </tr>
             @endfor
           </tbody>
         </table>
       </div>
     </div>
-    <!-- END Dynamic Table Full -->
-
-    <!-- Dynamic Table with Export Buttons -->
-    <div class="block block-rounded">
-      <div class="block-header block-header-default">
-        <h3 class="block-title">Dynamic Table <small>Export Buttons</small></h3>
-      </div>
-      <div class="block-content block-content-full">
-        <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/tables_datatables.js -->
-        <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
-          <thead>
-            <tr>
-              <th class="text-center" style="width: 80px;">#</th>
-              <th>Name</th>
-              <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-              <th style="width: 15%;">Registered</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for ($i = 1; $i < 21; $i++)
-              <tr>
-                <td class="text-center">{{ $i }}</td>
-                <td class="fw-semibold">
-                  <a href="javascript:void(0)">John Smith</a>
-                </td>
-                <td class="d-none d-sm-table-cell">
-                  client{{ $i }}<em class="text-muted">@example.com</em>
-                </td>
-                <td>
-                  <em class="text-muted">{{ rand(2, 10) }} days ago</em>
-                </td>
-              </tr>
-            @endfor
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <!-- END Dynamic Table with Export Buttons -->
-  </div>
-  <!-- END Page Content -->
 @endsection
