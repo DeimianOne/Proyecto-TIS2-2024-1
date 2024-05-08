@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Beer;
+use App\Models\Beer_Format;
+use App\Models\Beer_style;
+use App\Models\Product_Types;
 
 class BeerController extends Controller
 {
@@ -15,7 +18,11 @@ class BeerController extends Controller
 
     public function create()
     {
-        return view('beer.create');
+        $beer_formats = Beer_Format::all();
+        $beer_styles = Beer_style::all();
+        $produc_types = Product_Types::all();
+
+        return view('beer.create',compact('beer_formats','beer_styles','produc_types'));
     }
 
     public function store(Request $request)

@@ -8,6 +8,7 @@ use App\Http\Controllers\BeerFormatController;
 use App\Http\Controllers\BeerStyleController;
 use App\Http\Controllers\LandingEditController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,10 @@ Route::get('/dondeestamos', function () {
     return view('dondeestamos');
 })->name('dondeestamos');
 
+Route::get('/startview', function () {
+    return view('startview');
+});
+
 
 // returns the home page with all posts
 // Route::get('/', PostController::class .'@index')->name('posts.index');
@@ -88,3 +93,6 @@ Route::resource('beerFormat', BeerFormatController::class);
 Route::resource('beerStyle', BeerStyleController::class);
 Route::resource('product', ProductController::class);
 Route::resource('landingEdit', LandingEditController::class);
+
+
+

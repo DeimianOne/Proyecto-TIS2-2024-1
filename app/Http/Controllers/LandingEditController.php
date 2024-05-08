@@ -27,6 +27,11 @@ class LandingEditController extends Controller
         return view('landingEdit.create');
     }
 
+    public function show()
+    {
+        return view('landingEdit.create');
+    }
+
     public function store(Request $request)
     {
         $landingEdit = new LandingEdit();

@@ -18,6 +18,7 @@
     </thead>
 
     <tbody>
+  
         @foreach($productTypes as $productType)
         <tr>
             <td>{{$productType -> id}}</td>

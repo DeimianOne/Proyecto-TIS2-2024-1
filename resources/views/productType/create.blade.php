@@ -1,5 +1,5 @@
 Sección para crear empleados
-<form action="{{ url('/productType') }}" method="post">
+<form action="{{ route('productType.store') }}" method="post">
 
 @csrf
 

@@ -2,9 +2,9 @@
     <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">¿Necesitas ayuda?</h4>
-            <p><i class="fa fa-map-marker-alt me-2"></i>Direccion {{ $direccion }}</p>
-            <p><i class="fa fa-phone-alt me-2"></i>Numero {{ $telefono }} </p>
-            <p class="m-0"><i class="fa fa-envelope me-2"></i>Correo {{ $correo }}</p>
+            <p><i class="fa fa-map-marker-alt me-2"></i>Direccion Parque la madera N 80, Penco </p>
+            <p><i class="fa fa-phone-alt me-2"></i>Numero +569 5110 6980 </p>
+            <p class="m-0"><i class="fa fa-envelope me-2"></i>Correo somos@cervezafuzz.com</p>
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Redes Sociales</h4>
@@ -18,13 +18,13 @@
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">¿Quieres trabajar con nosotros?</h4>
             <div>
-                <h6 class="text-white text-uppercase">@</h6>
+                <a class="text-white text-uppercase" >Contacto@cervezafuzz.com</a>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Politica</h4>
             <div>
-                <a class="text-white text-uppercase" href="#">Monday - Friday</a>
+                <a class="text-white text-uppercase" href="#">Sujeto a las políticas nacionales chilenas</a>
 
             </div>
         </div>

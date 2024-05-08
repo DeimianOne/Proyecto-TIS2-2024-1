@@ -4,10 +4,26 @@
 <input type="text" name="name" id="name" value="{{ isset($beer -> name)?$beer -> name:'' }}">
 <br>
 <label for="beer_style">{{'Estilo cerveza'}}</label>
-<input type="text" name="beer_style" id="beer_style" value="{{ isset($beer -> beer_style)?$beer -> beer_style:'' }}">
+<div class="form-group">
+    <select name="beer_style" id="beer_style" class="form-control">
+        @foreach($beer_styles as $style)
+            <option value="{{ $style -> id }}" {{old('beer_style') == $style->id ? 'selected' : '' }}>
+                {{ $style->name }}
+            </option>
+        @endforeach
+    </select>
+</div>
 <br>
 <label for="format">{{'Formato cerveza'}}</label>
-<input type="number" name="format" id="format" value="{{ isset($beer -> format)?$beer -> format:'' }}">
+<div class="form-group">
+    <select name="format" id="format" class="form-control">
+        @foreach($beer_formats as $formato)
+            <option value="{{ $formato -> id }}" {{old('format') == $formato->id ? 'selected' : '' }}>
+                {{ $formato-> container }}{{ $formato-> liters }}
+            </option>
+        @endforeach
+    </select>
+</div>
 <br>
 <label for="litre_value">{{'Valor litro'}}</label>
 <input type="number" name="litre_value" id="litre_value" value="{{ isset($beer -> litre_value)?$beer -> litre_value:'' }}">
@@ -22,7 +38,16 @@
 <input type="number" name="stock" id="stock" value="{{ isset($beer -> stock)?$beer -> stock:'' }}">
 <br>
 <label for="type_product">{{'Tipo producto'}}</label>
-<input type="text" name="type_product" id="type_product" value="{{ isset($beer -> type_product)?$beer -> type_product:'' }}">
+<div class="form-group">
+    
+    <select name="type_product" id="type_product" class="form-control">
+        @foreach($produc_types as $type_product)
+            <option value="{{ $type_product -> id }}" {{old('type_product') == $type_product->id ? 'selected' : '' }}>
+                {{ $type_product-> name }}
+            </option>
+        @endforeach
+    </select>
+</div>
 <br>
 <input type="submit" value="{{ $modo }} datos">
 <br>

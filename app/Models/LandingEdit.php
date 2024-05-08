@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LandingEdit extends Model
 {
     protected $fillable = [
-        'name',
         'nosotros',
         'cervezas',
         'color',
