@@ -10,30 +10,35 @@ class BeerStyleController extends Controller
     public function index()
     {
         $beerStyles = Beer_Style::all();
-        return view('pages.beer_style', compact('beerStyles'));
+        return view('pages.beer_style', compact('beerStyles'));//page.beer_style --> route('beer_style.create') del boton
     }
 
     public function create()
     {
+        
         return view('beerStyle.create');
     }
 
     public function store(Request $request)
     {
-        $beerStyle = new Beer_Style();
-        $beerStyle->name = $request->input('name');
-        
-        // Guardar el nuevo registro en la base de datos
-        $beerStyle->save();
-    
-        // Retornar la respuesta JSON con los datos guardados
-        return response()->json($beerStyle);
-        //return redirect('beerStyle')->with('mensaje','Estilo cerveza agregado con éxito');
+
+        $request->validate([
+            'name' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+        ]);
+
+        Beer_Style::create([
+            'name' => $request->input('name'),
+        ]);
+
+        return redirect()->route('beer_style.store')->with('mensaje','Estilo cerveza agregado con éxito');
     }
 
     public function show(Beer_Style $beerStyle)
     {
-        return view('beer_styles.show', compact('beerStyle'));
+        return view('beerStyle.show', compact('beerStyle'));
     }
 
     public function edit($id)

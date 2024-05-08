@@ -80,6 +80,7 @@ Route::put('/posts/{post}', PostController::class .'@update')->name('posts.updat
 // deletes a post
 Route::delete('/posts/{post}', PostController::class .'@destroy')->name('posts.destroy');
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /*
@@ -111,4 +112,3 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::resource('/pages/type_product', ProductTypesController::class);
     Route::resource('/pages/format', BeerFormatController::class);
 });
-

@@ -61,7 +61,7 @@
     <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">Formato contenedor<small></small></h3>
-        <button href="" class="btn btn-sm btn-outline-primary"> Crear</button>
+        <a href="{{ route('format.create') }}" class="btn btn-sm btn-outline-primary"> Crear Formato</a>
 
       </div>
       <div class="block-content block-content-full">
@@ -83,7 +83,7 @@
                   <a href="javascript:void(0)">{{$format -> container}}</a>
                 </td>
                 <td>
-                  <a>{{$format -> liters}}</a>
+                  <a href="javascript:void(0)">{{$format -> liters}}</a>
                 </td>
                 <td> <!-- Nueva columna para botones de editar y eliminar -->
                   <a href="" class="btn btn-sm btn-outline-warning">Editar</a>

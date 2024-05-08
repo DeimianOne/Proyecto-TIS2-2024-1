@@ -20,15 +20,23 @@ class BeerFormatController extends Controller
 
     public function store(Request $request)
     {
-        $beerFormat = new Beer_format();
-        $beerFormat->container = $request->input('container');
-        $beerFormat->liters = $request->input('liters');
-        
-        // Guardar el nuevo registro en la base de datos
-        $beerFormat->save();
-    
-        // Retornar la respuesta JSON con los datos guardados
-        return response()->json($beerFormat);
+        $request->validate([
+            'container' => 'required|string|max:100',
+            'liters' => 'required|numeric|max:50'
+        ], [
+            'container.required' => 'El Contenedor es obligatorio.',
+            'container.max' => 'El nombre no puede superar los 100 caracteres.',
+            'liters.required' => 'Los Litros son obligatorio.',
+            'liters.max' => 'Los litros no puede superar los 20 caracteres.',
+        ]);
+
+        Beer_format::create([
+            'container' => $request->input('container'),
+            'liters' => $request->input('liters'),
+        ]);
+
+        return redirect()->route('format.index')->with('mensaje','Formato de cerveza agregado con éxito');
+
         //return redirect('beerFormat')->with('mensaje','Formato cerveza agregado con éxito');
     }
 
