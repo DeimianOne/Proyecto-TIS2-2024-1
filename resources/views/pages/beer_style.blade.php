@@ -60,8 +60,8 @@
     <!-- Dynamic Table Full -->
     <div class="block block-rounded">
       <div class="block-header block-header-default">
-        <h3 class="block-title">Estilos de cerveza<small></small></h3>
-        <button href="" class="btn btn-sm btn-outline-primary"> Crear</button>
+        <h3 class="block-title">Estilo de cerveza<small></small></h3>
+        <a href="{{ route('beer_style.create') }}" class="btn btn-sm btn-outline-primary"> Crear</a>
 
       </div>
       <div class="block-content block-content-full">

@@ -1,12 +1,13 @@
-@extends('layouts.app') <!-- O la ruta correcta de tu layout -->
+@extends('layouts.backend')
 
 @section('content')
 <div class="block block-rounded">
-    <div class="block-header block-header-default">
-        <h3 class="block-title">Crear Nueva Cerveza</h3>
+    <div class="block-header block-header-default ">
+        <h3 class="block-title ">Crear Nueva Cerveza</h3>
     </div>
-    <div class="block-content block-content-full">
-        <form action="{{ route('guardar.cerveza') }}" method="POST">
+    <div class="block-content block-content-full d-flex justify-content-center">
+        <div class="col-lg-8">
+        <form  method="POST">
             @csrf
             <div class="form-group">
                 <label for="nombre">Nombre</label>

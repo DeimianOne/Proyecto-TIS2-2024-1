@@ -61,7 +61,7 @@
     <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">Tipos de productos<small></small></h3>
-        <button href="" class="btn btn-sm btn-outline-primary"> Crear</button>
+        <a href="{{ route('type_product.create') }}" class="btn btn-sm btn-outline-primary"> Crear</a>
 
       </div>
       <div class="block-content block-content-full">
