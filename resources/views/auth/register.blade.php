@@ -85,14 +85,12 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Registrarse</h5>
+                        <h5 class="card-title mb-3">Registrarse</h5>
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <div class="mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-                                {{-- <label for="nombre" class="form-label">Nombre</label> --}}
-                                {{-- <input type="text" class="form-control" id="nombre" name="nombre"> --}}
+                                <label for="name" class="form-label">{{ ('Nombre') }}</label>
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
@@ -103,7 +101,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="last_name" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
+                                <label for="last_name" class="form-label">{{ ('Apellido') }}</label>
                                 <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name">
 
                                 @error('last_name')
@@ -114,9 +112,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-                                {{-- <label for="email" class="form-label">Correo Electrónico</label> --}}
-                                {{-- <input type="email" class="form-control" id="email" name="email"> --}}
+                                <label for="email" class="form-label">{{ ('Correo electrónico') }}</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
@@ -127,9 +123,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-                                {{-- <label for="contrasena" class="form-label">Contraseña</label> --}}
-                                {{-- <input type="password" class="form-control" id="contrasena" name="contrasena"> --}}
+                                <label for="password" class="form-label">{{ ('Contraseña') }}</label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
@@ -140,11 +134,15 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                                <label for="password-confirm" class="form-label">{{ __('Confirmar contraseña') }}</label>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Registrarse</button>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary mt-3">
+                                    {{ ('Registrarse') }}
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
