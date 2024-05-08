@@ -7,11 +7,11 @@
     </div>
     <div class="block-content block-content-full d-flex justify-content-center">
         <div class="col-lg-8">
-            <form method="POST">
+            <form method="POST" action="{{ route ('type_product.store') }}">
                 @csrf
                 <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del estilo de cerveza">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre del estilo de cerveza">
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>

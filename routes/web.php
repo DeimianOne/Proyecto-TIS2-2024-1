@@ -110,4 +110,4 @@ Route::resource('/pages/format', BeerFormatController::class);
 
 Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
 
-Route::get('/views/productType/create', 'ProductTypeController@create')->name('product_Type.create');
+Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
