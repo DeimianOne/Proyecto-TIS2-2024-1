@@ -105,9 +105,11 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::view('/pages/slick', 'pages.slick');
     Route::view('/pages/datatables', 'pages.datatables');
     Route::view('/pages/blank', 'pages.blank');
+
+    Route::resource('/pages/beer', BeerController::class);
+    Route::resource('/pages/beer_style', BeerStyleController::class);
+    Route::resource('/pages/type_product', ProductTypesController::class);
+    Route::resource('/pages/format', BeerFormatController::class);
+    Route::get('/beer/create', 'beerController@create')->name('beer.create');
 });
-Route::resource('/pages/beer', BeerController::class);
-Route::resource('/pages/beer_style', BeerStyleController::class);
-Route::resource('/pages/type_product', ProductTypesController::class);
-Route::resource('/pages/format', BeerFormatController::class);
-Route::get('/beer/create', 'beerController@create')->name('beer.create');
+
