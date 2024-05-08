@@ -13,23 +13,23 @@
 
 
 <!-- Carousel Start -->
-<div class="container-fluid p-0 mb-5">
+<div class="container-fluid p-0">
     <div id="blog-carousel" class="carousel slide overlay-bottom" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="w-100" src="img/fuzz/etiquetas/devil.png" alt="First slide">
+                <img class="w-100" src="img/fuzz/etiquetas/devil1920x1080.png" alt="First slide">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <h3 class="display-1 text-white m-0">Fuzz</h3>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="w-100" src="img/fuzz/etiquetas/elrucio.png" alt="Second slide">
+                <img class="w-100" src="img/fuzz/etiquetas/elrucio1920x1080.png" alt="Second slide">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <h3 class="display-1 text-white m-0">Fuzz</h3>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="w-100" src="img/fuzz/etiquetas/hopexperience.png" alt="Third slide">
+                <img class="w-100" src="img/fuzz/etiquetas/hopexperience1920x1080.png" alt="Third slide">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <h3 class="display-1 text-white m-0">Fuzz</h3>
                 </div>

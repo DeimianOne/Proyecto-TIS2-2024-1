@@ -4,7 +4,7 @@
 
 
 <div class="container-fluid py-5">
-    <div class="container">
+    <div class="container mt-5 pt-5">
         <div class="section-title">
             <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Cervezas</h4>
         </div>

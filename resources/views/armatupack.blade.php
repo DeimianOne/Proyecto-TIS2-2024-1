@@ -2,7 +2,7 @@
 @include('layouts.navbar')
 
 <div class="container-fluid py-5">
-    <div class="container">
+    <div class="container mt-5 pt-5">
         <h4 class="text-center text-primary mb-4" style="letter-spacing: 5px;">Elige tu pack</h4>
 
         <div class="row justify-content-center align-items-center">
