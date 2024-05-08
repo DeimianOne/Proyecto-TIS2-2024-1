@@ -15,6 +15,8 @@ class ProductTypesController extends Controller
     public function index()
     {
         //
+        $datos['productTypes'] = Product_types::paginate(5);
+        return view('productType.index',$datos);
     }
 
     /**
@@ -25,6 +27,8 @@ class ProductTypesController extends Controller
     public function create()
     {
         //
+        return view('productType.create');
+
     }
 
     /**
@@ -35,7 +39,18 @@ class ProductTypesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos antes de almacenarlos, si es necesario
+        
+        // Crear una nueva instancia del modelo con los datos del formulario
+        $productType = new Product_types();
+        $productType->name = $request->input('name');
+        
+        // Guardar el nuevo registro en la base de datos
+        $productType->save();
+    
+        // Retornar la respuesta JSON con los datos guardados
+        //return response()->json($productType);
+        return redirect('productType')->with('mensaje','Producto agregado con éxito');
     }
 
     /**
@@ -55,9 +70,12 @@ class ProductTypesController extends Controller
      * @param  \App\Models\Product_types  $product_types
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product_types $product_types)
+    public function edit($id)
     {
         //
+        $productType = Product_types::findOrFail($id);
+        return view('productType.edit', compact('productType'));
+
     }
 
     /**
@@ -67,19 +85,25 @@ class ProductTypesController extends Controller
      * @param  \App\Models\Product_types  $product_types
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product_types $product_types)
+    public function update(Request $request, $id)
     {
-        //
+        // Obtener los datos del formulario excluyendo el campo _method
+        $datosProductType = $request->except(['_token', '_method']);
+        Product_types::where('id', '=', $id)->update($datosProductType);
+    
+        $productType = Product_types::findOrFail($id);
+        return view('productType.edit', compact('productType'));
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Product_types  $product_types
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product_types $product_types)
+    public function destroy($id)
     {
         //
+        Product_types::destroy($id);
+        return redirect('productType')->with('mensaje','Tipo producto eliminado');
     }
 }

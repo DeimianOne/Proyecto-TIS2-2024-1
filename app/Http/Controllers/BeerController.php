@@ -2,84 +2,76 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Beer;
 use Illuminate\Http\Request;
+use App\Models\Beer;
 
 class BeerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $datos['beers'] = Beer::paginate(5);
+        return view('beer.index',$datos);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('beer.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        // Validar los datos antes de almacenarlos, si es necesario
+    
+        // Crear una nueva instancia del modelo con los datos del formulario
+        $beer = new Beer();
+        $datos = request()->except('_token');
+        // $beer->name = $request->input('name');
+        // $beer->beer_style = $request->input('beer_style'); // Asumiendo que 'style' es el nombre del campo en el formulario
+        // $beer->format = $request->input('format'); // Asumiendo que 'format' es el nombre del campo en el formulario
+        // $beer->litre_value = $request->input('litre_value'); // Asumiendo que 'price_per_liter' es el nombre del campo en el formulario
+        // $beer->image = $request->input('image');
+        // $beer->count_views = $request->input('count_views');
+        // $beer->stock = $request->input('stock');
+        // $beer->type_product = $request->input('type_product'); // Asumiendo que 'stock' es el nombre del campo en el formulario
+        // Asignar la imagen si se cargó una
+        /*if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images'), $imageName);
+            $beer->image = $imageName;
+        }*/
+
+        
+        // Guardar el nuevo registro en la base de datos
+        $beer->save();
+    
+        // Retornar la respuesta de redireccionamiento con un mensaje
+        return redirect('beer')->with('mensaje', 'Producto agregado con éxito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Beer  $beer
-     * @return \Illuminate\Http\Response
-     */
     public function show(Beer $beer)
     {
-        //
+        return view('beers.show', compact('beer'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Beer  $beer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Beer $beer)
+    public function edit($id)
     {
-        //
+        $beer = Beer::findOrFail($id);
+        return view('beer.edit', compact('beer'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Beer  $beer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Beer $beer)
+    public function update(Request $request,$id)
     {
-        //
+        $datosBeer = $request->except(['_token', '_method']);
+        Beer::where('id', '=', $id)->update($datosBeer);
+    
+        $beer = Beer::findOrFail($id);
+        return view('beer.edit', compact('beer'))->with('mensaje', 'Producto actualizado con éxito');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Beer  $beer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Beer $beer)
+    public function destroy($id)
     {
-        //
+        Beer::destroy($id);
+        return redirect('beer')->with('mensaje','Cerveza eliminada');
     }
 }

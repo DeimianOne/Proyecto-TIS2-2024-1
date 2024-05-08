@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductTypesController;
+use App\Http\Controllers\BeerController;
+use App\Http\Controllers\BeerFormatController;
+use App\Http\Controllers\BeerStyleController;
+use App\Http\Controllers\LandingEditController;
+use App\Http\Controllers\ProductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,9 +19,53 @@ use App\Http\Controllers\PostController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+
+Route::get('/packs', function () {
+    return view('packs');
+})->name('packs');
+
+Route::get('/iniciarsesion', function () {
+    return view('iniciarsesion');
+})->name('iniciarsesion');
+
+Route::get('/registrate', function () {
+    return view('registrate');
+})->name('registrate');
+
+Route::get('/cervezas', function () {
+    return view('cervezas');
+})->name('cervezas');
+
+Route::get('/armatupack', function () {
+    return view('armatupack');
+})->name('armatupack'); 
+
+Route::get('/product-pack6', function () {
+    return view('product-pack6');
+})->name('product-pack6');
+
+Route::get('/product-pack12', function () {
+    return view('product-pack12');
+})->name('product-pack12');
+
+Route::get('/contacto', function () {
+    return view('contacto');
+})->name('contacto');
+
+Route::get('/nosotros', function () {
+    return view('nosotros');
+})->name('nosotros');
+
+Route::get('/dondeestamos', function () {
+    return view('dondeestamos');
+})->name('dondeestamos');
+
 
 // returns the home page with all posts
-Route::get('/', PostController::class .'@index')->name('posts.index');
+// Route::get('/', PostController::class .'@index')->name('posts.index');
 // returns the form for adding a post
 Route::get('/posts/create', PostController::class . '@create')->name('posts.create');
 // adds a post to the database
@@ -27,6 +78,13 @@ Route::get('/posts/{post}/edit', PostController::class .'@edit')->name('posts.ed
 Route::put('/posts/{post}', PostController::class .'@update')->name('posts.update');
 // deletes a post
 Route::delete('/posts/{post}', PostController::class .'@destroy')->name('posts.destroy');
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::resource('productType', ProductTypesController::class);
+Route::resource('beer', BeerController::class);     
+Route::resource('beerFormat', BeerFormatController::class);
+Route::resource('beerStyle', BeerStyleController::class);
+Route::resource('product', ProductController::class);
+Route::resource('landingEdit', LandingEditController::class);

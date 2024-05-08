@@ -2,84 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Merchandising;
 use Illuminate\Http\Request;
+use App\Models\Merchandising;
+use App\Models\Product_types;
 
 class MerchandisingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $merchandisings = Merchandising::all();
+        return view('merchandisings.index', compact('merchandisings'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $productTypes = Product_types::all();
+        return view('merchandisings.create', compact('productTypes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        Merchandising::create($request->all());
+        return redirect()->route('merchandisings.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Merchandising  $merchandising
-     * @return \Illuminate\Http\Response
-     */
     public function show(Merchandising $merchandising)
     {
-        //
+        return view('merchandisings.show', compact('merchandising'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Merchandising  $merchandising
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Merchandising $merchandising)
     {
-        //
+        $productTypes = Product_types::all();
+        return view('merchandisings.edit', compact('merchandising', 'productTypes'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Merchandising  $merchandising
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Merchandising $merchandising)
     {
-        //
+        $merchandising->update($request->all());
+        return redirect()->route('merchandisings.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Merchandising  $merchandising
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Merchandising $merchandising)
     {
-        //
+        $merchandising->delete();
+        return redirect()->route('merchandisings.index');
     }
 }
