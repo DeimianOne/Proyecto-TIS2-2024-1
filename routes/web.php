@@ -77,10 +77,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Rutas Dashmix
-// Route::view('/', 'landing');
-Route::match(['get', 'post'], '/dashboard', function(){
-    return view('dashboard');
+Route::group(['middleware' => ['role:Administrador']], function () {
+    Route::match(['get', 'post'], '/dashboard', function(){
+        return view('dashboard');
+    });
+    Route::view('/pages/slick', 'pages.slick');
+    Route::view('/pages/datatables', 'pages.datatables');
+    Route::view('/pages/blank', 'pages.blank');
 });
-Route::view('/pages/slick', 'pages.slick');
-Route::view('/pages/datatables', 'pages.datatables');
-Route::view('/pages/blank', 'pages.blank');
