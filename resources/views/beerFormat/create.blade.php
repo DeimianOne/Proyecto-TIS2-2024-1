@@ -15,7 +15,7 @@
                 </div>
                 <div class="form-group">
                     <label for="liters">Cantidad litros</label>
-                    <input type="int" class="form-control" id="liters" name="liters" placeholder="litros del formato">
+                    <input type="number" class="form-control" id="liters" name="liters" placeholder="litros del formato">
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>

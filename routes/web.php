@@ -111,6 +111,10 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::resource('/pages/beer_style', BeerStyleController::class);
     Route::resource('/pages/type_product', ProductTypesController::class);
     Route::resource('/pages/format', BeerFormatController::class);
+    Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
+
+    Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
 
 
 });
+
