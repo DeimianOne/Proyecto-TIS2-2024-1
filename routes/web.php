@@ -15,50 +15,6 @@ use App\Http\Controllers\PostController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
-Route::get('/packs', function () {
-    return view('packs');
-})->name('packs');
-
-Route::get('/iniciarsesion', function () {
-    return view('iniciarsesion');
-})->name('iniciarsesion');
-
-Route::get('/registrate', function () {
-    return view('registrate');
-})->name('registrate');
-
-Route::get('/cervezas', function () {
-    return view('cervezas');
-})->name('cervezas');
-
-Route::get('/armatupack', function () {
-    return view('armatupack');
-})->name('armatupack');
-
-Route::get('/product-pack6', function () {
-    return view('product-pack6');
-})->name('product-pack6');
-
-Route::get('/product-pack12', function () {
-    return view('product-pack12');
-})->name('product-pack12');
-
-Route::get('/contacto', function () {
-    return view('contacto');
-})->name('contacto');
-
-Route::get('/nosotros', function () {
-    return view('nosotros');
-})->name('nosotros');
-
-Route::get('/dondeestamos', function () {
-    return view('dondeestamos');
-})->name('dondeestamos');
-
 // returns the home page with all posts
 // Route::get('/', PostController::class .'@index')->name('posts.index');
 // returns the form for adding a post
@@ -85,4 +41,3 @@ Route::match(['get', 'post'], '/dashboard', function(){
 Route::view('/pages/slick', 'pages.slick');
 Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
