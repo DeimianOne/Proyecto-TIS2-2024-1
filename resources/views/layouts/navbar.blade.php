@@ -26,6 +26,7 @@
                 <a href="{{ route('dondeestamos') }}" class="nav-item nav-link">¿Dónde estamos?</a>
                 <a href="{{ route('contacto') }}" class="nav-item nav-link">Contacto</a>
             </div>
+
             <div class="navbar-nav ml-auto">
                 @guest
                     @if (Route::has('login'))
@@ -40,6 +41,12 @@
                         </a>
                     @endif
                 @else
+
+                    @if(auth()->user()->hasRole('Administrador'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
+                        </li>
+                    @endif
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle mr-3" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
