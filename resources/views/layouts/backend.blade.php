@@ -5,19 +5,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-  <title>Dashmix - Bootstrap 5 Admin Template &amp; UI Framework</title>
+  <title>Cerveza Fuzz</title>
 
-  <meta name="description" content="Dashmix - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-  <meta name="author" content="pixelcave">
+  <meta name="description" content="Cerveza Fuzz">
+  <meta name="author" content="Cerveza Fuzz">
   <meta name="robots" content="noindex, nofollow">
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Icons -->
-  <link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png') }}">
-  <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('media/favicons/favicon-192x192.png') }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
+  <link rel="shortcut icon" href="{{ asset('img/fuzz/logo4.png') }}">
+  <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('img/fuzz/logo4.png') }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/fuzz/logo4.png') }}">
 
   <!-- Fonts and Styles -->
   @yield('css_before')
@@ -86,7 +86,7 @@
       ''                                          Full width Main Content if no class is added
       'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
       'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
-        
+
     DARK MODE
 
       'sidebar-dark page-header-dark dark-mode'   Enable dark mode (light sidebar/header is not supported with dark mode)
@@ -277,7 +277,7 @@
               D<span class="opacity-75">x</span>
             </span>
             <span class="smini-hidden">
-              Dash<span class="opacity-75">mix</span>
+              Cerveza<span class="opacity-75"> Fuzz</span>
             </span>
           </a>
           <!-- END Logo -->
@@ -423,9 +423,12 @@
                 <!-- END Side Overlay -->
 
                 <div role="separator" class="dropdown-divider"></div>
-                <a class="dropdown-item" href="javascript:void(0)">
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Sign Out
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
               </div>
             </div>
           </div>
