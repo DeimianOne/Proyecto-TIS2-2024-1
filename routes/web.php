@@ -42,7 +42,7 @@ Route::get('/cervezas', function () {
 
 Route::get('/armatupack', function () {
     return view('armatupack');
-})->name('armatupack'); 
+})->name('armatupack');
 
 Route::get('/product-pack6', function () {
     return view('product-pack6');
@@ -64,11 +64,6 @@ Route::get('/dondeestamos', function () {
     return view('dondeestamos');
 })->name('dondeestamos');
 
-Route::get('/startview', function () {
-    return view('startview');
-});
-
-
 // returns the home page with all posts
 // Route::get('/', PostController::class .'@index')->name('posts.index');
 // returns the form for adding a post
@@ -86,7 +81,7 @@ Route::delete('/posts/{post}', PostController::class .'@destroy')->name('posts.d
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+/*
 Route::resource('productType', ProductTypesController::class);
 Route::resource('beer', BeerController::class);     
 Route::resource('beerFormat', BeerFormatController::class);
@@ -94,5 +89,18 @@ Route::resource('beerStyle', BeerStyleController::class);
 Route::resource('product', ProductController::class);
 Route::resource('landingEdit', LandingEditController::class);
 
+*/
 
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Rutas Dashmix
+// Route::view('/', 'landing');
+Route::match(['get', 'post'], '/dashboard', function(){
+    return view('dashboard');
+});
+Route::view('/pages/beer', 'pages.beer');
+Route::view('/pages/beer_style', 'pages.beer_style');
+Route::view('/pages/type_product', 'pages.type_product');
+Route::view('/pages/format', 'pages.format');

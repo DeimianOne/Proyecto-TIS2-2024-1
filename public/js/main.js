@@ -5,7 +5,7 @@
     $(document).ready(function () {
         function toggleNavbarMethod() {
             if ($(window).width() > 992) {
-                $('.navbar .dropdown').on('mouseover', function () {
+                $('.nav-item .dropdown').on('mouseover', function () {
                     $('.dropdown-toggle', this).trigger('click');
                 }).on('mouseout', function () {
                     $('.dropdown-toggle', this).trigger('click').blur();
@@ -18,26 +18,24 @@
         $(window).resize(toggleNavbarMethod);
     });
 
-
+    // Verificar +18
     $(document).ready(function() {
         var $ageVerificationPopup = $("#ageVerificationPopup");
         var $yesButton = $("#yesButton");
-        
+
         // Verificar si ya se ha verificado la edad
         var ageVerified = localStorage.getItem("ageVerified");
         if (ageVerified) {
             // Si se ha verificado la edad, ocultar el popup
             $ageVerificationPopup.hide();
         }
-    
+
         $yesButton.on("click", function() {
             // Al hacer clic en "Sí", ocultar el popup y guardar en el almacenamiento local
             $ageVerificationPopup.hide();
             localStorage.setItem("ageVerified", true);
         });
     });
-    
-    
 
     // Back to top button
     $(window).scroll(function () {
@@ -52,7 +50,8 @@
         return false;
     });
 
-      new tempusDominus.TempusDominus(document.getElementById("date"), {
+    //Config calendario
+    new tempusDominus.TempusDominus(document.getElementById("date"), {
         display: {
             viewMode: "calendar",
             components: {
@@ -71,7 +70,6 @@
             format: 'dd/MM/yyyy'
         }
     });
-
 
     // Testimonials carousel
     // $(".testimonial-carousel").owlCarousel({
@@ -97,8 +95,8 @@
     //     }
     // });
 
-
-    
-
 })(jQuery);
+
+
+
 

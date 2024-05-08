@@ -1,5 +1,4 @@
 <!-- Navbar -->
-
 <div class="container-fluid p-0 nav-bar ">
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 ">
         <a href="{{ route('welcome') }}" class="navbar-brand px-lg-4 m-0 align-items-center d-flex">
@@ -21,7 +20,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('cervezas') }}">Cervezas</a>
-                        <!-- <a class="dropdown-item disable" href="productos">Productos</a> -->
+                        <a class="dropdown-item disabled" href="productos">Productos</a>
                     </div>
                 </div>
                 <a href="{{ route('dondeestamos') }}" class="nav-item nav-link">¿Dónde estamos?</a>
@@ -38,4 +37,3 @@
         </div>
     </nav>
 </div>
-
