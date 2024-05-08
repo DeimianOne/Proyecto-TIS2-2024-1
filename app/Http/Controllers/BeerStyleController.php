@@ -9,19 +9,26 @@ class BeerStyleController extends Controller
 {
     public function index()
     {
-        $styles = Beer_Style::all();
-        return view('beer_styles.index', compact('styles'));
+        $beerStyles = Beer_Style::all();
+        return view('pages.beer_style', compact('beerStyles'));
     }
 
     public function create()
     {
-        return view('beer_styles.create');
+        return view('beerStyle.create');
     }
 
     public function store(Request $request)
     {
-        Beer_Style::create($request->all());
-        return redirect()->route('beer-styles.index');
+        $beerStyle = new Beer_Style();
+        $beerStyle->name = $request->input('name');
+        
+        // Guardar el nuevo registro en la base de datos
+        $beerStyle->save();
+    
+        // Retornar la respuesta JSON con los datos guardados
+        return response()->json($beerStyle);
+        //return redirect('beerStyle')->with('mensaje','Estilo cerveza agregado con éxito');
     }
 
     public function show(Beer_Style $beerStyle)
@@ -29,20 +36,24 @@ class BeerStyleController extends Controller
         return view('beer_styles.show', compact('beerStyle'));
     }
 
-    public function edit(Beer_Style $beerStyle)
+    public function edit($id)
     {
-        return view('beer_styles.edit', compact('beerStyle'));
+        $beerStyle = Beer_Style::findOrFail($id);
+        return view('beerStyle.edit', compact('beerStyle'));
     }
 
-    public function update(Request $request, Beer_Style $beerStyle)
+    public function update(Request $request, $id)
     {
-        $beerStyle->update($request->all());
-        return redirect()->route('beer-styles.index');
+        $datosBeerStyle = $request->except(['_token', '_method']);
+        Beer_Style::where('id', '=', $id)->update($datosBeerStyle);
+    
+        $beerStyle = Beer_Style::findOrFail($id);
+        return view('beerStyle.edit', compact('beerStyle'));
     }
 
-    public function destroy(Beer_Style $beerStyle)
+    public function destroy($id)
     {
-        $beerStyle->delete();
-        return redirect()->route('beer-styles.index');
+        Beer_Style::destroy($id);
+        return redirect('beerStyle')->with('mensaje','Estilo de cerveza eliminado');
     }
 }

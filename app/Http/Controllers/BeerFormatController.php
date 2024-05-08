@@ -10,39 +10,52 @@ class BeerFormatController extends Controller
     public function index()
     {
         $formats = Beer_format::all();
-        return view('beer_format.index', compact('formats'));
+        return view('pages.format', compact('formats'));
     }
 
     public function create()
     {
-        return view('beer_format.create');
+        return view('beerFormat.create');
     }
 
     public function store(Request $request)
     {
-        Beer_format::create($request->all());
-        return redirect()->route('beer-format.index');
+        $beerFormat = new Beer_format();
+        $beerFormat->container = $request->input('container');
+        $beerFormat->liters = $request->input('liters');
+        
+        // Guardar el nuevo registro en la base de datos
+        $beerFormat->save();
+    
+        // Retornar la respuesta JSON con los datos guardados
+        return response()->json($beerFormat);
+        //return redirect('beerFormat')->with('mensaje','Formato cerveza agregado con éxito');
     }
 
     public function show(Beer_format $beerFormat)
     {
-        return view('beer_format.show', compact('beerFormat'));
+        return view('beerFormat.show', compact('beerFormat'));
     }
 
-    public function edit(Beer_format $beerFormat)
+    public function edit($id)
     {
-        return view('beer_format.edit', compact('beerFormat'));
+        $beerFormat = Beer_format::findOrFail($id);
+        return view('beerFormat.edit', compact('beerFormat'));
     }
 
-    public function update(Request $request, Beer_format $beerFormat)
+    public function update(Request $request, $id)
     {
-        $beerFormat->update($request->all());
-        return redirect()->route('beer-format.index');
+        $datosbeerFormat = $request->except(['_token', '_method']);
+        Beer_format::where('id', '=', $id)->update($datosbeerFormat);
+    
+        $beerFormat = Beer_format::findOrFail($id);
+        return view('beerFormat.edit', compact('beerFormat'));
     }
 
-    public function destroy(Beer_format $beerFormat)
+    public function destroy($id)
     {
-        $beerFormat->delete();
-        return redirect()->route('beer-format.index');
+
+        Beer_format::destroy($id);
+        return redirect('pages.format');
     }
 }

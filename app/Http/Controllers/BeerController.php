@@ -4,24 +4,56 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Beer;
+use App\Models\Beer_Format;
+use App\Models\Beer_style;
+use App\Models\Product_Types;
 
 class BeerController extends Controller
 {
     public function index()
     {
-        $beers = Beer::all();
-        return view('beers.index', compact('beers'));
+        $datosBeer = Beer::all();
+        return view('pages.beer', compact('datosBeer'));
     }
 
     public function create()
     {
-        return view('beers.create');
+        $beer_formats = Beer_Format::all();
+        $beer_styles = Beer_style::all();
+        $produc_types = Product_Types::all();
+
+        return view('beer.create',compact('beer_formats','beer_styles','produc_types'));
     }
 
     public function store(Request $request)
     {
-        Beer::create($request->all());
-        return redirect()->route('beers.index')->with('success', 'Beer created successfully.');
+        // Validar los datos antes de almacenarlos, si es necesario
+    
+        // Crear una nueva instancia del modelo con los datos del formulario
+        $beer = new Beer();
+        $datos = request()->except('_token');
+        // $beer->name = $request->input('name');
+        // $beer->beer_style = $request->input('beer_style'); // Asumiendo que 'style' es el nombre del campo en el formulario
+        // $beer->format = $request->input('format'); // Asumiendo que 'format' es el nombre del campo en el formulario
+        // $beer->litre_value = $request->input('litre_value'); // Asumiendo que 'price_per_liter' es el nombre del campo en el formulario
+        // $beer->image = $request->input('image');
+        // $beer->count_views = $request->input('count_views');
+        // $beer->stock = $request->input('stock');
+        // $beer->type_product = $request->input('type_product'); // Asumiendo que 'stock' es el nombre del campo en el formulario
+        // Asignar la imagen si se cargó una
+        /*if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images'), $imageName);
+            $beer->image = $imageName;
+        }*/
+
+        
+        // Guardar el nuevo registro en la base de datos
+        $beer->save();
+    
+        // Retornar la respuesta de redireccionamiento con un mensaje
+        return redirect('beer')->with('mensaje', 'Producto agregado con éxito');
     }
 
     public function show(Beer $beer)
@@ -29,20 +61,24 @@ class BeerController extends Controller
         return view('beers.show', compact('beer'));
     }
 
-    public function edit(Beer $beer)
+    public function edit($id)
     {
-        return view('beers.edit', compact('beer'));
+        $beer = Beer::findOrFail($id);
+        return view('beer.edit', compact('beer'));
     }
 
-    public function update(Request $request, Beer $beer)
+    public function update(Request $request,$id)
     {
-        $beer->update($request->all());
-        return redirect()->route('beers.index')->with('success', 'Beer updated successfully.');
+        $datosBeer = $request->except(['_token', '_method']);
+        Beer::where('id', '=', $id)->update($datosBeer);
+    
+        $beer = Beer::findOrFail($id);
+        return view('beer.edit', compact('beer'))->with('mensaje', 'Producto actualizado con éxito');
     }
 
-    public function destroy(Beer $beer)
+    public function destroy($id)
     {
-        $beer->delete();
-        return redirect()->route('beers.index')->with('success', 'Beer deleted successfully.');
+        Beer::destroy($id);
+        return redirect('beer')->with('mensaje','Cerveza eliminada');
     }
 }

@@ -3,6 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProductTypesController;
+use App\Http\Controllers\BeerController;
+use App\Http\Controllers\BeerFormatController;
+use App\Http\Controllers\BeerStyleController;
+use App\Http\Controllers\LandingEditController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +79,20 @@ Route::get('/posts/{post}/edit', PostController::class .'@edit')->name('posts.ed
 Route::put('/posts/{post}', PostController::class .'@update')->name('posts.update');
 // deletes a post
 Route::delete('/posts/{post}', PostController::class .'@destroy')->name('posts.destroy');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/*
+Route::resource('productType', ProductTypesController::class);
+Route::resource('beer', BeerController::class);
+Route::resource('/pages/format', BeerFormatController::class);
+Route::resource('beerStyle', BeerStyleController::class);
+Route::resource('product', ProductController::class);
+Route::resource('landingEdit', LandingEditController::class);
+
+*/
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -85,3 +106,8 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::view('/pages/datatables', 'pages.datatables');
     Route::view('/pages/blank', 'pages.blank');
 });
+Route::resource('/pages/beer', BeerController::class);
+Route::resource('/pages/beer_style', BeerStyleController::class);
+Route::resource('/pages/type_product', ProductTypesController::class);
+Route::resource('/pages/format', BeerFormatController::class);
+Route::get('/beer/create', 'beerController@create')->name('beer.create');

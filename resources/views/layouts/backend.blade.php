@@ -327,22 +327,27 @@
             <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
               <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                 <i class="nav-main-link-icon fa fa-lightbulb"></i>
-                <span class="nav-main-link-name">Examples</span>
+                <span class="nav-main-link-name">Secciones</span>
               </a>
               <ul class="nav-main-submenu">
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="/pages/datatables">
-                    <span class="nav-main-link-name">DataTables</span>
+                  <a class="nav-main-link{{ request()->is('pages/beer') ? ' active' : '' }}" href="/pages/beer"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
+                    <span class="nav-main-link-name">Cerveza</span>
                   </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="/pages/slick">
-                    <span class="nav-main-link-name">Slick Slider</span>
+                  <a class="nav-main-link{{ request()->is('pages/beer_style') ? ' active' : '' }}" href="/pages/beer_style"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
+                    <span class="nav-main-link-name">Estilo cerveza</span>
                   </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/blank') ? ' active' : '' }}" href="/pages/blank">
-                    <span class="nav-main-link-name">Blank</span>
+                  <a class="nav-main-link{{ request()->is('pages/type_product') ? ' active' : '' }}" href="/pages/type_product">
+                    <span class="nav-main-link-name">Tipo de producto</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('pages/format') ? ' active' : '' }}" href="/pages/format">
+                    <span class="nav-main-link-name">Formato</span>
                   </a>
                 </li>
               </ul>

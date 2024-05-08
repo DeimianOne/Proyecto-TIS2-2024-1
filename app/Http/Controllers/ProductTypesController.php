@@ -2,47 +2,109 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product_types;
 use Illuminate\Http\Request;
-use App\Models\Product_types; // Cambio de Product_Type a ProductType
 
-class ProductTypeController extends Controller
+class ProductTypesController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $types = Product_types::all(); // Cambio de Product_Type a ProductType
-        return view('product_types.index', compact('types'));
+        //
+        $productTypes = Product_types::all();
+        return view('pages.type_product', compact('productTypes'));
     }
+    
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('product_types.create');
+        //
+        return view('productType.create');
+
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        Product_types::create($request->all()); // Cambio de Product_Type a ProductType
-        return redirect()->route('product-types.index');
+        // Validar los datos antes de almacenarlos, si es necesario
+        
+        // Crear una nueva instancia del modelo con los datos del formulario
+        $productType = new Product_types();
+        $productType->name = $request->input('name');
+        
+        // Guardar el nuevo registro en la base de datos
+        $productType->save();
+    
+        // Retornar la respuesta JSON con los datos guardados
+        //return response()->json($productType);
+        return redirect('productType')->with('mensaje','Producto agregado con éxito');
     }
 
-    public function show(Product_types $productType) // Cambio de Product_Type a ProductType
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Product_types  $product_types
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Product_types $product_types)
     {
-        return view('product_types.show', compact('productType'));
+        //
     }
 
-    public function edit(Product_types $productType) // Cambio de Product_Type a ProductType
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Product_types  $product_types
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        return view('product_types.edit', compact('productType'));
+        //
+        $productType = Product_types::findOrFail($id);
+        return view('productType.edit', compact('productType'));
+
     }
 
-    public function update(Request $request, Product_types $productType) // Cambio de Product_Type a ProductType
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Product_types  $product_types
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-        $productType->update($request->all());
-        return redirect()->route('product-types.index');
+        // Obtener los datos del formulario excluyendo el campo _method
+        $datosProductType = $request->except(['_token', '_method']);
+        Product_types::where('id', '=', $id)->update($datosProductType);
+    
+        $productType = Product_types::findOrFail($id);
+        return view('productType.edit', compact('productType'));
     }
-
-    public function destroy(Product_types $productType) // Cambio de Product_Type a ProductType
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Product_types  $product_types
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $productType->delete();
-        return redirect()->route('product-types.index');
+        //
+        Product_types::destroy($id);
+        return redirect('productType')->with('mensaje','Tipo producto eliminado');
     }
 }
