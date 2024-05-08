@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,11 +23,11 @@ Route::get('/packs', function () {
 })->name('packs');
 
 Route::get('/iniciarsesion', function () {
-    return view('iniciarsesion');
+    return view('auth/login');
 })->name('iniciarsesion');
 
 Route::get('/registrate', function () {
-    return view('registrate');
+    return view('auth/register');
 })->name('registrate');
 
 Route::get('/cervezas', function () {
