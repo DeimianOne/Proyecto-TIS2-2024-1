@@ -35,7 +35,7 @@ class BeerFormatController extends Controller
             'liters' => $request->input('liters'),
         ]);
 
-        return redirect()->route('format.index')->with('mensaje','Formato de cerveza agregado con éxito');
+        return redirect()->route('beerFormat.index')->with('mensaje','Formato de cerveza agregado con éxito');
 
         //return redirect('beerFormat')->with('mensaje','Formato cerveza agregado con éxito');
     }
