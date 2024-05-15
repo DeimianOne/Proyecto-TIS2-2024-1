@@ -35,7 +35,7 @@ class BeerFormatController extends Controller
             'liters' => $request->input('liters'),
         ]);
 
-        return redirect()->route('beerFormat.index')->with('mensaje','Formato de cerveza agregado con éxito');
+        return redirect()->route('format.store')->with('mensaje','Formato de cerveza agregado con éxito');
 
         //return redirect('beerFormat')->with('mensaje','Formato cerveza agregado con éxito');
     }
@@ -48,7 +48,7 @@ class BeerFormatController extends Controller
     public function edit($id)
     {
         $beerFormat = Beer_format::findOrFail($id);
-        return view('beerFormat.edit', compact('beerFormat'));
+        return redirect(compact('beerFormat'))->route('format.store')->with('mensaje','Formato de cerveza agregado con éxito');
     }
 
     public function update(Request $request, $id)
