@@ -65,22 +65,6 @@ Route::get('/dondeestamos', function () {
     return view('dondeestamos');
 })->name('dondeestamos');
 
-// returns the home page with all posts
-// Route::get('/', PostController::class .'@index')->name('posts.index');
-// returns the form for adding a post
-Route::get('/posts/create', PostController::class . '@create')->name('posts.create');
-// adds a post to the database
-Route::post('/posts', PostController::class .'@store')->name('posts.store');
-// returns a page that shows a full post
-Route::get('/posts/{post}', PostController::class .'@show')->name('posts.show');
-// returns the form for editing a post
-Route::get('/posts/{post}/edit', PostController::class .'@edit')->name('posts.edit');
-// updates a post
-Route::put('/posts/{post}', PostController::class .'@update')->name('posts.update');
-// deletes a post
-Route::delete('/posts/{post}', PostController::class .'@destroy')->name('posts.destroy');
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /*
@@ -92,7 +76,6 @@ Route::resource('product', ProductController::class);
 Route::resource('landingEdit', LandingEditController::class);
 
 */
-
 
 Auth::routes();
 
@@ -114,7 +97,5 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
 
     Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
-
-
 });
 
