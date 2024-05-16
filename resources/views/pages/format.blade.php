@@ -86,8 +86,14 @@
                   <a href="javascript:void(0)">{{$format -> liters}}</a>
                 </td>
                 <td> <!-- Nueva columna para botones de editar y eliminar -->
-                  <a href="" class="btn btn-sm btn-outline-warning">Editar</a>
-                  <a href="" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                  <a href="{{ route('format.edit', $format->id) }}" class="btn btn-sm btn-outline-warning">Editar</a>
+                  <form action="{{ route('format.destroy', $format->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                      Eliminar
+                    </button>
+                  </form>
                 </td>
                 </tr>
             @endforeach

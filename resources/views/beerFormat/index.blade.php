@@ -1,45 +1,104 @@
-@if(Session::has('mensaje'))
-{{ Session::get('mensaje') }}
+@extends('layouts.backend')
 
-@endif
+@section('css_before')
+<!-- Page JS Plugins CSS -->
+<link rel="stylesheet" href="{{ asset('js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css') }}">
+<link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}">
+@endsection
 
-<a href="{{ url('beerFormat/create') }}">Registra un nuevo formato de cerveza</a>
+@section('js_after')
+<!-- jQuery (required for DataTables plugin) -->
+<script src="{{ asset('js/lib/jquery.min.js') }}"></script>
 
-<table class="table table-light">
+<!-- Page JS Plugins -->
+<script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
+<script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
 
-    <thead class="thead-light">
-        <tr>
-            <th>#</th>
-            <th>Contenedor</th>
-            <th>Litros</th>
-            <th>Fecha creación</th>
-            <th>Fecha actualización</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+<!-- Page JS Code -->
+<script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+@endsection
 
-    <tbody>
-        @foreach($beerFormats as $beerFormat)
-        <tr>
-            <td>{{$beerFormat -> id}}</td>
-            <td>{{$beerFormat -> container}}</td>
-            <td>{{$beerFormat -> liters}}</td>
-            <td>{{$beerFormat -> created_at}}</td>
-            <td>{{$beerFormat -> updated_at}}</td>
-            <td>
-                
-            <a href="{{ url('/beerFormat/'.$beerFormat->id.'/edit')}}">
-                Editar
-            </a> 
-            
-            <form action="{{url('/beerFormat/'.$beerFormat -> id)}}" method="post">
-            @csrf
-            {{ method_field('DELETE') }}
-            <input type="submit" onclick="return confirm ('¿ Quieres borrar ?')" value="Borrar">
-            </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
+@section('content')
+<!-- Hero -->
+<div class="bg-body-light">
+    <div class="content content-full">
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+            <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">CERVECERIA FUZZ</h1>
+            <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Examples</li>
+                    <li class="breadcrumb-item active" aria-current="page">Plugin</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- END Hero -->
 
-</table>
+<!-- Page Content -->
+<div class="content">
+    <!-- Info 
+    <div class="block block-rounded">
+      <div class="block-header block-header-default">
+        <h3 class="block-title">Plugin Example</h3>
+      </div>
+      <div class="block-content">
+        <p>
+          This page showcases how easily you can add a plugin’s JS/CSS assets and init it using custom JS code.
+        </p>
+      </div>
+    </div>
+    END Info -->
+
+    <!-- Dynamic Table Full -->
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">Formato contenedor<small></small></h3>
+            <a href="{{ route('beerFormat.create') }}" class="btn btn-sm btn-outline-primary"> Crear Formato</a>
+
+        </div>
+        <div class="block-content block-content-full">
+            <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width: 80px;">id</th>
+                        <th>Contenedor</th>
+                        <th>litros</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($formats as $format)
+                    <tr>
+                        <td class="text-center">{{$format -> id}}</td>
+                        <td class="fw-semibold">
+                            <a href="javascript:void(0)">{{$format -> container}}</a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)">{{$format -> liters}}</a>
+                        </td>
+                        <td> <!-- Nueva columna para botones de editar y eliminar -->
+                            <a href="{{ route('beerFormat.edit', $format->id) }}" class="btn btn-sm btn-outline-warning">Editar</a>
+                            <form action="{{ route('beerFormat.destroy', $format->id) }}" method="POST" >
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @endsection
