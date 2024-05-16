@@ -12,10 +12,16 @@
                 <div class="form-group">
                     <label for="container">Contenedor</label>
                     <input type="text" class="form-control" id="container" name="container" placeholder="Nombre del formato">
+                    @error('container')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="liters">Cantidad litros</label>
                     <input type="number" class="form-control" id="liters" name="liters" placeholder="litros del formato">
+                    @error('liters')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>

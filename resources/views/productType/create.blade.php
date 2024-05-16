@@ -7,11 +7,14 @@
     </div>
     <div class="block-content block-content-full d-flex justify-content-center">
         <div class="col-lg-8">
-            <form method="POST" action="{{ route ('type_product.store') }}">
+            <form method="POST" action="{{ route('type_product.store') }}">
                 @csrf
                 <div class="form-group">
                     <label for="name">Nombre</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Nombre del estilo de cerveza">
+                    @error('name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
