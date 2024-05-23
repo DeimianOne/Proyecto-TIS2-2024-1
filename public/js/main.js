@@ -16,9 +16,27 @@
         }
         toggleNavbarMethod();
         $(window).resize(toggleNavbarMethod);
+
     });
 
-    // Verificar +18
+
+    $(document).ready(function() {
+        // Inicializar el carrusel
+        const carousel = new bootstrap.Carousel(document.getElementById('blog-carousel'), {
+            interval: 3000 // Cambia de imagen cada 3 segundos
+        });
+        
+        // Activar el carrusel automáticamente
+        $('#blog-carousel').carousel('cycle');
+        
+        // Reiniciar el carrusel al hacer scroll
+        $(window).scroll(function() {
+            $('#blog-carousel').carousel('cycle');
+        });
+    });
+
+
+    // Verificar +18    
     $(document).ready(function() {
         var $ageVerificationPopup = $("#ageVerificationPopup");
         var $yesButton = $("#yesButton");
@@ -70,30 +88,6 @@
             format: 'dd/MM/yyyy'
         }
     });
-
-    // Testimonials carousel
-    // $(".testimonial-carousel").owlCarousel({
-    //     autoplay: true,
-    //     smartSpeed: 1500,
-    //     margin: 30,
-    //     dots: true,
-    //     loop: true,
-    //     center: true,
-    //     responsive: {
-    //         0:{
-    //             items:1
-    //         },
-    //         576:{
-    //             items:1
-    //         },
-    //         768:{
-    //             items:2
-    //         },
-    //         992:{
-    //             items:3
-    //         }
-    //     }
-    // });
 
 })(jQuery);
 
