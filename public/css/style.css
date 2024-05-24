@@ -9719,3 +9719,106 @@ h6,
   border-radius: 10px;
   text-align: center;
 }
+
+.age-verification-content img {
+  max-width: 10%;
+  max-height: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+#yesButton {
+  background-color: #28a745;
+  color: white;
+}
+#noButton {
+  background-color: #dc3545;
+  color: white;
+}
+
+
+.image-armatupack button {
+  position: relative;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.image-armatupack a {
+  position: relative;
+  left: 38%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.pack-builder {
+  display: flex;
+  flex-direction: column; /* Mostrará los elementos en columna */
+  align-items: center; /* Centra los elementos horizontalmente */
+}
+
+.beer-options {
+  display: flex;
+  flex-wrap: wrap; /* Envolverá las cervezas a la siguiente línea */
+  justify-content: center; /* Centra las cervezas horizontalmente */
+  margin-bottom: 20px; /* Espacio entre las cervezas y el pack */
+}
+
+.beer {
+  cursor: pointer;
+  margin: 0 10px 10px 0; /* Espacio entre las cervezas */
+  border: 2px solid transparent; /* Borde inicialmente transparente */  
+}
+
+
+.beer img {
+  width: 115px; /* Ajusta el ancho de la imagen según tus necesidades */
+  height: 200px; /* Ajusta la altura de la imagen según tus necesidades */
+}
+
+.pack-container {
+  border: 2px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 255, 0), rgb(0, 255, 255), rgb(0, 0, 255), rgb(255, 0, 255), rgb(255, 0, 0));
+  animation: colorChange 5s linear infinite; /* Animación de cambio de color */
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+@keyframes colorChange {
+  0% { border-image-source: linear-gradient(to right, rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 255, 0), rgb(0, 255, 255), rgb(0, 0, 255), rgb(255, 0, 255), rgb(255, 0, 0)); }
+  20% { border-image-source: linear-gradient(to right, rgb(255, 0, 255), rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 255, 0), rgb(0, 255, 255), rgb(0, 0, 255), rgb(255, 0, 255)); }
+  40% { border-image-source: linear-gradient(to right, rgb(0, 0, 255), rgb(255, 0, 255), rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 255, 0), rgb(0, 255, 255), rgb(0, 0, 255)); }
+  60% { border-image-source: linear-gradient(to right, rgb(0, 255, 255), rgb(0, 0, 255), rgb(255, 0, 255), rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 255, 0), rgb(0, 255, 255)); }
+  80% { border-image-source: linear-gradient(to right, rgb(0, 255, 0), rgb(0, 255, 255), rgb(0, 0, 255), rgb(255, 0, 255), rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 255, 0)); }
+  100% { border-image-source: linear-gradient(to right, rgb(255, 255, 0), rgb(0, 255, 0), rgb(0, 255, 255), rgb(0, 0, 255), rgb(255, 0, 255), rgb(255, 0, 0), rgb(255, 255, 0)); }
+}
+
+.pack {
+  display: flex;
+  flex-wrap: wrap; /* Envolverá las cervezas seleccionadas a la siguiente línea */
+  justify-content: center; /* Centra las cervezas seleccionadas horizontalmente */
+}
+
+.pack img {
+  width: 50px; /* Tamaño de las imágenes */
+  height: 100px; /* Tamaño de las imágenes */
+  margin: 0 10px 10px 0; /* Espacio entre las cervezas seleccionadas */
+}
+
+.add-to-cart {
+  width: 100%;
+  padding: 10px;
+}

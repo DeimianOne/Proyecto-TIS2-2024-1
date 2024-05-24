@@ -53,6 +53,11 @@ Route::get('/product-pack12', function () {
     return view('product-pack12');
 })->name('product-pack12');
 
+Route::get('/product-pack24', function () {
+    return view('product-pack24');
+})->name('product-pack12');
+
+
 Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');

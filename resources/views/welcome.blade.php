@@ -7,7 +7,11 @@
 <div id="ageVerificationPopup" class="age-verification-popup">
     <div class="age-verification-content">
         <h2>¿Eres mayor de 18 años?</h2>
-        <button id="yesButton">Sí</button>
+        <img src="img/fuzz/logo2.png" alt="Image">
+        <div>
+            <button id="yesButton">Sí</button>
+            <button id="noButton">No</button>
+        </div>
     </div>
 </div>
 
@@ -103,18 +107,28 @@
                 <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packs</h4>
                 <h1 class="display-4">Arma tu Pack</h1>
             </div>
-            <div class="row row-cols-3">
-                <div class="col ">
-                    <img src="img\fuzz\6pack.png" class="img-fluid" alt="6pack">
+            <div class="row">
+                <div class="col">
+                    <div class="image-armatupack">
+                        <img src="img\fuzz\6pack.png" class="img-fluid" alt="6pack">
+                        <a href="product-pack6">6Pack</a>
+                    </div>
                 </div>
                 <div class="col mb-4">
-                    <img src="img\fuzz\12pack.png" class="img-fluid" alt="12pack">
+                    <div class="image-armatupack">
+                        <img src="img\fuzz\12pack.png" class="img-fluid" alt="12pack">
+                        <a href="product-pack12">12Pack</a>
+                    </div>
                 </div>
                 <div class="col mb-4">
-                    <img src="img\fuzz\24pack.png" class="img-fluid" alt="24pack">
+                    <div class="image-armatupack">
+                        <img src="img\fuzz\24pack.png" class="img-fluid" alt="24pack">
+                        <a href="product-pack24">24Pack</a>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
         <!-- Service End -->
 
 

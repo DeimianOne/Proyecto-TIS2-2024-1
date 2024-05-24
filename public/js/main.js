@@ -40,6 +40,7 @@
     $(document).ready(function() {
         var $ageVerificationPopup = $("#ageVerificationPopup");
         var $yesButton = $("#yesButton");
+        var $noButton = $("#noButton");
 
         // Verificar si ya se ha verificado la edad
         var ageVerified = localStorage.getItem("ageVerified");
@@ -53,7 +54,69 @@
             $ageVerificationPopup.hide();
             localStorage.setItem("ageVerified", true);
         });
+
+        $noButton.on("click", function() {
+            // Al hacer clic en "No", redirigir a Google
+            window.location.href = 'https://www.google.com';
+        });
     });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const beerOptions = document.querySelectorAll(".beer");
+        const pack = document.querySelector(".pack");
+        const addToCartButton = document.querySelector(".add-to-cart");
+    
+        let selectedBeers = [];
+    
+        beerOptions.forEach(option => {
+            option.addEventListener("click", handleClick);
+        });
+    
+        function handleClick() {
+            const beerSrc = this.getAttribute("data-src");
+            const maxBeers = window.location.pathname.includes('product-pack24') ? 24 : (window.location.pathname.includes('product-pack12') ? 12 : 6); // Verifica la URL actual
+            if (selectedBeers.length < maxBeers) {
+                const beerImg = document.createElement("img");
+                beerImg.src = beerSrc;
+                beerImg.alt = "Cerveza";
+                beerImg.style.width = "115px"; // Ajusta el ancho de la imagen aquí
+                beerImg.style.height = "200px"; // Ajusta la altura de la imagen aquí
+                pack.appendChild(beerImg);
+                selectedBeers.push(beerSrc);
+    
+                addToCartButton.disabled = false;
+            }
+        }
+    
+        pack.addEventListener("click", function(event) {
+            if (event.target.tagName === "IMG") {
+                const beerSrc = event.target.getAttribute("src");
+                const index = selectedBeers.indexOf(beerSrc);
+                if (index !== -1) {
+                    selectedBeers.splice(index, 1);
+                    event.target.remove();
+                    if (selectedBeers.length === 0) {
+                        addToCartButton.disabled = true;
+                    }
+                }
+    
+                const maxBeers = window.location.pathname.includes('product-pack24') ? 24 : (window.location.pathname.includes('product-pack12') ? 12 : 6); // Verifica la URL actual
+                if (selectedBeers.length < maxBeers) {
+                    beerOptions.forEach(option => {
+                        option.addEventListener("click", handleClick);
+                    });
+                }
+            }
+        });
+    
+        addToCartButton.addEventListener("click", function() {
+            // Aquí deberías agregar el código para agregar el pack al carrito
+            // Por ejemplo, podrías enviar los datos al servidor para procesar la compra
+            alert("¡Pack agregado al carrito!");
+        });
+    });
+    
+      
 
     // Back to top button
     $(window).scroll(function () {
