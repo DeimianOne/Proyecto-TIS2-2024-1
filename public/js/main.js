@@ -84,7 +84,7 @@
                 pack.appendChild(beerImg);
                 selectedBeers.push(beerSrc);
     
-                addToCartButton.disabled = false;
+                updateAddToCartButton();
             }
         }
     
@@ -95,19 +95,15 @@
                 if (index !== -1) {
                     selectedBeers.splice(index, 1);
                     event.target.remove();
-                    if (selectedBeers.length === 0) {
-                        addToCartButton.disabled = true;
-                    }
-                }
-    
-                const maxBeers = window.location.pathname.includes('product-pack24') ? 24 : (window.location.pathname.includes('product-pack12') ? 12 : 6); // Verifica la URL actual
-                if (selectedBeers.length < maxBeers) {
-                    beerOptions.forEach(option => {
-                        option.addEventListener("click", handleClick);
-                    });
+                    updateAddToCartButton();
                 }
             }
         });
+    
+        function updateAddToCartButton() {
+            const maxBeers = window.location.pathname.includes('product-pack24') ? 24 : (window.location.pathname.includes('product-pack12') ? 12 : 6); // Verifica la URL actual
+            addToCartButton.disabled = selectedBeers.length !== maxBeers;
+        }
     
         addToCartButton.addEventListener("click", function() {
             // Aquí deberías agregar el código para agregar el pack al carrito
@@ -115,6 +111,7 @@
             alert("¡Pack agregado al carrito!");
         });
     });
+    
     
       
 
