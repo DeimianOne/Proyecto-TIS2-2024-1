@@ -6,22 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Beer extends Model
-{   
-    protected $table = 'beers';
-    protected $fillable = ['name', 'beer_style', 'format', 'litre_value', 'image', 'count_views', 'stock', 'type_product'];
+{
+    use HasFactory;
 
-    public function type()
-    {
-        return $this->belongsTo('App\ProductType', 'type_product');
+    protected $fillable = [
+        'beerstyle_id',
+        'beerformat_id',
+        'liter_value',
+    ];
+
+    //Uno a Muchos (Inversa)
+    public function beerstyle(){
+        return $this->belongsTo(Beerstyle::class, 'beerstyle_id');
     }
 
-    public function format()
-    {
-        return $this->belongsTo('App\BeerFormat', 'format');
-    }
-
-    public function style()
-    {
-        return $this->belongsTo('App\BeerStyle', 'beer_style');
+    //Muchos a Muchos
+    public function beerformats(){
+        return $this->belongsToMany(Beerformat::class, 'beer_beerformat', 'beer_id', 'beerformat_id');
     }
 }

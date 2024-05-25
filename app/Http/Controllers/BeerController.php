@@ -2,83 +2,85 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Beer;
-use App\Models\Beer_Format;
-use App\Models\Beer_style;
-use App\Models\Product_Types;
+use Illuminate\Http\Request;
 
 class BeerController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $datosBeer = Beer::all();
-        return view('pages.beer', compact('datosBeer'));
+        $beers = Beer::all();
+        return view('beers.index', compact('beers'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        $beer_formats = Beer_Format::all();
-        $beer_styles = Beer_style::all();
-        $produc_types = Product_Types::all();
-
-        return view('beer.create',compact('beer_formats','beer_styles','produc_types'));
+        return view('beers.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        // Validar los datos antes de almacenarlos, si es necesario
-    
-        // Crear una nueva instancia del modelo con los datos del formulario
-        $beer = new Beer();
-        $datos = request()->except('_token');
-        // $beer->name = $request->input('name');
-        // $beer->beer_style = $request->input('beer_style'); // Asumiendo que 'style' es el nombre del campo en el formulario
-        // $beer->format = $request->input('format'); // Asumiendo que 'format' es el nombre del campo en el formulario
-        // $beer->litre_value = $request->input('litre_value'); // Asumiendo que 'price_per_liter' es el nombre del campo en el formulario
-        // $beer->image = $request->input('image');
-        // $beer->count_views = $request->input('count_views');
-        // $beer->stock = $request->input('stock');
-        // $beer->type_product = $request->input('type_product'); // Asumiendo que 'stock' es el nombre del campo en el formulario
-        // Asignar la imagen si se cargó una
-        /*if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('images'), $imageName);
-            $beer->image = $imageName;
-        }*/
-
-        
-        // Guardar el nuevo registro en la base de datos
-        $beer->save();
-    
-        // Retornar la respuesta de redireccionamiento con un mensaje
-        return redirect('beer')->with('mensaje', 'Producto agregado con éxito');
+        //
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Beer  $beer
+     * @return \Illuminate\Http\Response
+     */
     public function show(Beer $beer)
     {
-        return view('beers.show', compact('beer'));
+        //
     }
 
-    public function edit($id)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Beer  $beer
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Beer $beer)
     {
-        $beer = Beer::findOrFail($id);
-        return view('beer.edit', compact('beer'));
+        //
     }
 
-    public function update(Request $request,$id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Beer  $beer
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Beer $beer)
     {
-        $datosBeer = $request->except(['_token', '_method']);
-        Beer::where('id', '=', $id)->update($datosBeer);
-    
-        $beer = Beer::findOrFail($id);
-        return view('beer.edit', compact('beer'))->with('mensaje', 'Producto actualizado con éxito');
+        //
     }
 
-    public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Beer  $beer
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Beer $beer)
     {
-        Beer::destroy($id);
-        return redirect('beer')->with('mensaje','Cerveza eliminada');
+        //
     }
 }

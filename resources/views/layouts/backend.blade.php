@@ -331,22 +331,22 @@
               </a>
               <ul class="nav-main-submenu">
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/beer') ? ' active' : '' }}" href="/pages/beer"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
+                  <a class="nav-main-link{{ request()->is('beers') ? ' active' : '' }}" href="/beers"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
                     <span class="nav-main-link-name">Cerveza</span>
                   </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/beer_style') ? ' active' : '' }}" href="/pages/beer_style"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
+                  <a class="nav-main-link{{ request()->is('beerstyles') ? ' active' : '' }}" href="/beerstyles"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
                     <span class="nav-main-link-name">Estilo cerveza</span>
                   </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/type_product') ? ' active' : '' }}" href="/pages/type_product">
+                  <a class="nav-main-link{{ request()->is('producttypes') ? ' active' : '' }}" href="/producttypes">
                     <span class="nav-main-link-name">Tipo de producto</span>
                   </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/format') ? ' active' : '' }}" href="/pages/format">
+                  <a class="nav-main-link{{ request()->is('beerformats') ? ' active' : '' }}" href="/beerformats">
                     <span class="nav-main-link-name">Formato</span>
                   </a>
                 </li>
