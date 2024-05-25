@@ -61,7 +61,7 @@
     <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">Estilo de cerveza<small></small></h3>
-        <a href="{{ route('beer_style.create') }}" class="btn btn-sm btn-outline-primary"> Crear</a>
+        <a href="{{ route('beerstyles.create') }}" class="btn btn-sm btn-outline-primary"> Crear</a>
 
       </div>
       <div class="block-content block-content-full">
@@ -75,7 +75,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($beerStyles as $beerStyle)
+            @foreach ($beerstyles as $beerstyle)
               <tr>
                 <td class="text-center">{{$beerStyle -> id}}</td>
                 <td class="fw-semibold">

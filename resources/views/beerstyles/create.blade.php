@@ -7,7 +7,7 @@
     </div>
     <div class="block-content block-content-full d-flex justify-content-center">
         <div class="col-lg-8">
-            <form method="POST" action="{{ route ('beer_style.store') }}">
+            <form method="POST" action="{{ route ('beerstyles.store') }}">
                 @csrf
                 <div  class="form-group">
                     <label for="name">Nombre</label>

@@ -61,7 +61,7 @@
     <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">Cervezas<small></small></h3>
-        <a href="{{ route('beer.create') }}" class="btn btn-sm btn-outline-primary"> Crear Nuevo +</a><!-- destina a el crear nuevo beer -->
+        <a href="{{ route('beers.create') }}" class="btn btn-sm btn-outline-primary"> Crear Nuevo +</a><!-- destina a el crear nuevo beer -->
       </div>
       <div class="block-content block-content-full">
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
@@ -81,7 +81,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($datosBeer as $beer)
+            @foreach ($beers as $beer)
               <tr>
                 <td class="text-center">{{$beer -> id}}</td>
                 <td class="fw-semibold">

@@ -61,7 +61,7 @@
         <div class="block block-rounded">
             <div class="block-header block-header-default">
                 <h3 class="block-title">Formato contenedor<small></small></h3>
-                <a href="{{ route('format.create') }}" class="btn btn-sm btn-outline-primary"> Crear Formato</a>
+                <a href="{{ route('beerformats.create') }}" class="btn btn-sm btn-outline-primary"> Crear Formato</a>
 
             </div>
             <div class="block-content block-content-full">
@@ -76,7 +76,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($formats as $format)
+                        @foreach ($beerformats as $beerformat)
                             <tr>
                                 <td class="text-center">{{ $format->id }}</td>
                                 <td class="fw-semibold">

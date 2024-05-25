@@ -14,7 +14,8 @@ class ProducttypeController extends Controller
      */
     public function index()
     {
-        //
+        $producttypes = Producttype::all();
+        return view('producttypes.index', compact('producttypes'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ProducttypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('producttypes.create');
     }
 
     /**

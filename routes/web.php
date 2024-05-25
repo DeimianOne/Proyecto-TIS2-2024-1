@@ -1,15 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ProductTypesController;
+use App\Http\Controllers\ProducttypeController;
 use App\Http\Controllers\BeerController;
-use App\Http\Controllers\BeerFormatController;
-use App\Http\Controllers\BeerStyleController;
+use App\Http\Controllers\BeerformatController;
+use App\Http\Controllers\BeerstyleController;
 use App\Http\Controllers\LandingEditController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,8 +62,6 @@ Route::get('/dondeestamos', function () {
     return view('dondeestamos');
 })->name('dondeestamos');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 /*
 Route::resource('productType', ProductTypesController::class);
 Route::resource('beer', BeerController::class);
@@ -90,12 +85,11 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::view('/pages/datatables', 'pages.datatables');
     Route::view('/pages/blank', 'pages.blank');
 
-    Route::resource('/pages/beer', BeerController::class);
-    Route::resource('/pages/beer_style', BeerStyleController::class);
-    Route::resource('/pages/type_product', ProductTypesController::class);
-    Route::resource('/pages/format', BeerFormatController::class);
-    Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
-
-    Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
+    Route::resource('beers', BeerController::class);
+    Route::resource('beerstyles', BeerstyleController::class);
+    Route::resource('producttypes', ProducttypeController::class);
+    Route::resource('beerformats', BeerFormatController::class);
+    // Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
+    // Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
 });
 

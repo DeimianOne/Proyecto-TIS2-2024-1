@@ -61,7 +61,7 @@
     <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">Tipos de productos<small></small></h3>
-        <a href="{{ route('type_product.create') }}" class="btn btn-sm btn-outline-primary"> Crear</a>
+        <a href="{{ route('producttypes.create') }}" class="btn btn-sm btn-outline-primary"> Crear</a>
 
       </div>
       <div class="block-content block-content-full">
@@ -75,7 +75,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($productTypes as $productType)
+            @foreach($producttypes as $producttype)
               <tr>
                 <td class="text-center">{{$productType -> id}}</td>
                 <td class="fw-semibold">

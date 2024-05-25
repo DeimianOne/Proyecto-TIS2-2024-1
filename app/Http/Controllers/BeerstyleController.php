@@ -14,7 +14,8 @@ class BeerstyleController extends Controller
      */
     public function index()
     {
-        //
+        $beerstyles = Beerstyle::all();
+        return view('beerstyles.index', compact('beerstyles'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BeerstyleController extends Controller
      */
     public function create()
     {
-        //
+        return view('beerstyles.create');
     }
 
     /**
