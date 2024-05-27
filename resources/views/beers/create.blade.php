@@ -3,46 +3,68 @@
 @section('content')
 <div class="block block-rounded">
     <div class="block-header block-header-default ">
-        <h3 class="block-title ">Crear Nueva Cerveza</h3>
+        <h3 class="block-title">Crear Nueva Cerveza</h3>
     </div>
     <div class="block-content block-content-full d-flex justify-content-center">
         <div class="col-lg-8">
-        <form  method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de la cerveza">
-            </div>
-            <div class="form-group">
-                <label for="estilo">Estilo de cerveza</label>
-                <input type="text" class="form-control" id="estilo" name="estilo" placeholder="Estilo de la cerveza">
-            </div>
-            <div class="form-group">
-                <label for="formato">Formato</label>
-                <input type="text" class="form-control" id="formato" name="formato" placeholder="Formato de la cerveza">
-            </div>
-            <div class="form-group">
-                <label for="valor_litro">Valor por litro</label>
-                <input type="text" class="form-control" id="valor_litro" name="valor_litro" placeholder="Valor por litro de la cerveza">
-            </div>
-            <div class="form-group">
-                <label for="imagen">Imagen</label>
-                <input type="text" class="form-control" id="imagen" name="imagen" placeholder="URL de la imagen de la cerveza">
-            </div>
-            <div class="form-group">
-                <label for="vistas">Vistas</label>
-                <input type="number" class="form-control" id="vistas" name="vistas" placeholder="Número de vistas">
-            </div>
-            <div class="form-group">
-                <label for="stock">Stock</label>
-                <input type="number" class="form-control" id="stock" name="stock" placeholder="Cantidad en stock">
-            </div>
-            <div class="form-group">
-                <label for="tipo_producto">Tipo de producto</label>
-                <input type="text" class="form-control" id="tipo_producto" name="tipo_producto" placeholder="Tipo de producto">
-            </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-        </form>
+            <form method="POST" action="{{ route('beers.store') }}">
+                @csrf
+
+                <!-- Error Display Section -->
+                @if ($errors->any())
+                    <div class="alert alert-danger mb-4">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <div class="form-group">
+                    <label for="product_id">Producto</label>
+                    <div class="form-group">   
+                        <select name="product_id" id="product_id" class="form-control">
+                            @foreach($producttypes as $producttype)
+                                <option value="{{ $producttype->id }}" {{ old('product_id') == $producttype->id ? 'selected' : '' }}>
+                                    {{ $producttype->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="beerstyle_id">Estilo cerveza</label>
+                    <div class="form-group">
+                        <select name="beerstyle_id" id="beerstyle_id" class="form-control">
+                            @foreach($beerstyles as $beerstyle)
+                                <option value="{{ $beerstyle->id }}" {{ old('beerstyle_id') == $beerstyle->id ? 'selected' : '' }}>
+                                    {{ $beerstyle->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="beerformat_id">Formato cerveza</label>
+                    <div class="form-group">
+                        <select name="beerformat_id" id="beerformat_id" class="form-control">
+                            @foreach($beerformats as $beerformat)
+                                <option value="{{ $beerformat->id }}" {{ old('beerformat_id') == $beerformat->id ? 'selected' : '' }}>
+                                    {{ $beerformat->container }} {{ $beerformat->liters }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="liter_value">Valor por litro</label>
+                    <input type="text" class="form-control" id="liter_value" name="liter_value" placeholder="Valor por litro de la cerveza" value="{{ old('liter_value') }}">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
     </div>
 </div>
 @endsection

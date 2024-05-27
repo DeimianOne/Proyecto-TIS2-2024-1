@@ -69,14 +69,10 @@
           <thead>
             <tr>
               <th class="text-center" style="width: 80px;">id</th>
-              <th>Nombre</th>
+              <th>Producto</th>
               <th>Estilo cerveza</th>
-              <th>Formato</th>
+              <th>Formato cerveza</th>
               <th>Valor litro</th>
-              <th>Imagen</th>
-              <th>Vistas</th>
-              <th>Stock</th>
-              <th>Tipo_producto</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -85,28 +81,16 @@
               <tr>
                 <td class="text-center">{{$beer -> id}}</td>
                 <td class="fw-semibold">
-                  <a href="javascript:void(0)">{{$beer -> name}}</a>
+                  <a href="javascript:void(0)">{{$beer -> product_id }}</a>
                 </td>
                 <td>
-                  <a>{{$beer -> beer_style}}</a>
+                  <a>{{$beer -> beerstyle_id }}</a>
                 </td>
                 <td>
-                  <a>{{$beer -> format}}</a>
+                  <a>{{$beer -> beerformat_id }}</a>
                 </td>
                 <td>
-                  <a>{{$beer -> litre_value}}</a>
-                </td>
-                <td>
-                  <a>{{$beer -> img}}</a>
-                </td>
-                <td>
-                  <a>{{$beer -> count_views}}</a>
-                </td>
-                <td>
-                  <a>{{$beer -> stock}}</a>
-                </td>
-                <td>
-                  <a>{{$beer -> type_product}}</a>
+                  <a>{{$beer -> liter_value}}</a>
                 </td>
                 <td> <!-- Nueva columna para botones de editar y eliminar -->
                   <a href="" class="btn btn-sm btn-outline-warning">Editar</a>

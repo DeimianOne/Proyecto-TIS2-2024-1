@@ -63,7 +63,7 @@
     <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">Estilo de cerveza<small></small></h3>
-        <a href="{{ route('beerstyles.create') }}" class="btn btn-sm btn-outline-primary"> Crear</a>
+        <a href="{{ route('beerstyles.create') }}" class="btn btn-sm btn-outline-primary"> Crear </a>
 
       </div>
       <div class="block-content block-content-full">
@@ -79,19 +79,21 @@
           <tbody>
             @foreach ($beerstyles as $beerstyle)
               <tr>
-                <td class="text-center">{{$beerStyle -> id}}</td>
+                <td class="text-center">{{$beerstyle -> id}}</td>
                 <td class="fw-semibold">
-                  <a href="javascript:void(0)">{{$beerStyle -> name}}</a>
+                  <a href="javascript:void(0)">{{$beerstyle -> name}}</a>
                 </td>
                 <td> <!-- Nueva columna para botones de editar y eliminar -->
-                  <a href="{{ route('format.edit', $format->id) }}" class="btn btn-sm btn-outline-warning">Editar</a>
-                  <form action="{{ route('format.destroy', $format->id) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-outline-danger">
-                      Eliminar
-                    </button>
-                  </form>
+                  <div class="d-inline-flex">
+                    <a href="{{ route('beerstyles.edit', $beerstyle->id) }}" class="btn btn-sm btn-outline-warning me-2">Editar</a>
+                    <form action="{{ route('beerstyles.destroy', $beerstyle->id) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-sm btn-outline-danger">
+                        Eliminar
+                      </button>
+                    </form>
+                  </div>
                 </td>
                 </tr>
             @endforeach
