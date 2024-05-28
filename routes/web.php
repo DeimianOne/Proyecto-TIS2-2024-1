@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProducttypeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BeerController;
 use App\Http\Controllers\BeerformatController;
 use App\Http\Controllers\BeerstyleController;
-use App\Http\Controllers\LandingEditController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,7 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::resource('beers', BeerController::class);
     Route::resource('beerstyles', BeerstyleController::class);
     Route::resource('producttypes', ProducttypeController::class);
+    Route::resource('producttypes', ProductController::class);
     Route::resource('beerformats', BeerFormatController::class);
     // Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
     // Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
