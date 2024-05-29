@@ -350,6 +350,11 @@
                     <span class="nav-main-link-name">Formato</span>
                   </a>
                 </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('products') ? ' active' : '' }}" href="/products">
+                    <span class="nav-main-link-name">Producto</span>
+                  </a>
+                </li>
               </ul>
             </li>
             <li class="nav-main-heading">More</li>

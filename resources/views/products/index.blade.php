@@ -61,7 +61,7 @@
         <div class="block block-rounded">
             <div class="block-header block-header-default">
                 <h3 class="block-title">Formato contenedor<small></small></h3>
-                <a href="{{ route('beerformats.create') }}" class="btn btn-sm btn-outline-primary"> Crear Formato</a>
+                <a href="{{ route('products.create') }}" class="btn btn-sm btn-outline-primary"> Crear Formato</a>
 
             </div>
             <div class="block-content block-content-full">
@@ -70,25 +70,45 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 80px;">id</th>
-                            <th>Contenedor</th>
-                            <th>litros</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Valor</th>
+                            <th>Imagen</th>
+                            <th>Stock</th>
+                            <th>Visualizaciones</th>
+                            <th>Visibilidad</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($beerformats as $beerformat)
+                        @foreach ($products as $product)
                             <tr>
-                                <td class="text-center">{{ $beerformat->id }}</td>
+                                <td class="text-center">{{ $product->id }}</td>
                                 <td class="fw-semibold">
-                                    <a href="javascript:void(0)">{{ $beerformat->container }}</a>
+                                    <a href="javascript:void(0)">{{ $product->name  }}</a>
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0)">{{ $beerformat->liters }}</a>
+                                    <a href="javascript:void(0)">{{ $product->description }}</a>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)">{{ $product->value }}</a>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)">{{ $product->image }}</a>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)">{{ $product->stock }}</a>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)">{{ $product->visualizations }}</a>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)">{{ $product->visibility }}</a>
                                 </td>
                                 <td> <!-- Nueva columna para botones de editar y eliminar -->
                                     <div class="d-inline-flex">
-                                        <a href="{{ route('beerformats.edit', $beerformat->id) }}" class="btn btn-sm btn-outline-warning me-2">Editar</a>
-                                        <form action="{{ route('beerformats.destroy', $beerformat->id) }}" method="POST">
+                                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-outline-warning me-2">Editar</a>
+                                        <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-outline-danger">
