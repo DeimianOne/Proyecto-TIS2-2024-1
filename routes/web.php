@@ -6,6 +6,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProducttypeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\BeerController;
 use App\Http\Controllers\BeerformatController;
 use App\Http\Controllers\BeerstyleController;
@@ -90,10 +91,11 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::view('/pages/datatables', 'pages.datatables');
     Route::view('/pages/blank', 'pages.blank');
 
-    // 
+    //Roles y permisos
     Route::resource('roles', RolController::class);
     Route::resource('users', UserController::class);
 
+    Route::resource('companies', CompanyController::class);
     Route::resource('beers', BeerController::class);
     Route::resource('beerstyles', BeerstyleController::class);
     Route::resource('producttypes', ProducttypeController::class);
