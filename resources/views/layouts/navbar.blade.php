@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav p-4 justify-content-center">
                 <a href="{{ route('packs') }}" class="nav-item nav-link active">Packs</a>
-                <a href="{{ route('armatupack') }}" class="nav-item nav-link disabled">Arma tu Pack</a>
+                <a href="{{ route('armatupack') }}" class="nav-item nav-link">Arma tu Pack</a>
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
