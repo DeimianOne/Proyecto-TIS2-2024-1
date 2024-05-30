@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Province;
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class ProvinceController extends Controller
@@ -14,7 +15,8 @@ class ProvinceController extends Controller
      */
     public function index()
     {
-        //
+        $provinces = Province::all();
+        return view('provinces.index', compact('provinces'));
     }
 
     /**
@@ -23,8 +25,10 @@ class ProvinceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $regions = Region::all();
+        $provinces = Province::all();
+        return view('provinces.create', compact('provinces' , 'regions'));
     }
 
     /**
@@ -35,7 +39,22 @@ class ProvinceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'region_id' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre de la provincia es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+            'region_id.required' => 'La región es obligatoria.',
+        ]);
+
+        Province::create([
+            'name' => $request->input('name'),
+            'region_id' => $request->input('region_id'),
+        ]);
+
+        return redirect()->route('provinces.store')->with('mensaje','Provincia agregada con éxito');
+
     }
 
     /**
@@ -57,7 +76,8 @@ class ProvinceController extends Controller
      */
     public function edit(Province $province)
     {
-        //
+        $regions = Region::all();
+        return view('provinces.edit', compact('province' , 'regions'));
     }
 
     /**
@@ -69,7 +89,22 @@ class ProvinceController extends Controller
      */
     public function update(Request $request, Province $province)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'region_id' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre de la provincia es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+            'region_id.required' => 'La región es obligatoria.',
+        ]);
+
+        $province->update([
+            'name' => $request->input('name'),
+            'region_id' => $request->input('region_id'),
+        ]);
+        
+        return redirect()->route('provinces.index')->with('mensaje','Provincia actualizado con éxito');
+
     }
 
     /**
@@ -80,6 +115,7 @@ class ProvinceController extends Controller
      */
     public function destroy(Province $province)
     {
-        //
+        $province->delete();
+        return redirect()->route('provinces.index');
     }
 }

@@ -2,12 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProducttypeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BeerController;
 use App\Http\Controllers\BeerformatController;
 use App\Http\Controllers\BeerstyleController;
-
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\CommuneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,11 +90,18 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::view('/pages/datatables', 'pages.datatables');
     Route::view('/pages/blank', 'pages.blank');
 
+    // 
+    Route::resource('roles', RolController::class);
+    Route::resource('users', UserController::class);
+
     Route::resource('beers', BeerController::class);
     Route::resource('beerstyles', BeerstyleController::class);
     Route::resource('producttypes', ProducttypeController::class);
     Route::resource('products', ProductController::class);
     Route::resource('beerformats', BeerFormatController::class);
+    Route::resource('regions', RegionController::class);
+    Route::resource('provinces', ProvinceController::class);
+    Route::resource('communes', CommuneController::class);
     // Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
     // Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commune;
+use App\Models\Province;
 use Illuminate\Http\Request;
 
 class CommuneController extends Controller
@@ -14,7 +15,8 @@ class CommuneController extends Controller
      */
     public function index()
     {
-        //
+        $communes = Commune::all();
+        return view('communes.index', compact('communes'));
     }
 
     /**
@@ -24,7 +26,9 @@ class CommuneController extends Controller
      */
     public function create()
     {
-        //
+        $provinces = Province::all();
+        $communes = Commune::all();
+        return view('communes.create', compact('communes' , 'provinces'));
     }
 
     /**
@@ -35,7 +39,22 @@ class CommuneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'province_id' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre de la comuna es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+            'province_id.required' => 'La provincia es obligatoria.',
+        ]);
+
+        Commune::create([
+            'name' => $request->input('name'),
+            'province_id' => $request->input('province_id'),
+        ]);
+
+        return redirect()->route('communes.store')->with('mensaje','Comuna agregada con éxito');
+
     }
 
     /**
@@ -57,7 +76,8 @@ class CommuneController extends Controller
      */
     public function edit(Commune $commune)
     {
-        //
+        $provinces = Province::all();
+        return view('communes.edit', compact('commune' , 'provinces'));
     }
 
     /**
@@ -69,7 +89,22 @@ class CommuneController extends Controller
      */
     public function update(Request $request, Commune $commune)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'province_id' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre de la comuna es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+            'province_id.required' => 'La provincia es obligatoria.',
+        ]);
+
+        $commune->update([
+            'name' => $request->input('name'),
+            'province_id' => $request->input('province_id'),
+        ]);
+        
+        return redirect()->route('communes.index')->with('mensaje','Comuna actualizado con éxito');
+
     }
 
     /**
@@ -80,6 +115,7 @@ class CommuneController extends Controller
      */
     public function destroy(Commune $commune)
     {
-        //
+        $commune->delete();
+        return redirect()->route('communes.index');
     }
 }
