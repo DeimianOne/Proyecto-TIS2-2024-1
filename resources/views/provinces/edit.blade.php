@@ -3,11 +3,11 @@
 @section('content')
 <div class="block block-rounded">
     <div class="block-header block-header-default">
-        <h3 class="block-title">Editar estilo de cerveza</h3>
+        <h3 class="block-title">Editar provincia</h3>
     </div>
     <div class="block-content block-content-full d-flex justify-content-center">
         <div class="col-lg-8">
-            <form method="POST" action="{{ route('beerstyles.update', $beerstyle->id) }}">
+            <form method="POST" action="{{ route('provinces.update', $province->id) }}">
                 @csrf
                 @method('PUT') 
 
@@ -24,7 +24,19 @@
 
                 <div class="form-group mb-4">
                     <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre del estilo de cerveza" value="{{ old('name', $beerstyle->name) }}">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de la provincia" value="{{ old('name', $province->name) }}">
+                </div>
+                <div class="form-group">
+                    <label for="product_id">Región</label>
+                    <div class="form-group">   
+                        <select name="region_id" id="region_id" class="form-control">
+                            @foreach($regions as $region)
+                                <option value="{{ $region->id }}" {{ old('region_id') == $region->id ? 'selected' : '' }}>
+                                    {{ $region->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Guardar</button>
             </form>

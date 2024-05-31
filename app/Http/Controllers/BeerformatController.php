@@ -25,7 +25,8 @@ class BeerformatController extends Controller
      */
     public function create()
     {
-        return view('beerformats.create');
+        $beerformat = Beerformat::all();
+        return view('beerformats.create', compact('beerformat'));
     }
 
     /**
@@ -36,7 +37,23 @@ class BeerformatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'container' => 'required|string|max:100',
+            'liters' => 'required|numeric|max:50'
+        ], [
+            'container.required' => 'El Contenedor es obligatorio.',
+            'container.max' => 'El nombre no puede superar los 100 caracteres.',
+            'liters.required' => 'Los Litros son obligatorio.',
+            'liters.max' => 'Los litros no puede superar los 20 caracteres.',
+        ]);
+
+        Beerformat::create([
+            'container' => $request->input('container'),
+            'liters' => $request->input('liters'),
+        ]);
+
+        return redirect()->route('beerformats.store')->with('mensaje','Formato de cerveza agregado con éxito');
+        
     }
 
     /**
@@ -58,7 +75,9 @@ class BeerformatController extends Controller
      */
     public function edit(Beerformat $beerformat)
     {
-        //
+        
+        return view('beerformats.edit', compact('beerformat'));
+        
     }
 
     /**
@@ -71,6 +90,22 @@ class BeerformatController extends Controller
     public function update(Request $request, Beerformat $beerformat)
     {
         //
+        $request->validate([
+            'container' => 'required|string|max:100',
+            'liters' => 'required|numeric|max:50'
+        ], [
+            'container.required' => 'El Contenedor es obligatorio.',
+            'container.max' => 'El nombre no puede superar los 100 caracteres.',
+            'liters.required' => 'Los Litros son obligatorio.',
+            'liters.max' => 'Los litros no puede superar los 20 caracteres.',
+        ]);
+
+        $beerformat->update([
+            'container' => $request->input('container'),
+            'liters' => $request->input('liters'),
+        ]);
+
+        return redirect()->route('beerformats.index')->with('mensaje','Formato de cerveza actualizado con éxito');
     }
 
     /**
@@ -81,6 +116,7 @@ class BeerformatController extends Controller
      */
     public function destroy(Beerformat $beerformat)
     {
-        //
+        $beerformat->delete();
+        return redirect()->route('beerformats.index');
     }
 }

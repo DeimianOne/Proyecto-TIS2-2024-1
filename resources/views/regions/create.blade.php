@@ -3,11 +3,11 @@
 @section('content')
 <div class="block block-rounded">
     <div class="block-header block-header-default">
-        <h3 class="block-title">Crear Nuevo Estilo de Cerveza</h3>
+        <h3 class="block-title">Nueva Región</h3>
     </div>
     <div class="block-content block-content-full d-flex justify-content-center">
         <div class="col-lg-8">
-            <form method="POST" action="{{ route ('beerstyles.store') }}">
+            <form method="POST" action="{{ route ('regions.store') }}">
                 @csrf
 
                 <!-- Error Display Section -->
@@ -23,7 +23,7 @@
 
                 <div class="form-group mb-4">
                     <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre del estilo de cerveza" value="{{ old('name') }}">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de la región" value="{{ old('name') }}">
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Guardar</button>
             </form>

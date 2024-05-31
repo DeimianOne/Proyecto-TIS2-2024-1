@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beer;
+use App\Models\Beerformat;
+use App\Models\Beerstyle;
+use App\Models\Producttype;
 use Illuminate\Http\Request;
 
 class BeerController extends Controller
@@ -25,7 +28,11 @@ class BeerController extends Controller
      */
     public function create()
     {
-        return view('beers.create');
+        $beer = Beer::all();
+        $beerformats = Beerformat::all();
+        $beerstyles = Beerstyle::all();
+        $producttypes = Producttype::all();
+        return view('beers.create', compact('beerformats','beerstyles','producttypes'));
     }
 
     /**
@@ -36,7 +43,30 @@ class BeerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_id' => 'required|string|max:100',
+            'beerstyle_id' => 'required|numeric|max:50',
+            'beerformat_id' => 'required|numeric|max:50',
+            'liter_value' => 'required|numeric|max:20000'
+        ], [
+            'product_id.required' => 'La selección del producto es obligatoria.',
+            'product_id.max' => 'El producto no puede superar los 100 caracteres.',
+            'beerstyle_id.required' => 'La selección del estilo es obligatoria.',
+            'beerstyle_id.max' => 'El estilo no puede superar los 20 caracteres.',
+            'beerformat_id.required' => 'La selección del formato es obligatoria.',
+            'beerformat_id.max' => 'El formato no puede superar los 20 caracteres.',
+            'liter_value.required' => 'El valor es obligatorio.',
+            'liter_value.max' => 'El valor máximo es de 20000.',
+        ]);
+
+        Beer::create([
+            'product_id' => $request->input('product_id'),
+            'beerstyle_id' => $request->input('beerstyle_id'),
+            'beerformat_id' => $request->input('beerformat_id'),
+            'liter_value' => $request->input('liter_value'),
+        ]);
+
+        return redirect()->route('beers.store')->with('mensaje','Cerveza agregada con éxito');
     }
 
     /**
@@ -58,7 +88,7 @@ class BeerController extends Controller
      */
     public function edit(Beer $beer)
     {
-        //
+        return view('beers.edit', compact('beer'));
     }
 
     /**
@@ -70,7 +100,31 @@ class BeerController extends Controller
      */
     public function update(Request $request, Beer $beer)
     {
-        //
+        $request->validate([
+            'product_id' => 'required|string|max:100',
+            'beerstyle_id' => 'required|numeric|max:50',
+            'beerformat_id' => 'required|numeric|max:50',
+            'liter_value' => 'required|numeric|max:20000'
+        ], [
+            'product_id.required' => 'La selección del producto es obligatoria.',
+            'product_id.max' => 'El producto no puede superar los 100 caracteres.',
+            'beerstyle_id.required' => 'La selección del estilo es obligatoria.',
+            'beerstyle_id.max' => 'El estilo no puede superar los 20 caracteres.',
+            'beerformat_id.required' => 'La selección del formato es obligatoria.',
+            'beerformat_id.max' => 'El formato no puede superar los 20 caracteres.',
+            'liter_value.required' => 'El valor es obligatorio.',
+            'liter_value.max' => 'El valor máximo es de 20000.',
+        ]);
+
+        $beer->update([
+            'product_id' => $request->input('product_id'),
+            'beerstyle_id' => $request->input('beerstyle_id'),
+            'beerformat_id' => $request->input('beerformat_id'),
+            'liter_value' => $request->input('liter_value'),
+        ]);
+
+        return redirect()->route('beers.index')->with('mensaje','Cerveza actualizada con éxito');
+
     }
 
     /**
@@ -81,6 +135,7 @@ class BeerController extends Controller
      */
     public function destroy(Beer $beer)
     {
-        //
+        $beer->delete();
+        return redirect()->route('beers.index');
     }
 }

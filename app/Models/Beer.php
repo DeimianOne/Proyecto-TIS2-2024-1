@@ -10,9 +10,10 @@ class Beer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'beerstyle_id',
-        'beerformat_id',
-        'liter_value',
+        'product_id',
+        'beerstyle_id', 
+        'beerformat_id', 
+        'liter_value'
     ];
 
     //Uno a Muchos (Inversa)
