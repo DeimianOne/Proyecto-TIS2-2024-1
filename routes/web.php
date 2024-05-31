@@ -13,6 +13,7 @@ use App\Http\Controllers\BeerstyleController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\CommuneController;
+use App\Http\Controllers\DistributorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,6 +105,7 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::resource('regions', RegionController::class);
     Route::resource('provinces', ProvinceController::class);
     Route::resource('communes', CommuneController::class);
+    Route::resource('distributors', DistributorController::class);
     // Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
     // Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
 });
