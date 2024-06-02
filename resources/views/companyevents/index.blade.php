@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">Evento compañia</h3>
-            <a href="{{ route('companyevents.create') }}" class="btn btn-sm btn-outline-primary">Crear</a>
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
@@ -71,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <th class="text-center" style="width: 80px;">ID</th>
                         <th>Compañía</th>
                         <th>Evento</th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,19 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         </td>
                         <td class="fw-semibold">
                             <a href="javascript:void(0)">{{ optional($companyevent->event)->name }}</a>
-                        </td>
-                        <td>
-
-                            <div class="d-inline-flex">
-                                <a href="{{ route('companyevents.edit', $companyevent->id) }}"
-                                    class="btn btn-sm btn-outline-warning me-2">Editar</a>
-                                <form action="{{ route('companyevents.destroy', $companyevent->id) }}" method="POST"
-                                    data-confirm="¿Estás seguro de que deseas eliminar esta relación?">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
-                                </form>
-                            </div>
                         </td>
                     </tr>
                     @endforeach

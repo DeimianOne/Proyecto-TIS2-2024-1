@@ -17,7 +17,7 @@ class Event extends Model
         'location_longitude'
     ];
 
-    public function events()
+    public function companies()
     {
         return $this->belongsToMany(Company::class,'company_event');
     }

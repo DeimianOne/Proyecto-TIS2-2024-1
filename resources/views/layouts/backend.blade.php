@@ -351,6 +351,11 @@
                   </a>
                 </li>
                 <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('branches') ? ' active' : '' }}" href="/branches">
+                    <span class="nav-main-link-name">Sucursales</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
                   <a class="nav-main-link{{ request()->is('events') ? ' active' : '' }}" href="/events">
                     <span class="nav-main-link-name">Eventos</span>
                   </a>

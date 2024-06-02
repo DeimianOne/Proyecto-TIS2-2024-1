@@ -17,4 +17,9 @@ class Company extends Model
     {
         return $this->belongsToMany(Event::class,'company_event');
     }
+
+    public function branches()
+    {
+        return $this->hasMany(Branch::class);
+    }
 }

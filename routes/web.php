@@ -16,6 +16,8 @@ use App\Http\Controllers\CommuneController;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\CompanyEventController;
+use App\Http\Controllers\BranchController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +112,7 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::resource('distributors', DistributorController::class);
     Route::resource('events', EventController::class);
     Route::resource('companyevents', CompanyEventController::class);
+    Route::resource('branches', BranchController::class);
     // Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
     // Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
 });

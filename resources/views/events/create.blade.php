@@ -41,6 +41,18 @@
                     <label for="location_longitude">Longitud</label>
                     <input type="number" step="any" class="form-control" id="location_longitude" name="location_longitude" placeholder="-58.381592" value="{{ old('location_longitude') }}">
                 </div>
+
+                <div class="form-group">
+                    <label for="company_id">Compañías</label>
+                    <select name="company_id[]" id="company_id" class="form-control" multiple>
+                        @foreach($companies as $company)
+                            <option value="{{ $company->id }}" {{ in_array($company->id, old('company_id', [])) ? 'selected' : '' }}>
+                                {{ $company->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                
                 <button type="submit" class="btn btn-primary mt-3">Guardar</button>
             </form>
         </div>
