@@ -2,64 +2,149 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Product_types;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $products = Product::all();
-        return view('product.index', compact('products'));
+        return view('products.index', compact('products'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        $productTypes = Product_types::all();
-        return view('product.create', compact('productTypes'));
+        $products = Product::all();
+        return view('products.create', compact('products'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        $product = new Product();
-        $product->type_product = $request->input('type_product');
-        $product->value = $request->input('value');
-        $product->image = $request->input('image');
-        $product->view_count = $request->input('view_count');
-        $product->stock = $request->input('stock');
+        $request->validate([
+            'name ' => 'required|string|max:100',
+            'description ' => 'required|string|max:100',
+            'value ' => 'required|numeric|max:10000',
+            'image ' => 'required|string|max:100',
+            'stock' => 'required|numeric|max:50',
+            'visualizations' => 'required|numeric|max:50',
+            'visibility' => 'required|numeric|max:50'
+        ], [
+            'name.required' => 'El Nombre del producto es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+            'description.required' => 'La descripción del producto es obligatorio.',
+            'description.max' => 'La descripción del producto no puede superar los 100 caracteres.',
+            'value.required' => 'El valor del producto es obligatorio.',
+            'value.max' => 'El valor del producto no puede superar 10000 pesos.',
+            'stock.required' => 'El stock del producto es obligatorio.',
+            'visualizations.required' => 'La visualización del producto es obligatorio.',
+            'visibility.required' => 'La visibilidad del producto es obligatorio.',            
+        ]);
+
+        Product::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'value' => $request->input('value'),
+            'image' => $request->input('image'),
+            'stock' => $request->input('stock'),
+            'visualizations' => $request->input('visualizations'),
+            'visibility' => $request->input('visibility'),
+        ]);
+
+        return redirect()->route('products.store')->with('mensaje','Formato de cerveza agregado con éxito');
         
-        // Guardar el nuevo registro en la base de datos
-        $product->save();
-    
-        // Retornar la respuesta JSON con los datos guardados
-        return response()->json($product);
-        //return redirect('product')->with('mensaje','Producto agregado con éxito');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function show(Product $product)
     {
-        return view('product.show', compact('product'));
+        //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Product $product)
     {
-        $productTypes = Product_types::all();
-        return view('product.edit', compact('product', 'productTypes'));
+        return view('products.edit', compact('product'));
     }
 
-    public function update(Request $request,$id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Product $product)
     {
-        $datosProduct = $request->except(['_token', '_method']);
-        Product_types::where('id', '=', $id)->update($datosProduct);
-    
-        $product = Product_types::findOrFail($id);
-        return view('product.edit', compact('product'));
+        $request->validate([
+            'name ' => 'required|string|max:100',
+            'description ' => 'required|string|max:100',
+            'value ' => 'required|numeric|max:10000',
+            'image ' => 'required|string|max:100',
+            'stock' => 'required|numeric|max:50',
+            'visualizations' => 'required|numeric|max:50',
+            'visibility' => 'required|numeric|max:50'
+        ], [
+            'name.required' => 'El Nombre del producto es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+            'description.required' => 'La descripción del producto es obligatorio.',
+            'description.max' => 'La descripción del producto no puede superar los 100 caracteres.',
+            'value.required' => 'El valor del producto es obligatorio.',
+            'value.max' => 'El valor del producto no puede superar 10000 pesos.',
+            'stock.required' => 'El stock del producto es obligatorio.',
+            'visualizations.required' => 'La visualización del producto es obligatorio.',
+            'visibility.required' => 'La visibilidad del producto es obligatorio.',            
+        ]);
+
+        $product->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'value' => $request->input('value'),
+            'image' => $request->input('image'),
+            'stock' => $request->input('stock'),
+            'visualizations' => $request->input('visualizations'),
+            'visibility' => $request->input('visibility'),
+        ]);
+
+        return redirect()->route('products.index')->with('mensaje','Formato de cerveza actualizado con éxito');
+
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('product.index');
+        return redirect()->route('products.index');
     }
 }

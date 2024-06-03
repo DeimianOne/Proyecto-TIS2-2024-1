@@ -2,47 +2,84 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paymentmethod;
 use Illuminate\Http\Request;
-use App\Models\Payment_method;
 
-class PaymentMethodController extends Controller
+class PaymentmethodController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $paymentMethods = Payment_method::all();
-        return view('payment_methods.index', compact('paymentMethods'));
+        //
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('payment_methods.create');
+        //
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        Payment_method::create($request->all());
-        return redirect()->route('payment-methods.index');
+        //
     }
 
-    public function show(Payment_method $paymentMethod)
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Paymentmethod  $paymentmethod
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Paymentmethod $paymentmethod)
     {
-        return view('payment_methods.show', compact('paymentMethod'));
+        //
     }
 
-    public function edit(Payment_method $paymentMethod)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Paymentmethod  $paymentmethod
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Paymentmethod $paymentmethod)
     {
-        return view('payment_methods.edit', compact('paymentMethod'));
+        //
     }
 
-    public function update(Request $request, Payment_method $paymentMethod)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Paymentmethod  $paymentmethod
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Paymentmethod $paymentmethod)
     {
-        $paymentMethod->update($request->all());
-        return redirect()->route('payment-methods.index');
+        //
     }
 
-    public function destroy(Payment_method $paymentMethod)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Paymentmethod  $paymentmethod
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Paymentmethod $paymentmethod)
     {
-        $paymentMethod->delete();
-        return redirect()->route('payment-methods.index');
+        //
     }
 }

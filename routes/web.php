@@ -1,14 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProductTypesController;
-use App\Http\Controllers\BeerController;
-use App\Http\Controllers\BeerFormatController;
-use App\Http\Controllers\BeerStyleController;
-use App\Http\Controllers\LandingEditController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProducttypeController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\BeerController;
+use App\Http\Controllers\BeerformatController;
+use App\Http\Controllers\BeerstyleController;
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\CommuneController;
+use App\Http\Controllers\DistributorController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\CompanyEventController;
+use App\Http\Controllers\BranchController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +38,11 @@ Route::get('/packs', function () {
 })->name('packs');
 
 Route::get('/iniciarsesion', function () {
-    return view('iniciarsesion');
+    return view('auth/login');
 })->name('iniciarsesion');
 
 Route::get('/registrate', function () {
-    return view('registrate');
+    return view('auth/register');
 })->name('registrate');
 
 Route::get('/cervezas', function () {
@@ -64,27 +73,9 @@ Route::get('/dondeestamos', function () {
     return view('dondeestamos');
 })->name('dondeestamos');
 
-// returns the home page with all posts
-// Route::get('/', PostController::class .'@index')->name('posts.index');
-// returns the form for adding a post
-Route::get('/posts/create', PostController::class . '@create')->name('posts.create');
-// adds a post to the database
-Route::post('/posts', PostController::class .'@store')->name('posts.store');
-// returns a page that shows a full post
-Route::get('/posts/{post}', PostController::class .'@show')->name('posts.show');
-// returns the form for editing a post
-Route::get('/posts/{post}/edit', PostController::class .'@edit')->name('posts.edit');
-// updates a post
-Route::put('/posts/{post}', PostController::class .'@update')->name('posts.update');
-// deletes a post
-Route::delete('/posts/{post}', PostController::class .'@destroy')->name('posts.destroy');
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 /*
 Route::resource('productType', ProductTypesController::class);
-Route::resource('beer', BeerController::class);     
+Route::resource('beer', BeerController::class);
 Route::resource('/pages/format', BeerFormatController::class);
 Route::resource('beerStyle', BeerStyleController::class);
 Route::resource('product', ProductController::class);
@@ -92,22 +83,37 @@ Route::resource('landingEdit', LandingEditController::class);
 
 */
 
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Rutas Dashmix
-// Route::view('/', 'landing');
-Route::match(['get', 'post'], '/dashboard', function(){
-    return view('dashboard');
+Route::group(['middleware' => ['role:Administrador']], function () {
+    Route::match(['get', 'post'], '/dashboard', function(){
+        return view('dashboard');
+    });
+    Route::view('/pages/slick', 'pages.slick');
+    Route::view('/pages/datatables', 'pages.datatables');
+    Route::view('/pages/blank', 'pages.blank');
+
+    //Roles y permisos
+    Route::resource('roles', RolController::class);
+    Route::resource('users', UserController::class);
+
+    Route::resource('companies', CompanyController::class);
+    Route::resource('beers', BeerController::class);
+    Route::resource('beerstyles', BeerstyleController::class);
+    Route::resource('producttypes', ProducttypeController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('beerformats', BeerFormatController::class);
+    Route::resource('regions', RegionController::class);
+    Route::resource('provinces', ProvinceController::class);
+    Route::resource('communes', CommuneController::class);
+    Route::resource('distributors', DistributorController::class);
+    Route::resource('events', EventController::class);
+    Route::resource('companyevents', CompanyEventController::class);
+    Route::resource('branches', BranchController::class);
+    // Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
+    // Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
 });
-Route::resource('/pages/beer', BeerController::class);
-Route::resource('/pages/beer_style', BeerStyleController::class);
-Route::resource('/pages/type_product', ProductTypesController::class);
-Route::resource('/pages/format', BeerFormatController::class);
 
-
-Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
-
-Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');

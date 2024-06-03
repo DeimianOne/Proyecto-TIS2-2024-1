@@ -26,13 +26,45 @@
                 <a href="{{ route('dondeestamos') }}" class="nav-item nav-link">¿Dónde estamos?</a>
                 <a href="{{ route('contacto') }}" class="nav-item nav-link">Contacto</a>
             </div>
+
             <div class="navbar-nav ml-auto">
-                <a href="{{ route('iniciarsesion') }}" class="nav-item nav-link">
-                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-                </a>
-                <a href="{{ route('registrate') }}" class="nav-item nav-link">
-                    <i class="fas fa-user-plus"></i> Registrarse
-                </a>
+                @guest
+                    @if (Route::has('login'))
+                        <a href="{{ route('iniciarsesion') }}" class="nav-item nav-link">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                        </a>
+                    @endif
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('registrate') }}" class="nav-item nav-link">
+                            <i class="fas fa-user-plus"></i> Registrarse
+                        </a>
+                    @endif
+                @else
+
+                    @if(auth()->user()->hasRole('Administrador'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
+                        </li>
+                    @endif
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle mr-3" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
             </div>
         </div>
     </nav>

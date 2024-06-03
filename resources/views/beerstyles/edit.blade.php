@@ -1,0 +1,34 @@
+@extends('layouts.backend')
+
+@section('content')
+<div class="block block-rounded">
+    <div class="block-header block-header-default">
+        <h3 class="block-title">Editar estilo de cerveza</h3>
+    </div>
+    <div class="block-content block-content-full d-flex justify-content-center">
+        <div class="col-lg-8">
+            <form method="POST" action="{{ route('beerstyles.update', $beerstyle->id) }}">
+                @csrf
+                @method('PUT') 
+
+                <!-- Error Display Section -->
+                @if ($errors->any())
+                    <div class="alert alert-danger mb-4">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <div class="form-group mb-4">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre del estilo de cerveza" value="{{ old('name', $beerstyle->name) }}">
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection

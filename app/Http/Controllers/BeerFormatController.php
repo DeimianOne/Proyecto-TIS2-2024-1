@@ -2,22 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beerformat;
 use Illuminate\Http\Request;
-use App\Models\Beer_format;
 
-class BeerFormatController extends Controller
+class BeerformatController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $formats = Beer_format::all();
-        return view('pages.format', compact('formats'));
+        $beerformats = Beerformat::all();
+        return view('beerformats.index', compact('beerformats'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('beerFormat.create');
+        $beerformat = Beerformat::all();
+        return view('beerformats.create', compact('beerformat'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -30,40 +47,76 @@ class BeerFormatController extends Controller
             'liters.max' => 'Los litros no puede superar los 20 caracteres.',
         ]);
 
-        Beer_format::create([
+        Beerformat::create([
             'container' => $request->input('container'),
             'liters' => $request->input('liters'),
         ]);
 
-        return redirect()->route('format.index')->with('mensaje','Formato de cerveza agregado con éxito');
-
-        //return redirect('beerFormat')->with('mensaje','Formato cerveza agregado con éxito');
+        return redirect()->route('beerformats.store')->with('mensaje','Formato de cerveza agregado con éxito');
+        
     }
 
-    public function show(Beer_format $beerFormat)
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Beerformat  $beerformat
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Beerformat $beerformat)
     {
-        return view('beerFormat.show', compact('beerFormat'));
+        //
     }
 
-    public function edit($id)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Beerformat  $beerformat
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Beerformat $beerformat)
     {
-        $beerFormat = Beer_format::findOrFail($id);
-        return view('beerFormat.edit', compact('beerFormat'));
+        
+        return view('beerformats.edit', compact('beerformat'));
+        
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Beerformat  $beerformat
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Beerformat $beerformat)
     {
-        $datosbeerFormat = $request->except(['_token', '_method']);
-        Beer_format::where('id', '=', $id)->update($datosbeerFormat);
-    
-        $beerFormat = Beer_format::findOrFail($id);
-        return view('beerFormat.edit', compact('beerFormat'));
+        //
+        $request->validate([
+            'container' => 'required|string|max:100',
+            'liters' => 'required|numeric|max:50'
+        ], [
+            'container.required' => 'El Contenedor es obligatorio.',
+            'container.max' => 'El nombre no puede superar los 100 caracteres.',
+            'liters.required' => 'Los Litros son obligatorio.',
+            'liters.max' => 'Los litros no puede superar los 20 caracteres.',
+        ]);
+
+        $beerformat->update([
+            'container' => $request->input('container'),
+            'liters' => $request->input('liters'),
+        ]);
+
+        return redirect()->route('beerformats.index')->with('mensaje','Formato de cerveza actualizado con éxito');
     }
 
-    public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Beerformat  $beerformat
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Beerformat $beerformat)
     {
-
-        Beer_format::destroy($id);
-        return redirect('pages.format');
+        $beerformat->delete();
+        return redirect()->route('beerformats.index');
     }
 }

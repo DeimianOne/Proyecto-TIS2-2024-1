@@ -5,19 +5,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-  <title>Dashmix - Bootstrap 5 Admin Template &amp; UI Framework</title>
+  <title>Cerveza Fuzz</title>
 
-  <meta name="description" content="Dashmix - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-  <meta name="author" content="pixelcave">
+  <meta name="description" content="Cerveza Fuzz">
+  <meta name="author" content="Cerveza Fuzz">
   <meta name="robots" content="noindex, nofollow">
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Icons -->
-  <link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png') }}">
-  <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('media/favicons/favicon-192x192.png') }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
+  <link rel="shortcut icon" href="{{ asset('img/fuzz/logo4.png') }}">
+  <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('img/fuzz/logo4.png') }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/fuzz/logo4.png') }}">
 
   <!-- Fonts and Styles -->
   @yield('css_before')
@@ -86,7 +86,7 @@
       ''                                          Full width Main Content if no class is added
       'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
       'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
-        
+
     DARK MODE
 
       'sidebar-dark page-header-dark dark-mode'   Enable dark mode (light sidebar/header is not supported with dark mode)
@@ -277,7 +277,7 @@
               D<span class="opacity-75">x</span>
             </span>
             <span class="smini-hidden">
-              Dash<span class="opacity-75">mix</span>
+              Cerveza<span class="opacity-75"> Fuzz</span>
             </span>
           </a>
           <!-- END Logo -->
@@ -330,24 +330,79 @@
                 <span class="nav-main-link-name">Secciones</span>
               </a>
               <ul class="nav-main-submenu">
+              <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('users') ? ' active' : '' }}" href="/users">
+                    <span class="nav-main-link-name">Usuarios</span>
+                  </a>
+                </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/beer') ? ' active' : '' }}" href="/pages/beer"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
+                  <a class="nav-main-link{{ request()->is('roles') ? ' active' : '' }}" href="/roles">
+                    <span class="nav-main-link-name">Roles</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('companies') ? ' active' : '' }}" href="/companies">
+                    <span class="nav-main-link-name">Compañia</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('distributors') ? ' active' : '' }}" href="/distributors">
+                    <span class="nav-main-link-name">Distribuidor</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('branches') ? ' active' : '' }}" href="/branches">
+                    <span class="nav-main-link-name">Sucursales</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('events') ? ' active' : '' }}" href="/events">
+                    <span class="nav-main-link-name">Eventos</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('companyevents') ? ' active' : '' }}" href="/companyevents">
+                    <span class="nav-main-link-name">Evento Compañia</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('beers') ? ' active' : '' }}" href="/beers"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
                     <span class="nav-main-link-name">Cerveza</span>
                   </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/beer_style') ? ' active' : '' }}" href="/pages/beer_style"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
+                  <a class="nav-main-link{{ request()->is('beerstyles') ? ' active' : '' }}" href="/beerstyles"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
                     <span class="nav-main-link-name">Estilo cerveza</span>
                   </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/type_product') ? ' active' : '' }}" href="/pages/type_product">
+                  <a class="nav-main-link{{ request()->is('producttypes') ? ' active' : '' }}" href="/producttypes">
                     <span class="nav-main-link-name">Tipo de producto</span>
                   </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/format') ? ' active' : '' }}" href="/pages/format">
+                  <a class="nav-main-link{{ request()->is('beerformats') ? ' active' : '' }}" href="/beerformats">
                     <span class="nav-main-link-name">Formato</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('products') ? ' active' : '' }}" href="/products">
+                    <span class="nav-main-link-name">Producto</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('regions') ? ' active' : '' }}" href="/regions">
+                    <span class="nav-main-link-name">Región</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('provinces') ? ' active' : '' }}" href="/provinces">
+                    <span class="nav-main-link-name">Provincia</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('communes') ? ' active' : '' }}" href="/communes">
+                    <span class="nav-main-link-name">Comuna</span>
                   </a>
                 </li>
               </ul>
@@ -423,9 +478,12 @@
                 <!-- END Side Overlay -->
 
                 <div role="separator" class="dropdown-divider"></div>
-                <a class="dropdown-item" href="javascript:void(0)">
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Sign Out
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
               </div>
             </div>
           </div>
