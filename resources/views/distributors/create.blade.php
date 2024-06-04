@@ -41,6 +41,18 @@
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email del distribuidor" value="{{ old('email') }}">
                 </div>
+
+                <div class="form-group">
+                    <label for="company_id">Compañías</label>
+                    <select name="company_id[]" id="company_id" class="form-control" multiple>
+                        @foreach($companies as $company)
+                            <option value="{{ $company->id }}" {{ in_array($company->id, old('company_id', [])) ? 'selected' : '' }}>
+                                {{ $company->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                
                 <button type="submit" class="btn btn-primary mt-3">Guardar</button>
             </form>
         </div>

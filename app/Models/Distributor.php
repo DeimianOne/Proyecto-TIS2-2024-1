@@ -16,4 +16,9 @@ class Distributor extends Model
         'phone_number',
         'email',
     ];
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class,'company_distributor');
+    }
 }

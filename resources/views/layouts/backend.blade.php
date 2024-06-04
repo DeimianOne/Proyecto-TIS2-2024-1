@@ -366,6 +366,11 @@
                   </a>
                 </li>
                 <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('companydistributors') ? ' active' : '' }}" href="/companydistributors">
+                    <span class="nav-main-link-name">Compañia distribuidor</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
                   <a class="nav-main-link{{ request()->is('beers') ? ' active' : '' }}" href="/beers"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
                     <span class="nav-main-link-name">Cerveza</span>
                   </a>

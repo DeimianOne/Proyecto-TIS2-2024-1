@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyDistributor;
+use App\Models\Distributor;
 use Illuminate\Http\Request;
 
 class CompanyDistributorController extends Controller
@@ -14,8 +15,13 @@ class CompanyDistributorController extends Controller
      */
     public function index()
     {
-        //
+        $companydistributors = CompanyDistributor::all();
+        $distributors = Distributor::all();
+        return view('companydistributors.index', compact('companydistributors', 'distributors'));
     }
+
+    
+    
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +30,7 @@ class CompanyDistributorController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
