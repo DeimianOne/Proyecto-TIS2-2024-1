@@ -330,6 +330,46 @@
                 <span class="nav-main-link-name">Secciones</span>
               </a>
               <ul class="nav-main-submenu">
+              <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('users') ? ' active' : '' }}" href="/users">
+                    <span class="nav-main-link-name">Usuarios</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('roles') ? ' active' : '' }}" href="/roles">
+                    <span class="nav-main-link-name">Roles</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('companies') ? ' active' : '' }}" href="/companies">
+                    <span class="nav-main-link-name">Compañia</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('distributors') ? ' active' : '' }}" href="/distributors">
+                    <span class="nav-main-link-name">Distribuidor</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('branches') ? ' active' : '' }}" href="/branches">
+                    <span class="nav-main-link-name">Sucursales</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('events') ? ' active' : '' }}" href="/events">
+                    <span class="nav-main-link-name">Eventos</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('companyevents') ? ' active' : '' }}" href="/companyevents">
+                    <span class="nav-main-link-name">Evento Compañia</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('companydistributors') ? ' active' : '' }}" href="/companydistributors">
+                    <span class="nav-main-link-name">Compañia distribuidor</span>
+                  </a>
+                </li>
                 <li class="nav-main-item">
                   <a class="nav-main-link{{ request()->is('beers') ? ' active' : '' }}" href="/beers"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
                     <span class="nav-main-link-name">Cerveza</span>
@@ -348,6 +388,26 @@
                 <li class="nav-main-item">
                   <a class="nav-main-link{{ request()->is('beerformats') ? ' active' : '' }}" href="/beerformats">
                     <span class="nav-main-link-name">Formato</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('products') ? ' active' : '' }}" href="/products">
+                    <span class="nav-main-link-name">Producto</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('regions') ? ' active' : '' }}" href="/regions">
+                    <span class="nav-main-link-name">Región</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('provinces') ? ' active' : '' }}" href="/provinces">
+                    <span class="nav-main-link-name">Provincia</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('communes') ? ' active' : '' }}" href="/communes">
+                    <span class="nav-main-link-name">Comuna</span>
                   </a>
                 </li>
               </ul>

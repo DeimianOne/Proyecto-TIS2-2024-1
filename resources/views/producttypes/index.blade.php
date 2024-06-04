@@ -61,7 +61,7 @@
     <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">Tipos de productos<small></small></h3>
-        <a href="{{ route('producttypes.create') }}" class="btn btn-sm btn-outline-primary"> Crear</a>
+        <a href="{{ route('producttypes.create') }}" class="btn btn-sm btn-outline-primary"> Crear </a>
 
       </div>
       <div class="block-content block-content-full">
@@ -77,13 +77,21 @@
           <tbody>
             @foreach($producttypes as $producttype)
               <tr>
-                <td class="text-center">{{$productType -> id}}</td>
+                <td class="text-center">{{$producttype -> id}}</td>
                 <td class="fw-semibold">
-                  <a href="javascript:void(0)">{{$productType -> name}}</a>
+                  <a href="javascript:void(0)">{{$producttype -> name}}</a>
                 </td>
                 <td> <!-- Nueva columna para botones de editar y eliminar -->
-                 <a href="" class="btn btn-sm btn-outline-warning">Editar</a>
-                 <a href="" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                  <div class="d-inline-flex">
+                    <a href="{{ route('producttypes.edit', $producttype->id) }}" class="btn btn-sm btn-outline-warning me-2">Editar</a>
+                    <form action="{{ route('producttypes.destroy', $producttype->id) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-sm btn-outline-danger">
+                      Eliminar
+                      </button>
+                    </form>
+                  </div>
                 </td>
                 </tr>
             @endforeach

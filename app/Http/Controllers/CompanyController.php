@@ -14,7 +14,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::all();
+        return view('companies.index', compact('companies'));
     }
 
     /**
@@ -24,7 +25,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::all();
+        return view('companies.create', compact('companies'));
     }
 
     /**
@@ -35,7 +37,19 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre de la compañia de cerveza es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+        ]);
+
+        Company::create([
+            'name' => $request->input('name'),
+        ]);
+
+        return redirect()->route('companies.store')->with('mensaje','Compañia agregada con éxito');
+
     }
 
     /**
@@ -57,7 +71,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', compact('company'));
     }
 
     /**
@@ -69,7 +83,19 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre de la compañia de cerveza es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+        ]);
+
+        $company->update([
+            'name' => $request->input('name'),
+        ]);
+        
+        return redirect()->route('companies.index')->with('mensaje','Compañía actualizado con éxito');
+
     }
 
     /**
@@ -80,6 +106,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+        return redirect()->route('companies.index');
     }
 }

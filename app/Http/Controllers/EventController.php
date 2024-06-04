@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -14,7 +15,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::all();
+        return view('events.index', compact('events'));
     }
 
     /**
@@ -24,7 +26,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $events = Event::all();
+        $companies = Company::all();
+        return view('events.create', compact('events','companies'));
     }
 
     /**
@@ -34,9 +38,31 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    $request->validate([
+        'name' => 'required|string|max:100',
+        'start_date_time' => 'required|date|before:end_date_time',
+        'end_date_time' => 'required|date|after:start_date_time',
+        'location_latitude' => 'required|numeric|between:-90,90',
+        'location_longitude' => 'required|numeric|between:-180,180',
+        'company_id' => 'required|array',
+        'company_id.*' => 'exists:companies,id',
+    ], [
+
+    ]);
+
+    $event = Event::create([
+        'name' => $request->input('name'),
+        'start_date_time' => $request->input('start_date_time'),
+        'end_date_time' => $request->input('end_date_time'),
+        'location_latitude' => $request->input('location_latitude'),
+        'location_longitude' => $request->input('location_longitude'),
+    ]);
+
+    $event->companies()->sync($request->input('company_id'));
+
+    return redirect()->route('events.index')->with('success', 'Evento agregado con éxito');
+}
 
     /**
      * Display the specified resource.
@@ -57,7 +83,8 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        $companies = Company::all();
+        return view('events.edit', compact('event', 'companies'));
     }
 
     /**
@@ -68,9 +95,31 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Event $event)
-    {
-        //
-    }
+{
+    $request->validate([
+        'name' => 'required|string|max:100',
+        'start_date_time' => 'required|date|before:end_date_time',
+        'end_date_time' => 'required|date|after:start_date_time',
+        'location_latitude' => 'required|numeric|between:-90,90',
+        'location_longitude' => 'required|numeric|between:-180,180',
+        'company_id' => 'required|array',
+        'company_id.*' => 'exists:companies,id',
+    ], [
+        // Mensajes de error personalizados
+    ]);
+
+    $event->update([
+        'name' => $request->input('name'),
+        'start_date_time' => $request->input('start_date_time'),
+        'end_date_time' => $request->input('end_date_time'),
+        'location_latitude' => $request->input('location_latitude'),
+        'location_longitude' => $request->input('location_longitude'),
+    ]);
+
+    $event->companies()->sync($request->input('company_id'));
+    
+    return redirect()->route('events.index')->with('success', 'Evento actualizado con éxito');
+}
 
     /**
      * Remove the specified resource from storage.
@@ -80,6 +129,8 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        
+        $event->delete();
+        return redirect()->route('events.index');
     }
 }

@@ -78,16 +78,25 @@
                     <tbody>
                         @foreach ($beerformats as $beerformat)
                             <tr>
-                                <td class="text-center">{{ $format->id }}</td>
+                                <td class="text-center">{{ $beerformat->id }}</td>
                                 <td class="fw-semibold">
-                                    <a href="javascript:void(0)">{{ $format->container }}</a>
+                                    <a href="javascript:void(0)">{{ $beerformat->container }}</a>
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0)">{{ $format->liters }}</a>
+                                    <a href="javascript:void(0)">{{ $beerformat->liters }}</a>
                                 </td>
                                 <td> <!-- Nueva columna para botones de editar y eliminar -->
-                                    <a href="" class="btn btn-sm btn-outline-warning">Editar</a>
-                                    <a href="" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                    <div class="d-inline-flex">
+                                        <a href="{{ route('beerformats.edit', $beerformat->id) }}" class="btn btn-sm btn-outline-warning me-2">Editar</a>
+                                        <form action="{{ route('beerformats.destroy', $beerformat->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            Eliminar
+                                            </button>
+                                        </form>
+                                    </div>
+                                    
                                 </td>
                             </tr>
                         @endforeach

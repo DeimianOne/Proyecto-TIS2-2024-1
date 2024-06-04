@@ -18,7 +18,7 @@ class CreateBranchesTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->integer('address_number');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->enum('branch_type', ['factory', 'retail_store', 'office']);
             $table->foreignId('company_id')->constrained('companies');
             $table->foreignId('commune_id')->constrained('communes');

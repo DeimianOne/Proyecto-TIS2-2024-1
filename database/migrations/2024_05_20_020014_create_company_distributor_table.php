@@ -16,7 +16,7 @@ class CreateCompanyDistributorTable extends Migration
         Schema::create('company_distributor', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained('companies');
-            $table->foreignId('distributor_id')->constrained('distributors');
+            $table->foreignId('distributor_id')->constrained('distributors')->onDelete('cascade');
             $table->timestamps();
         });
     }

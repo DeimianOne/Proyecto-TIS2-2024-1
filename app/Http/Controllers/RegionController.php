@@ -14,8 +14,10 @@ class RegionController extends Controller
      */
     public function index()
     {
-        //
+        $regions = Region::all();
+        return view('regions.index', compact('regions'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +26,8 @@ class RegionController extends Controller
      */
     public function create()
     {
-        //
+        $regions = Region::all();
+        return view('regions.create', compact('regions'));
     }
 
     /**
@@ -35,7 +38,19 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre de la región es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+        ]);
+
+        Region::create([
+            'name' => $request->input('name'),
+        ]);
+
+        return redirect()->route('regions.store')->with('mensaje','Region agregado con éxito');
+
     }
 
     /**
@@ -57,7 +72,7 @@ class RegionController extends Controller
      */
     public function edit(Region $region)
     {
-        //
+        return view('regions.edit', compact('region'));
     }
 
     /**
@@ -69,7 +84,19 @@ class RegionController extends Controller
      */
     public function update(Request $request, Region $region)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre del producto es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+        ]);
+
+        $region->update([
+            'name' => $request->input('name'),
+        ]);
+        
+        return redirect()->route('regions.index')->with('mensaje','Región actualizado con éxito');
+
     }
 
     /**
@@ -80,6 +107,7 @@ class RegionController extends Controller
      */
     public function destroy(Region $region)
     {
-        //
+        $region->delete();
+        return redirect()->route('regions.index');
     }
 }

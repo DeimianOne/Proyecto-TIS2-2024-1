@@ -24,8 +24,9 @@ class ProducttypeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('producttypes.create');
+    {   
+        $producttype = Producttype::all();
+        return view('producttypes.create', compact('producttype'));
     }
 
     /**
@@ -36,7 +37,19 @@ class ProducttypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre del producto es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+        ]);
+
+        Producttype::create([
+            'name' => $request->input('name'),
+        ]);
+
+        return redirect()->route('producttypes.store')->with('mensaje','Producto agregado con éxito');
+        
     }
 
     /**
@@ -58,7 +71,7 @@ class ProducttypeController extends Controller
      */
     public function edit(Producttype $producttype)
     {
-        //
+        return view('producttypes.edit', compact('producttype'));
     }
 
     /**
@@ -70,7 +83,19 @@ class ProducttypeController extends Controller
      */
     public function update(Request $request, Producttype $producttype)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+        ], [
+            'name.required' => 'El nombre del producto es obligatorio.',
+            'name.max' => 'El nombre no puede superar los 100 caracteres.',
+        ]);
+
+        $producttype->update([
+            'name' => $request->input('name'),
+        ]);
+        
+        return redirect()->route('producttypes.index')->with('mensaje','Producto actualizado con éxito');
+        
     }
 
     /**
@@ -81,6 +106,7 @@ class ProducttypeController extends Controller
      */
     public function destroy(Producttype $producttype)
     {
-        //
+        $producttype->delete();
+        return redirect()->route('producttypes.index');
     }
 }
