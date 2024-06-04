@@ -18,7 +18,7 @@ class CreateBeerstylesTable extends Migration
         Schema::create('beerstyles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
+            $table->timestamps();
         });
     }
 
