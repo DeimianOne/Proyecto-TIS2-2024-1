@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <a href="javascript:void(0)">{{ optional($companydistributor->company)->name }}</a>
                         </td>
                         <td class="fw-semibold">
-                            <a href="javascript:void(0)">{{ optional($companydistributor->distributors)->name }}</a>
+                            <a href="javascript:void(0)">{{ optional($companydistributor->distributor)->name }}</a>
                         </td>
                     </tr>
                     @endforeach

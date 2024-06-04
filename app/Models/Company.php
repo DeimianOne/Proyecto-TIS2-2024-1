@@ -24,7 +24,7 @@ class Company extends Model
         return $this->hasMany(Branch::class);
     }
 
-    public function distributors()
+    public function distributor()
     {
         return $this->belongsToMany(Distributor::class,'company_distributor');
     }

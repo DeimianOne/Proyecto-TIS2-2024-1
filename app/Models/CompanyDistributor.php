@@ -11,7 +11,7 @@ class CompanyDistributor extends Pivot
         return $this->belongsTo(Company::class);
     }
 
-    public function distributors()
+    public function distributor()
     {
         return $this->belongsTo(Distributor::class);
     }
