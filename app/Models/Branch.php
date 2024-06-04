@@ -19,12 +19,12 @@ class Branch extends Model
         'commune_id',
     ];
 
-    public function companies()
+    public function company()
     {
         return $this->belongsTo(Company::class);
     }
 
-    public function communes()
+    public function commune()
     {
         return $this->belongsTo(Commune::class);
     }
