@@ -68,4 +68,21 @@
             </div>
         </div>
     </nav>
+
+    <div id="ageVerificationPopup" class="age-verification-popup">
+    <div class="age-verification-content">
+        <div class="logo-container">
+            <img src="img/fuzz/logo2.png" alt="Image">
+        </div>
+        <div class="separator"></div>
+        <h2 id="popupTitle">¿Eres mayor de 18 años?</h2>
+        <div id="buttons">
+            <button id="yesButton">Sí</button>
+            <button id="noButton">No</button>
+        </div>
+        <p id="ageRestrictionMessage" style="display:none; color:red;">Tiene que ser mayor de 18 para ingresar a nuestra página.</p>
+    </div>
+</div>
+
+
 </div>

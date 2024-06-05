@@ -41,23 +41,34 @@
         var $ageVerificationPopup = $("#ageVerificationPopup");
         var $yesButton = $("#yesButton");
         var $noButton = $("#noButton");
+        var $ageRestrictionMessage = $("#ageRestrictionMessage");
+        var $buttons = $("#buttons");
+        var $popupTitle = $("#popupTitle");
 
         // Verificar si ya se ha verificado la edad
         var ageVerified = localStorage.getItem("ageVerified");
         if (ageVerified) {
-            // Si se ha verificado la edad, ocultar el popup
+            // Si se ha verificado la edad, ocultar el popup y habilitar el scroll
             $ageVerificationPopup.hide();
+            $('body').removeClass('no-scroll');
+        } else {
+            // Si no se ha verificado la edad, mostrar el popup y deshabilitar el scroll
+            $ageVerificationPopup.show();
+            $('body').addClass('no-scroll');
         }
 
         $yesButton.on("click", function() {
-            // Al hacer clic en "Sí", ocultar el popup y guardar en el almacenamiento local
+            // Al hacer clic en "Sí", ocultar el popup, habilitar el scroll y guardar en el almacenamiento local
             $ageVerificationPopup.hide();
+            $('body').removeClass('no-scroll');
             localStorage.setItem("ageVerified", true);
         });
 
         $noButton.on("click", function() {
-            // Al hacer clic en "No", redirigir a Google
-            window.location.href = 'https://www.google.com';
+            // Al hacer clic en "No", mostrar el mensaje de restricción de edad y ocultar los botones
+            $popupTitle.hide();
+            $buttons.hide();
+            $ageRestrictionMessage.show();
         });
     });
 
