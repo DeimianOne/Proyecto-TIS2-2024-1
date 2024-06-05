@@ -10,6 +10,7 @@ class Beer extends Model
     use HasFactory;
 
     protected $fillable = [
+        'product_id',
         'beerstyle_id',
         'beerformat_id',
         'liter_value',
@@ -18,6 +19,10 @@ class Beer extends Model
     //Uno a Muchos (Inversa)
     public function beerstyle(){
         return $this->belongsTo(Beerstyle::class, 'beerstyle_id');
+    }
+
+    public function product(){
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     //Muchos a Muchos

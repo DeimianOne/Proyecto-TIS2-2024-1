@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolSeeder::class,
             UserSeeder::class,
+            BeerformatSeeder::class,
+            BeerstyleSeeder::class,
         ]);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProducttypeController;
 use App\Http\Controllers\BeerController;
 use App\Http\Controllers\BeerformatController;
 use App\Http\Controllers\BeerstyleController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LandingEditController;
 
 /*
@@ -52,7 +53,7 @@ Route::get('/product-pack12', function () {
 
 Route::get('/product-pack24', function () {
     return view('product-pack24');
-})->name('product-pack12');
+})->name('product-pack24');
 
 
 Route::get('/contacto', function () {
@@ -90,6 +91,7 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::view('/pages/datatables', 'pages.datatables');
     Route::view('/pages/blank', 'pages.blank');
 
+    Route::resource('products', ProductController::class);
     Route::resource('beers', BeerController::class);
     Route::resource('beerstyles', BeerstyleController::class);
     Route::resource('producttypes', ProducttypeController::class);

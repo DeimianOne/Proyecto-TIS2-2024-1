@@ -16,7 +16,7 @@ class CreateBeerformatsTable extends Migration
         Schema::create('beerformats', function (Blueprint $table) {
             $table->id();
             $table->string('container');
-            $table->integer('liters');
+            $table->decimal('liters', 5, 3);
             $table->timestamps();
         });
     }
