@@ -18,7 +18,7 @@ class CreateDistributorsTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->integer('address_number');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('email')->unique();
             $table->timestamps();
         });
