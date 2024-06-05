@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Beerformat;
 use Illuminate\Database\Seeder;
 
 class BeerformatSeeder extends Seeder
@@ -13,6 +14,9 @@ class BeerformatSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Beerformat::create([
+            'container' => 'Lata',
+            'liters' => '0.350',
+        ]);
     }
 }

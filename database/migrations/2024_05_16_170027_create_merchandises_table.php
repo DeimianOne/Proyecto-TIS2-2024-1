@@ -15,6 +15,7 @@ class CreateMerchandisesTable extends Migration
     {
         Schema::create('merchandises', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id')->constrained('products');
             $table->timestamps();
         });
     }
