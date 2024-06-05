@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Distributor extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'address', 
+        'address_number', 
+        'phone_number',
+        'email',
+    ];
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class,'company_distributor');
+    }
 }

@@ -25,6 +25,7 @@
                     <label for="name">Nombre</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de la compañia de cerveza" value="{{ old('name') }}">
                 </div>
+
                 <button type="submit" class="btn btn-primary mt-3">Guardar</button>
             </form>
         </div>

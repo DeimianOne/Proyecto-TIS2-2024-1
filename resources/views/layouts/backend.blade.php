@@ -346,6 +346,31 @@
                   </a>
                 </li>
                 <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('distributors') ? ' active' : '' }}" href="/distributors">
+                    <span class="nav-main-link-name">Distribuidor</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('branches') ? ' active' : '' }}" href="/branches">
+                    <span class="nav-main-link-name">Sucursales</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('events') ? ' active' : '' }}" href="/events">
+                    <span class="nav-main-link-name">Eventos</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('companyevents') ? ' active' : '' }}" href="/companyevents">
+                    <span class="nav-main-link-name">Evento Compañia</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
+                  <a class="nav-main-link{{ request()->is('companydistributors') ? ' active' : '' }}" href="/companydistributors">
+                    <span class="nav-main-link-name">Compañia distribuidor</span>
+                  </a>
+                </li>
+                <li class="nav-main-item">
                   <a class="nav-main-link{{ request()->is('beers') ? ' active' : '' }}" href="/beers"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
                     <span class="nav-main-link-name">Cerveza</span>
                   </a>

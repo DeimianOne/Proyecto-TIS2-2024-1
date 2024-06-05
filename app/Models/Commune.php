@@ -18,4 +18,9 @@ class Commune extends Model
     {
         return $this->belongsTo(Province::class);
     }
+
+    public function branches()
+    {
+        return $this->hasMany(Branch::class);
+    }
 }
