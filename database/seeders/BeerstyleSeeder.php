@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Beerstyle;
 use Illuminate\Database\Seeder;
 
 class BeerstyleSeeder extends Seeder
@@ -13,6 +14,8 @@ class BeerstyleSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Beerstyle::create([
+            'name' => 'Ale',
+        ]);
     }
 }

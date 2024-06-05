@@ -64,7 +64,7 @@ Route::get('/product-pack12', function () {
 
 Route::get('/product-pack24', function () {
     return view('product-pack24');
-})->name('product-pack12');
+})->name('product-pack24');
 
 
 Route::get('/contacto', function () {
@@ -78,16 +78,6 @@ Route::get('/nosotros', function () {
 Route::get('/dondeestamos', function () {
     return view('dondeestamos');
 })->name('dondeestamos');
-
-/*
-Route::resource('productType', ProductTypesController::class);
-Route::resource('beer', BeerController::class);
-Route::resource('/pages/format', BeerFormatController::class);
-Route::resource('beerStyle', BeerStyleController::class);
-Route::resource('product', ProductController::class);
-Route::resource('landingEdit', LandingEditController::class);
-
-*/
 
 Auth::routes();
 
@@ -105,12 +95,11 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     //Roles y permisos
     Route::resource('roles', RolController::class);
     Route::resource('users', UserController::class);
-
     Route::resource('companies', CompanyController::class);
+    Route::resource('products', ProductController::class);
     Route::resource('beers', BeerController::class);
     Route::resource('beerstyles', BeerstyleController::class);
     Route::resource('producttypes', ProducttypeController::class);
-    Route::resource('products', ProductController::class);
     Route::resource('beerformats', BeerFormatController::class);
     Route::resource('regions', RegionController::class);
     Route::resource('provinces', ProvinceController::class);
