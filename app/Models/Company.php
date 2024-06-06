@@ -12,6 +12,7 @@ class Company extends Model
     protected $fillable = [
         'name',
     ];
+    
 
     public function events()
     {
@@ -21,5 +22,10 @@ class Company extends Model
     public function branches()
     {
         return $this->hasMany(Branch::class);
+    }
+
+    public function distributor()
+    {
+        return $this->belongsToMany(Distributor::class,'company_distributor');
     }
 }

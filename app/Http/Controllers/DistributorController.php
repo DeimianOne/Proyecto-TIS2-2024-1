@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Distributor;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class DistributorController extends Controller
@@ -25,8 +26,9 @@ class DistributorController extends Controller
      */
     public function create()
     {
+        $companies = Company::all();
         $distributors = Distributor::all();
-        return view('distributors.create', compact('distributors'));
+        return view('distributors.create', compact('distributors','companies'));
     }
 
     /**
@@ -43,6 +45,8 @@ class DistributorController extends Controller
             'address_number' => 'required|numeric',
             'phone_number' => 'required|string|max:11',
             'email' => 'required|string|email|max:100',
+            'company_id' => 'required|array',
+            'company_id.*' => 'exists:companies,id',
         ], [
             'name.required' => 'El nombre de la compañía de cerveza es obligatorio.',
             'name.max' => 'El nombre no puede superar los 100 caracteres.',
@@ -56,13 +60,16 @@ class DistributorController extends Controller
             'email.max' => 'El correo electrónico no puede superar los 100 caracteres.',
         ]);
     
-        Distributor::create([
+        $distributor = Distributor::create([
             'name' => $request->input('name'),
             'address' => $request->input('address'),
             'address_number' => $request->input('address_number'),
             'phone_number' => $request->input('phone_number'),
             'email' => $request->input('email'), // Asegúrate de que esto esté presente
         ]);
+
+        
+        $distributor->companies()->sync($request->input('company_id'));
     
         return redirect()->route('distributors.index')->with('success', 'Distribuidor agregado con éxito');
     }
@@ -85,6 +92,7 @@ class DistributorController extends Controller
      */
     public function edit(Distributor $distributor)
     {
+        $companies = Company::all();
         return view('distributors.edit', compact('distributor'));
     }
     
@@ -104,6 +112,8 @@ class DistributorController extends Controller
             'address_number' => 'required|numeric',
             'phone_number' => 'required|numeric',
             'email' => 'required|string|email|max:100',
+            'company_id' => 'required|array',
+            'company_id.*' => 'exists:companies,id',
         ], [
             'name.required' => 'El nombre de la compañía de cerveza es obligatorio.',
             'name.max' => 'El nombre no puede superar los 100 caracteres.',
@@ -124,6 +134,8 @@ class DistributorController extends Controller
             'phone_number' => $request->input('phone_number'),
             'email' => $request->input('email'),
         ]);
+
+        $distributor->companies()->sync($request->input('company_id'));
         
         return redirect()->route('distributors.index')->with('succes','Compañía actualizado con éxito');
 

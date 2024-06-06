@@ -20,6 +20,7 @@ class BeerController extends Controller
         $beers = Beer::all();
         return view('beers.index', compact('beers'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -75,10 +76,39 @@ class BeerController extends Controller
      * @param  \App\Models\Beer  $beer
      * @return \Illuminate\Http\Response
      */
-    public function show(Beer $beer)
+    public function show()
     {
-        //
+        // Obtener todas las cervezas con sus productos relacionados cargados
+        $beers = Beer::with('product')->get();
+        
+        // Pasar las cervezas a la vista
+        return view('cervezas', compact('beers'));
     }
+    
+    public function show2(){
+
+        $beers = Beer::with('product')->get();
+        
+        // Pasar las cervezas a la vista
+        return view('product-pack6', compact('beers'));
+    }
+
+    public function show3(){
+
+        $beers = Beer::with('product')->get();
+        
+        // Pasar las cervezas a la vista
+        return view('product-pack12', compact('beers'));
+    }
+    
+    public function show4(){
+
+        $beers = Beer::with('product')->get();
+        
+        // Pasar las cervezas a la vista
+        return view('product-pack24', compact('beers'));
+    }
+    
 
     /**
      * Show the form for editing the specified resource.

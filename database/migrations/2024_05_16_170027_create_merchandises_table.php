@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateMerchandisesTable extends Migration
-
 {
     /**
      * Run the migrations.
@@ -16,7 +15,8 @@ class CreateMerchandisesTable extends Migration
     {
         Schema::create('merchandises', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('product_id')->constrained('products');
+            $table->timestamps();
         });
     }
 
@@ -27,7 +27,6 @@ class CreateMerchandisesTable extends Migration
      */
     public function down()
     {
-
         Schema::dropIfExists('merchandises');
     }
 }

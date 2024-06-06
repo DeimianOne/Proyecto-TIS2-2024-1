@@ -32,6 +32,10 @@
   <script>
     window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
   </script>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -315,95 +319,100 @@
       <div class="js-sidebar-scroll">
         <!-- Side Navigation -->
         <div class="content-side content-side-full">
-          <ul class="nav-main">
-            <li class="nav-main-item">
-              <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="/dashboard">
+    <ul class="nav-main">
+        <li class="nav-main-item">
+            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ url('/dashboard') }}">
                 <i class="nav-main-link-icon fa fa-location-arrow"></i>
                 <span class="nav-main-link-name">Dashboard</span>
                 <span class="nav-main-link-badge badge rounded-pill bg-primary">5</span>
-              </a>
-            </li>
-            <li class="nav-main-heading">Various</li>
-            <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-              <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+            </a>
+        </li>
+        <li class="nav-main-heading">Various</li>
+        <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                 <i class="nav-main-link-icon fa fa-lightbulb"></i>
                 <span class="nav-main-link-name">Secciones</span>
-              </a>
-              <ul class="nav-main-submenu">
-              <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('users') ? ' active' : '' }}" href="/users">
-                    <span class="nav-main-link-name">Usuarios</span>
-                  </a>
+            </a>
+            <ul class="nav-main-submenu">
+                <li class="nav-main-item">
+                    <a class="nav-main-link{{ request()->is('dashboard/users') ? ' active' : '' }}" href="{{ url('dashboard/users') }}">
+                        <span class="nav-main-link-name">Usuarios</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('roles') ? ' active' : '' }}" href="/roles">
-                    <span class="nav-main-link-name">Roles</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/roles') ? ' active' : '' }}" href="{{ url('dashboard/roles') }}">
+                        <span class="nav-main-link-name">Roles</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('companies') ? ' active' : '' }}" href="/companies">
-                    <span class="nav-main-link-name">Compañia</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/companies') ? ' active' : '' }}" href="{{ url('dashboard/companies') }}">
+                        <span class="nav-main-link-name">Compañia</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('distributors') ? ' active' : '' }}" href="/distributors">
-                    <span class="nav-main-link-name">Distribuidor</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/products') ? ' active' : '' }}" href="{{ url('dashboard/products') }}">
+                        <span class="nav-main-link-name">Productos</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('branches') ? ' active' : '' }}" href="/branches">
-                    <span class="nav-main-link-name">Sucursales</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/distributors') ? ' active' : '' }}" href="{{ url('dashboard/distributors') }}">
+                        <span class="nav-main-link-name">Distribuidor</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('events') ? ' active' : '' }}" href="/events">
-                    <span class="nav-main-link-name">Eventos</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/branches') ? ' active' : '' }}" href="{{ url('dashboard/branches') }}">
+                        <span class="nav-main-link-name">Sucursales</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('companyevents') ? ' active' : '' }}" href="/companyevents">
-                    <span class="nav-main-link-name">Evento Compañia</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/events') ? ' active' : '' }}" href="{{ url('dashboard/events') }}">
+                        <span class="nav-main-link-name">Eventos</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('beers') ? ' active' : '' }}" href="/beers"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
-                    <span class="nav-main-link-name">Cerveza</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/companyevents') ? ' active' : '' }}" href="{{ url('dashboard/companyevents') }}">
+                        <span class="nav-main-link-name">Evento Compañia</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('beerstyles') ? ' active' : '' }}" href="/beerstyles"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
-                    <span class="nav-main-link-name">Estilo cerveza</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/companydistributors') ? ' active' : '' }}" href="{{ url('dashboard/companydistributors') }}">
+                        <span class="nav-main-link-name">Compañia distribuidor</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('producttypes') ? ' active' : '' }}" href="/producttypes">
-                    <span class="nav-main-link-name">Tipo de producto</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/beers') ? ' active' : '' }}" href="{{ url('dashboard/beers') }}">
+                        <span class="nav-main-link-name">Cerveza</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('beerformats') ? ' active' : '' }}" href="/beerformats">
-                    <span class="nav-main-link-name">Formato</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/beerstyles') ? ' active' : '' }}" href="{{ url('dashboard/beerstyles') }}">
+                        <span class="nav-main-link-name">Estilo cerveza</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('products') ? ' active' : '' }}" href="/products">
-                    <span class="nav-main-link-name">Producto</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/producttypes') ? ' active' : '' }}" href="{{ url('dashboard/producttypes') }}">
+                        <span class="nav-main-link-name">Tipo de producto</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('regions') ? ' active' : '' }}" href="/regions">
-                    <span class="nav-main-link-name">Región</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/beerformats') ? ' active' : '' }}" href="{{ url('dashboard/beerformats') }}">
+                        <span class="nav-main-link-name">Formato</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('provinces') ? ' active' : '' }}" href="/provinces">
-                    <span class="nav-main-link-name">Provincia</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/regions') ? ' active' : '' }}" href="{{ url('dashboard/regions') }}">
+                        <span class="nav-main-link-name">Región</span>
+                    </a>
                 </li>
                 <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('communes') ? ' active' : '' }}" href="/communes">
-                    <span class="nav-main-link-name">Comuna</span>
-                  </a>
+                    <a class="nav-main-link{{ request()->is('dashboard/provinces') ? ' active' : '' }}" href="{{ url('dashboard/provinces') }}">
+                        <span class="nav-main-link-name">Provincia</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link{{ request()->is('dashboard/communes') ? ' active' : '' }}" href="{{ url('dashboard/communes') }}">
+                        <span class="nav-main-link-name">Comuna</span>
+                    </a>
                 </li>
               </ul>
             </li>
@@ -619,11 +628,11 @@
     <footer id="page-footer" class="bg-body-light">
       <div class="content py-0">
         <div class="row fs-sm">
-          <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-end">
+          {{-- <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-end">
             Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold" href="https://1.envato.market/ydb" target="_blank">pixelcave</a>
-          </div>
+          </div> --}}
           <div class="col-sm-6 order-sm-1 text-center text-sm-start">
-            <a class="fw-semibold" href="https://1.envato.market/r6y" target="_blank">Dashmix</a> &copy;
+            <a class="fw-semibold" href="#">Cerveza Fuzz</a> &copy;
             <span data-toggle="year-copy"></span>
           </div>
         </div>

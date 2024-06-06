@@ -16,8 +16,8 @@ use App\Http\Controllers\CommuneController;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\CompanyEventController;
+use App\Http\Controllers\CompanyDistributorController;
 use App\Http\Controllers\BranchController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,7 @@ use App\Http\Controllers\BranchController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -45,25 +46,14 @@ Route::get('/registrate', function () {
     return view('auth/register');
 })->name('registrate');
 
-Route::get('/cervezas', function () {
-    return view('cervezas');
-})->name('cervezas');
-
 Route::get('/armatupack', function () {
     return view('armatupack');
 })->name('armatupack');
 
-Route::get('/product-pack6', function () {
-    return view('product-pack6');
-})->name('product-pack6');
-
-Route::get('/product-pack12', function () {
-    return view('product-pack12');
-})->name('product-pack12');
-
-Route::get('/product-pack24', function () {
-    return view('product-pack24');
-})->name('product-pack12');
+Route::get('/cervezas', [BeerController::class, 'show'])->name('cervezas');
+Route::get('/product-pack6', [BeerController::class, 'show2'])->name('/product-pack6');
+Route::get('/product-pack12', [BeerController::class, 'show2'])->name('/product-pack12');
+Route::get('/product-pack24', [BeerController::class, 'show4'])->name('/product-pack24');
 
 
 Route::get('/contacto', function () {
@@ -78,25 +68,18 @@ Route::get('/dondeestamos', function () {
     return view('dondeestamos');
 })->name('dondeestamos');
 
-/*
-Route::resource('productType', ProductTypesController::class);
-Route::resource('beer', BeerController::class);
-Route::resource('/pages/format', BeerFormatController::class);
-Route::resource('beerStyle', BeerStyleController::class);
-Route::resource('product', ProductController::class);
-Route::resource('landingEdit', LandingEditController::class);
-
-*/
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Rutas Dashmix
-Route::group(['middleware' => ['role:Administrador']], function () {
-    Route::match(['get', 'post'], '/dashboard', function(){
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administrador']], function () {
+    Route::get('/', function(){
         return view('dashboard');
-    });
+    })->name('dashboard');
+
+
+
     Route::view('/pages/slick', 'pages.slick');
     Route::view('/pages/datatables', 'pages.datatables');
     Route::view('/pages/blank', 'pages.blank');
@@ -104,12 +87,11 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     //Roles y permisos
     Route::resource('roles', RolController::class);
     Route::resource('users', UserController::class);
-
     Route::resource('companies', CompanyController::class);
+    Route::resource('products', ProductController::class);
     Route::resource('beers', BeerController::class);
     Route::resource('beerstyles', BeerstyleController::class);
     Route::resource('producttypes', ProducttypeController::class);
-    Route::resource('products', ProductController::class);
     Route::resource('beerformats', BeerFormatController::class);
     Route::resource('regions', RegionController::class);
     Route::resource('provinces', ProvinceController::class);
@@ -117,8 +99,6 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::resource('distributors', DistributorController::class);
     Route::resource('events', EventController::class);
     Route::resource('companyevents', CompanyEventController::class);
+    Route::resource('companydistributors', CompanyDistributorController::class);
     Route::resource('branches', BranchController::class);
-    // Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
-    // Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
 });
-
