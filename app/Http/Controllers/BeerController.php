@@ -85,7 +85,29 @@ class BeerController extends Controller
         return view('cervezas', compact('beers'));
     }
     
+    public function show2(){
+
+        $beers = Beer::with('product')->get();
+        
+        // Pasar las cervezas a la vista
+        return view('product-pack6', compact('beers'));
+    }
+
+    public function show3(){
+
+        $beers = Beer::with('product')->get();
+        
+        // Pasar las cervezas a la vista
+        return view('product-pack12', compact('beers'));
+    }
     
+    public function show4(){
+
+        $beers = Beer::with('product')->get();
+        
+        // Pasar las cervezas a la vista
+        return view('product-pack24', compact('beers'));
+    }
     
 
     /**

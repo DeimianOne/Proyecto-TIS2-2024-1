@@ -49,7 +49,7 @@
         </div>
         <div class="row row-cols-3">
             <div class="col mb-4">
-                <img src="img/fuzz/latas/devil.png" class="img-fluid" alt="Devil Pack">
+                <img src="img/fuzz/latas/devil1.png" class="img-fluid" alt="Devil Pack">
             </div>
             <div class="col mb-4">
                 <img src="img/fuzz/latas/distorsion.png" class="img-fluid" alt="Devil Pack">
@@ -73,7 +73,7 @@
         </div>
         <div class="row row-cols-3">
             <div class="col mb-4">
-                <img src="img/fuzz/latas/devil.png" class="img-fluid" alt="Devil Pack">
+                <img src="img/fuzz/latas/devil1.png" class="img-fluid" alt="Devil Pack">
             </div>
             <div class="col mb-4">
                 <img src="img/fuzz/latas/distorsion.png" class="img-fluid" alt="Devil Pack">
@@ -92,7 +92,7 @@
             </div>
             <div class="row row-cols-3">
                 <div class="col mb-4">
-                    <img src="img/fuzz/latas/devil.png" class="img-fluid" alt="Devil Pack">
+                    <img src="img/fuzz/latas/devil1.png" class="img-fluid" alt="Devil Pack">
                 </div>
                 <div class="col mb-4">
                     <img src="img/fuzz/latas/distorsion.png" class="img-fluid" alt="Devil Pack">

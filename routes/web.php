@@ -51,18 +51,10 @@ Route::get('/armatupack', function () {
 })->name('armatupack');
 
 Route::get('/cervezas', [BeerController::class, 'show'])->name('cervezas');
+Route::get('/product-pack6', [BeerController::class, 'show2'])->name('/product-pack6');
+Route::get('/product-pack12', [BeerController::class, 'show2'])->name('/product-pack12');
+Route::get('/product-pack24', [BeerController::class, 'show4'])->name('/product-pack24');
 
-Route::get('/product-pack6', function () {
-    return view('product-pack6');
-})->name('product-pack6');
-
-Route::get('/product-pack12', function () {
-    return view('product-pack12');
-})->name('product-pack12');
-
-Route::get('/product-pack24', function () {
-    return view('product-pack24');
-})->name('product-pack24');
 
 Route::get('/contacto', function () {
     return view('contacto');
