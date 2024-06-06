@@ -19,7 +19,6 @@ use App\Http\Controllers\CompanyEventController;
 use App\Http\Controllers\CompanyDistributorController;
 use App\Http\Controllers\BranchController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +29,7 @@ use App\Http\Controllers\BranchController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -46,13 +46,11 @@ Route::get('/registrate', function () {
     return view('auth/register');
 })->name('registrate');
 
-Route::get('/cervezas', function () {
-    return view('cervezas');
-})->name('cervezas');
-
 Route::get('/armatupack', function () {
     return view('armatupack');
 })->name('armatupack');
+
+Route::get('/cervezas', [BeerController::class, 'show'])->name('cervezas');
 
 Route::get('/product-pack6', function () {
     return view('product-pack6');
@@ -65,7 +63,6 @@ Route::get('/product-pack12', function () {
 Route::get('/product-pack24', function () {
     return view('product-pack24');
 })->name('product-pack24');
-
 
 Route::get('/contacto', function () {
     return view('contacto');
@@ -84,10 +81,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Rutas Dashmix
-Route::group(['middleware' => ['role:Administrador']], function () {
-    Route::match(['get', 'post'], '/dashboard', function(){
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administrador']], function () {
+    Route::get('/', function(){
         return view('dashboard');
-    });
+    })->name('dashboard');
+
+
+
     Route::view('/pages/slick', 'pages.slick');
     Route::view('/pages/datatables', 'pages.datatables');
     Route::view('/pages/blank', 'pages.blank');
@@ -109,7 +109,4 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::resource('companyevents', CompanyEventController::class);
     Route::resource('companydistributors', CompanyDistributorController::class);
     Route::resource('branches', BranchController::class);
-    // Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
-    // Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
 });
-

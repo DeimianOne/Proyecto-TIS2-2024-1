@@ -8,7 +8,7 @@
     <div class="block-content block-content-full d-flex justify-content-center">
         <div class="col-lg-8">
 
-        <form action="{{ route('products.store') }}" method="POST">
+        <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -22,17 +22,12 @@
 
             <div class="mb-2 form-group">
                 <label class="form-label" for="name">Nombre</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre del producto">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre del producto" required>
             </div>
 
             <div class="mb-2 form-group">
                 <label class="form-label" for="description">Descripción</label>
-                <textarea  class="form-control" id="description" name="description" placeholder="Descripción del producto"></textarea>
-            </div>
-
-            <div class="mb-2 form-group value-group">
-                <label class="form-label" for="value">Valor</label>
-                <input type="text" class="form-control" id="value" name="value" placeholder="Valor del producto">
+                <textarea  class="form-control" id="description" name="description" placeholder="Descripción del producto" required></textarea>
             </div>
 
             <div class="beer-fields mb-2 form-group" style="display: none;">
@@ -51,19 +46,20 @@
             </div>
 
             <div class="mb-2 form-group">
-                <label class="form-label" for="image">Imagen</label>
-                <input type="text" class="form-control" id="image" name="image" placeholder="URL de la imagen del producto">
+                <label class="image" for="image">Imagen</label>
+                <input type="file" class="form-control" id="image" name="image" placeholder="URL de la imagen del producto">
             </div>
 
             <div class="mb-3 form-group">
                 <label class="form-label" for="stock">Stock</label>
-                <input type="number" class="form-control" id="stock" name="stock" placeholder="Cantidad en stock">
+                <input type="number" class="form-control" id="stock" name="stock" placeholder="Cantidad en stock" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
 </div>
+
 @endsection
 
 @section('js_after')

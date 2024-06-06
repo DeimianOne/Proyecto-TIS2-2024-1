@@ -1,7 +1,6 @@
+<!-- cervezas.blade.php -->
 @include('layouts.head')
 @include('layouts.navbar')
-
-
 
 <div class="container-fluid py-5">
     <div class="container mt-5 pt-5">
@@ -9,18 +8,12 @@
             <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Cervezas</h4>
         </div>
         <div class="row row-cols-3">
+            @foreach($beers as $beer)
             <div class="col mb-4">
-                <h5 class="text-center text-primary">Devil's Persuasion</h5>
-                <img src="img/fuzz/latas/devil.png" class="img-fluid" alt="Devil Pack">
+                <h5 class="text-center text-primary">{{ $beer->product->name }}</h5>
+                <img src="{{ $beer->product->image }}" class="img-fluid" alt="{{ $beer->product->name }}">
             </div>
-            <div class="col mb-4">
-                <h5 class="text-center text-primary">Distorsion Ipa</h5>
-                <img src="img/fuzz/latas/distorsion.png" class="img-fluid" alt="Distorsion Pack">
-            </div>
-            <div class="col mb-4">
-                <h5 class="text-center text-primary">The Wall</h5>
-                <img src="img/fuzz/latas/thewall.png" class="img-fluid" alt="Thewall Pack">
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
