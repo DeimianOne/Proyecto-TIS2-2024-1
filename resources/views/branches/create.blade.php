@@ -39,7 +39,8 @@
                 <div class="form-group mb-4">
                     <label for="phone_number">Teléfono</label>
                     <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Teléfono"
-                        value="{{ old('phone_number') }}">
+                        value="{{ old('phone_number') }}" pattern="^[9]\d{8}$"
+                        title="Debe empezar con 9 y contener 9 dígitos en total">
                 </div>
                 <div class="form-group mb-4">
                     <label for="branch_type">Tipo de Sucursal</label>
