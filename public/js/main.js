@@ -16,12 +16,31 @@
         }
         toggleNavbarMethod();
         $(window).resize(toggleNavbarMethod);
+
     });
 
-    // Verificar +18
+
+    $(document).ready(function() {
+        // Inicializar el carrusel
+        const carousel = new bootstrap.Carousel(document.getElementById('blog-carousel'), {
+            interval: 3000 // Cambia de imagen cada 3 segundos
+        });
+        
+        // Activar el carrusel automáticamente
+        $('#blog-carousel').carousel('cycle');
+        
+        // Reiniciar el carrusel al hacer scroll
+        $(window).scroll(function() {
+            $('#blog-carousel').carousel('cycle');
+        });
+    });
+
+
+    // Verificar +18    
     $(document).ready(function() {
         var $ageVerificationPopup = $("#ageVerificationPopup");
         var $yesButton = $("#yesButton");
+        var $noButton = $("#noButton");
 
         // Verificar si ya se ha verificado la edad
         var ageVerified = localStorage.getItem("ageVerified");
@@ -35,7 +54,66 @@
             $ageVerificationPopup.hide();
             localStorage.setItem("ageVerified", true);
         });
+
+        $noButton.on("click", function() {
+            // Al hacer clic en "No", redirigir a Google
+            window.location.href = 'https://www.google.com';
+        });
     });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const beerOptions = document.querySelectorAll(".beer");
+        const pack = document.querySelector(".pack");
+        const addToCartButton = document.querySelector(".add-to-cart");
+    
+        let selectedBeers = [];
+    
+        beerOptions.forEach(option => {
+            option.addEventListener("click", handleClick);
+        });
+    
+        function handleClick() {
+            const beerSrc = this.getAttribute("data-src");
+            const maxBeers = window.location.pathname.includes('product-pack24') ? 24 : (window.location.pathname.includes('product-pack12') ? 12 : 6); // Verifica la URL actual
+            if (selectedBeers.length < maxBeers) {
+                const beerImg = document.createElement("img");
+                beerImg.src = beerSrc;
+                beerImg.alt = "Cerveza";
+                beerImg.style.width = "115px"; // Ajusta el ancho de la imagen aquí
+                beerImg.style.height = "200px"; // Ajusta la altura de la imagen aquí
+                pack.appendChild(beerImg);
+                selectedBeers.push(beerSrc);
+    
+                updateAddToCartButton();
+            }
+        }
+    
+        pack.addEventListener("click", function(event) {
+            if (event.target.tagName === "IMG") {
+                const beerSrc = event.target.getAttribute("src");
+                const index = selectedBeers.indexOf(beerSrc);
+                if (index !== -1) {
+                    selectedBeers.splice(index, 1);
+                    event.target.remove();
+                    updateAddToCartButton();
+                }
+            }
+        });
+    
+        function updateAddToCartButton() {
+            const maxBeers = window.location.pathname.includes('product-pack24') ? 24 : (window.location.pathname.includes('product-pack12') ? 12 : 6); // Verifica la URL actual
+            addToCartButton.disabled = selectedBeers.length !== maxBeers;
+        }
+    
+        addToCartButton.addEventListener("click", function() {
+            // Aquí deberías agregar el código para agregar el pack al carrito
+            // Por ejemplo, podrías enviar los datos al servidor para procesar la compra
+            alert("¡Pack agregado al carrito!");
+        });
+    });
+    
+    
+      
 
     // Back to top button
     $(window).scroll(function () {
@@ -70,30 +148,6 @@
             format: 'dd/MM/yyyy'
         }
     });
-
-    // Testimonials carousel
-    // $(".testimonial-carousel").owlCarousel({
-    //     autoplay: true,
-    //     smartSpeed: 1500,
-    //     margin: 30,
-    //     dots: true,
-    //     loop: true,
-    //     center: true,
-    //     responsive: {
-    //         0:{
-    //             items:1
-    //         },
-    //         576:{
-    //             items:1
-    //         },
-    //         768:{
-    //             items:2
-    //         },
-    //         992:{
-    //             items:3
-    //         }
-    //     }
-    // });
 
 })(jQuery);
 

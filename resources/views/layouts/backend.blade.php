@@ -32,6 +32,10 @@
   <script>
     window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
   </script>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -346,6 +350,9 @@
                   </a>
                 </li>
                 <li class="nav-main-item">
+                    <a class="nav-main-link{{ request()->is('products') ? ' active' : '' }}" href="/products"><!-- RELACION A MANTENEDOR CORRESPONDIENTE-->
+                      <span class="nav-main-link-name">Productos</span>
+                    </a>
                   <a class="nav-main-link{{ request()->is('distributors') ? ' active' : '' }}" href="/distributors">
                     <span class="nav-main-link-name">Distribuidor</span>
                   </a>
@@ -624,11 +631,11 @@
     <footer id="page-footer" class="bg-body-light">
       <div class="content py-0">
         <div class="row fs-sm">
-          <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-end">
+          {{-- <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-end">
             Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold" href="https://1.envato.market/ydb" target="_blank">pixelcave</a>
-          </div>
+          </div> --}}
           <div class="col-sm-6 order-sm-1 text-center text-sm-start">
-            <a class="fw-semibold" href="https://1.envato.market/r6y" target="_blank">Dashmix</a> &copy;
+            <a class="fw-semibold" href="#">Cerveza Fuzz</a> &copy;
             <span data-toggle="year-copy"></span>
           </div>
         </div>

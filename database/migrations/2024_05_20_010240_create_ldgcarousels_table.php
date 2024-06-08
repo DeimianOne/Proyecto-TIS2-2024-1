@@ -16,11 +16,11 @@ class CreateLdgcarouselsTable extends Migration
         Schema::create('ldgcarousels', function (Blueprint $table) {
             $table->id();
             $table->string('photo_1');
-            $table->string('description_1');
+            $table->text('description_1');
             $table->string('photo_2')->nullable();
-            $table->string('description_2')->nullable();
+            $table->text('description_2')->nullable();
             $table->string('photo_3')->nullable();
-            $table->string('description_3')->nullable();
+            $table->text('description_3')->nullable();
             $table->foreignId('company_id')->constrained('companies');
             $table->timestamps();
         });

@@ -25,8 +25,8 @@ class CreateLdgfootersTable extends Migration
             $table->string('instagram')->nullable();
             $table->string('tiktok')->nullable();
             $table->string('youtube')->nullable();
-            $table->string('terms');
-            $table->string('return_policy');
+            $table->text('terms');
+            $table->text('return_policy');
             $table->foreignId('company_id')->constrained('companies');
             $table->timestamps();
         });
