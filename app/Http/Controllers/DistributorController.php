@@ -93,8 +93,8 @@ class DistributorController extends Controller
     public function edit(Distributor $distributor)
     {
         $companies = Company::all();
-        return view('distributors.edit', compact('distributor'));
-    }
+        return view('distributors.edit', compact('distributor','companies'));
+    }   
     
 
     /**
