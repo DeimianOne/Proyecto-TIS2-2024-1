@@ -137,7 +137,7 @@ class DistributorController extends Controller
 
         $distributor->companies()->sync($request->input('company_id'));
         
-        return redirect()->route('distributors.index')->with('succes','Compañía actualizado con éxito');
+        return redirect()->route('distributors.index')->with('success','Distribuidor actualizado con éxito');
 
     }
 
@@ -150,6 +150,6 @@ class DistributorController extends Controller
     public function destroy(Distributor $distributor)
     {
         $distributor->delete();
-        return redirect()->route('distributors.index');
+        return redirect()->route('distributors.index')->with('success', 'Distribuidor eliminado con éxito');
     }
 }

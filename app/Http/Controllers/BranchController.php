@@ -81,7 +81,7 @@ class BranchController extends Controller
             'commune_id' => $request->input('commune_id'),
         ]);
 
-        return redirect()->route('branches.index')->with('success', 'Branch created successfully.');
+        return redirect()->route('branches.index')->with('success', 'Sucursal creada con exito.');
     }
 
     /**
@@ -154,7 +154,7 @@ class BranchController extends Controller
             'commune_id' => $request->input('commune_id'),
         ]);
         
-        return redirect()->route('branches.index')->with('success','Comuna actualizado con éxito');
+        return redirect()->route('branches.index')->with('success','Sucursal actualizada con éxito');
 
     }
 
@@ -167,6 +167,6 @@ class BranchController extends Controller
     public function destroy(Branch $branch)
     {
         $branch->delete();
-        return redirect()->route('branches.index');
+        return redirect()->route('branches.index')->with('success', 'Sucursal eliminada con éxito');
     }
 }
