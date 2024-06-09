@@ -53,7 +53,7 @@ class ProvinceController extends Controller
             'region_id' => $request->input('region_id'),
         ]);
 
-        return redirect()->route('provinces.store')->with('mensaje','Provincia agregada con éxito');
+        return redirect()->route('provinces.index')->with('success','Provincia agregada con éxito');
 
     }
 
@@ -103,7 +103,7 @@ class ProvinceController extends Controller
             'region_id' => $request->input('region_id'),
         ]);
         
-        return redirect()->route('provinces.index')->with('mensaje','Provincia actualizado con éxito');
+        return redirect()->route('provinces.index')->with('success','Provincia actualizado con éxito');
 
     }
 
@@ -116,6 +116,6 @@ class ProvinceController extends Controller
     public function destroy(Province $province)
     {
         $province->delete();
-        return redirect()->route('provinces.index');
+        return redirect()->route('provinces.index')->with('success','Provincia eliminada con éxito');
     }
 }

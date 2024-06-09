@@ -53,7 +53,7 @@ class CommuneController extends Controller
             'province_id' => $request->input('province_id'),
         ]);
 
-        return redirect()->route('communes.store')->with('mensaje','Comuna agregada con éxito');
+        return redirect()->route('communes.index')->with('success','Comuna agregada con éxito');
 
     }
 
@@ -103,7 +103,7 @@ class CommuneController extends Controller
             'province_id' => $request->input('province_id'),
         ]);
         
-        return redirect()->route('communes.index')->with('mensaje','Comuna actualizado con éxito');
+        return redirect()->route('communes.index')->with('success','Comuna actualizada con éxito');
 
     }
 
@@ -116,6 +116,6 @@ class CommuneController extends Controller
     public function destroy(Commune $commune)
     {
         $commune->delete();
-        return redirect()->route('communes.index');
+        return redirect()->route('communes.index')->with('success','Comuna eliminada con éxito');
     }
 }

@@ -85,14 +85,14 @@
                             <a href="javascript:void(0)">{{$province -> name}}</a>
                         </td>
                         <td class="fw-semibold">
-                            <a href="javascript:void(0)">{{$province -> region_id}}</a>
+                            <a href="javascript:void(0)">{{$province->region->name}}</a>
                         </td>
                         <td>
                             <!-- Nueva columna para botones de editar y eliminar -->
                             <div class="d-inline-flex">
                                 <a href="{{ route('provinces.edit', $province->id) }}"
                                     class="btn btn-sm btn-outline-warning me-2">Editar</a>
-                                <form action="{{ route('provinces.destroy', $province->id) }}" method="POST">
+                                <form action="{{ route('provinces.destroy', $province->id) }}" method="POST" class="formEliminar">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-outline-danger">
@@ -107,4 +107,49 @@
             </table>
         </div>
     </div>
+
+<!-- SweetAlert2 CSS -->
+<link href="{{ asset('js/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
+
+<!-- SweetAlert2 JS -->
+<script src="{{ asset('js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+@if(session('success'))
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    Swal.fire({
+        title: "Buen trabajo!",
+        text: "{{ session('success') }}",
+        icon: "success"
+    });
+});
+</script>
+@endif
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var forms = document.querySelectorAll('.formEliminar');
+    Array.prototype.slice.call(forms)
+        .forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                Swal.fire({
+                    title: "¿Estás seguro de eliminar este dato?",
+                    text: "No podrás revertir este proceso!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    cancelButtonText: "Cancelar",
+                    confirmButtonText: "Confirmar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.submit();
+                    }
+                });
+            }, false);
+        });
+});
+</script>
     @endsection
