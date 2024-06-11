@@ -70,6 +70,7 @@
             <tr>
               <th class="text-center" style="width: 80px;">id</th>
               <th>Producto</th>
+              <th>Nombre</th>
               <th>Estilo cerveza</th>
               <th>Formato cerveza</th>
               <th>Valor litro</th>
@@ -84,10 +85,13 @@
                   <a href="javascript:void(0)">{{$beer -> product_id }}</a>
                 </td>
                 <td>
-                  <a>{{$beer -> beerstyle_id }}</a>
+                  <a>{{$beer -> product -> name }}</a>
                 </td>
                 <td>
-                  <a>{{$beer -> beerformat_id }}</a>
+                  <a>{{$beer -> beerstyle -> name}}</a>
+                </td>
+                <td>
+                  <a>{{$beer -> beerformat->container}}</a>
                 </td>
                 <td>
                   <a>{{$beer -> liter_value}}</a>
