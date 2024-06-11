@@ -31,7 +31,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $beerstyles = Beerstyle::all();
+        $beerformats = Beerformat::all();
+        return view('products.create', compact('beerstyles'), compact('beerformats'));
     }
 
     /**
@@ -138,6 +140,8 @@ class ProductController extends Controller
                 'description' => $request->input('description'),
                 'value' => $request->input('value'),
                 'image' => $imageUrl,
+                'beer_style_id' => $request->input('beer-style'),
+                'beer_format_id' => $request->input('beer-format'),
                 'stock' => $request->input('stock'),
                 'visualizations' => 0, // Valor inicial
                 'visibility' => true // Asumiendo que los productos nuevos son visibles por defecto
