@@ -35,8 +35,9 @@
         <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">CERVECERIA FUZZ</h1>
         <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">Examples</li>
-            <li class="breadcrumb-item active" aria-current="page">Plugin</li>
+            <li class="breadcrumb-item">App</li>
+            <li class="breadcrumb-item">Secciones</li>
+            <li class="breadcrumb-item active" aria-current="page">Estilo cerveza</li>
           </ol>
         </nav>
       </div>
