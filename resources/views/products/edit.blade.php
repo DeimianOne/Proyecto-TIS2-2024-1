@@ -8,13 +8,15 @@
     <div class="block-content block-content-full d-flex justify-content-center">
         <div class="col-lg-8">
 
+        @dump($errors)
+
         <form action="{{ route('products.update', $product->id) }}" method="POST">
             @csrf
             @method('PUT')
 
             <div class="form-group">
                 <label class="form-label" for="product-type">Tipo de Producto:</label>
-                <select name="product-type" id="product-type" required disabled>
+                <select name="product-type" id="product-type" required>
                     <option value="">Selecciona un tipo</option>
                     <option value="beer" {{ $product->beer ? 'selected' : '' }}>Cerveza</option>
                     <option value="merchandise" {{ $product->merchandise ? 'selected' : '' }}>Merchandise</option>
@@ -44,12 +46,12 @@
 
             <div class="beer-fields mb-2 form-group">
                 <label class="form-label" for="beer-style">Estilo de la cerveza</label>
-                <input type="text" class="form-control" id="beer-style" name="beer-style" value="{{ $product->beer->beerstyle->name }}" placeholder="Estilo de la cerveza">
+                <input type="text" class="form-control" id="beer-style" name="beer-style" value="{{ $product->beer->beerstyle->id }}" placeholder="Estilo de la cerveza">
             </div>
 
             <div class="beer-fields mb-2 form-group">
                 <label class="form-label" for="beer-format">Formato</label>
-                <input type="text" class="form-control" id="beer-format" name="beer-format" value="{{ $product->beer->beerformat_id->container }}" placeholder="Formato de la cerveza">
+                <input type="text" class="form-control" id="beer-format" name="beer-format" value="{{ $product->beer->beerformats->pluck('id')->implode(', ') }}" placeholder="Formato de la cerveza">
             </div>
             @endif
 

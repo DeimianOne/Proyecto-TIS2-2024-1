@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateLdgdisplaysTable extends Migration
+
 {
     /**
      * Run the migrations.
@@ -16,7 +17,7 @@ class CreateLdgdisplaysTable extends Migration
         Schema::create('ldgdisplays', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained('companies');
-            $table->timestamps();
+
         });
     }
 
@@ -28,5 +29,6 @@ class CreateLdgdisplaysTable extends Migration
     public function down()
     {
         Schema::dropIfExists('ldgdisplays');
+
     }
 }
