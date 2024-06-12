@@ -18,6 +18,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\CompanyEventController;
 use App\Http\Controllers\CompanyDistributorController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,12 +51,9 @@ Route::get('/armatupack', function () {
     return view('armatupack');
 })->name('armatupack');
 
-Route::get('/cervezas', [BeerController::class, 'show'])->name('cervezas');
 Route::get('/product-pack6', [BeerController::class, 'show2'])->name('/product-pack6');
 Route::get('/product-pack12', [BeerController::class, 'show2'])->name('/product-pack12');
 Route::get('/product-pack24', [BeerController::class, 'show4'])->name('/product-pack24');
-
-
 Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');
@@ -71,14 +69,20 @@ Route::get('/dondeestamos', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::prefix('/cervezas')->group(function () {
+    Route::get('/', [CartController::class, 'shop'])->name('shop');
+    Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
+    Route::post('/add', [CartController::class, 'add'])->name('cart.store');
+    Route::post('/update', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
+    Route::get('/cerveza', [BeerController::class, 'index'])->name('cervezas');
+});
 // Rutas Dashmix
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administrador']], function () {
-    Route::get('/', function(){
+    Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
-
-
 
     Route::view('/pages/slick', 'pages.slick');
     Route::view('/pages/datatables', 'pages.datatables');
@@ -101,4 +105,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administra
     Route::resource('companyevents', CompanyEventController::class);
     Route::resource('companydistributors', CompanyDistributorController::class);
     Route::resource('branches', BranchController::class);
+
+
+
 });

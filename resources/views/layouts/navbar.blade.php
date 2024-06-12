@@ -5,6 +5,7 @@
             <img src="{{ asset('img/fuzz/logo4.png') }}" alt="Cerveza Fuzz Logo" class="logo align-middle">
             <span class="align-middle">Cerveza Fuzz</span>
         </a>
+        
         <button type="button" class="navbar-toggler" aria-label="Toggle navigation" data-bs-toggle="collapse"
             data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -19,16 +20,36 @@
                         Tienda
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('cervezas') }}">Cervezas</a>
+                        <a class="dropdown-item" href="cervezas">Cervezas</a>
                         <a class="dropdown-item disabled" href="productos">Productos</a>
                     </div>
                 </div>
                 <a href="{{ route('dondeestamos') }}" class="nav-item nav-link">¿Dónde estamos?</a>
                 <a href="{{ route('contacto') }}" class="nav-item nav-link">Contacto</a>
+              
             </div>
 
+
             <div class="navbar-nav ml-auto">
+                
                 @guest
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('shop') }}">TIENDA</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle"
+                       href="#" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false"
+                    >
+                        <span class="badge badge-pill badge-dark">
+                            <i class="fa fa-shopping-cart"></i> {{ \Cart::getTotalQuantity()}}
+                        </span>
+                    </a>
                 @if (Route::has('login'))
                 <a href="{{ route('iniciarsesion') }}" class="nav-item nav-link">
                     <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
