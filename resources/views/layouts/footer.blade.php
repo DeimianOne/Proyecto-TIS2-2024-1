@@ -24,10 +24,10 @@
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Politica</h4>
             <div>
-                <a class="text-white " href="#">terminos y condiciones</a><br>
-                <a class="text-white " href="#">ley 19.995</a><br>
-                <a class="text-white " href="#">terminos del servicio</a><br>
-                <a class="text-white " href="#">politica de reembolso</a>
+                <a class="text-white " href="#">Terminos y condiciones.</a><br>
+                <a class="text-white " href="#">Ley 19.995</a><br>
+                <a class="text-white " href="#">Terminos del servicio.</a><br>
+                <a class="text-white " href="#">Politica de reembolso.</a>
 
             </div>
         </div>

@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('image')->nullable();
             $table->bigInteger('stock');
             $table->bigInteger('visualizations')->default(0);
-            $table->boolean('visibility');
+            $table->boolean('visibility')->default(true);
             $table->timestamps();
         });
     }
@@ -36,3 +36,4 @@ class CreateProductsTable extends Migration
         Schema::dropIfExists('products');
     }
 }
+

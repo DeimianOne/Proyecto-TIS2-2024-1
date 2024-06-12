@@ -18,7 +18,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\CompanyEventController;
 use App\Http\Controllers\CompanyDistributorController;
 use App\Http\Controllers\BranchController;
-
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +30,7 @@ use App\Http\Controllers\BranchController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -46,27 +47,13 @@ Route::get('/registrate', function () {
     return view('auth/register');
 })->name('registrate');
 
-Route::get('/cervezas', function () {
-    return view('cervezas');
-})->name('cervezas');
-
 Route::get('/armatupack', function () {
     return view('armatupack');
 })->name('armatupack');
 
-Route::get('/product-pack6', function () {
-    return view('product-pack6');
-})->name('product-pack6');
-
-Route::get('/product-pack12', function () {
-    return view('product-pack12');
-})->name('product-pack12');
-
-Route::get('/product-pack24', function () {
-    return view('product-pack24');
-})->name('product-pack24');
-
-
+Route::get('/product-pack6', [BeerController::class, 'show2'])->name('/product-pack6');
+Route::get('/product-pack12', [BeerController::class, 'show2'])->name('/product-pack12');
+Route::get('/product-pack24', [BeerController::class, 'show4'])->name('/product-pack24');
 Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');
@@ -82,12 +69,21 @@ Route::get('/dondeestamos', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::prefix('/cervezas')->group(function () {
+    Route::get('/', [CartController::class, 'shop'])->name('shop');
+    Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
+    Route::post('/add', [CartController::class, 'add'])->name('cart.store');
+    Route::post('/update', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
+    Route::get('/cerveza', [BeerController::class, 'index'])->name('cervezas');
+});
 // Rutas Dashmix
-Route::group(['middleware' => ['role:Administrador']], function () {
-    Route::match(['get', 'post'], '/dashboard', function(){
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administrador']], function () {
+    Route::get('/', function () {
         return view('dashboard');
-    });
+    })->name('dashboard');
+
     Route::view('/pages/slick', 'pages.slick');
     Route::view('/pages/datatables', 'pages.datatables');
     Route::view('/pages/blank', 'pages.blank');
@@ -109,7 +105,7 @@ Route::group(['middleware' => ['role:Administrador']], function () {
     Route::resource('companyevents', CompanyEventController::class);
     Route::resource('companydistributors', CompanyDistributorController::class);
     Route::resource('branches', BranchController::class);
-    // Route::get('/views/beerStyle/create', 'BeerStyleController@create')->name('beerStyle.create');
-    // Route::get('/views/productType/create', 'ProductTypesController@create')->name('Product_Type.create');
-});
 
+
+
+});
