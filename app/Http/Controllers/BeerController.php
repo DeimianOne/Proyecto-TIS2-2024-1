@@ -78,11 +78,11 @@ class BeerController extends Controller
      */
     public function show()
     {
-        // Obtener todas las cervezas con sus productos relacionados cargados
+
         $beers = Beer::with('product')->get();
         
         // Pasar las cervezas a la vista
-        return view('cervezas', compact('beers'));
+        return view('shop', compact('beers'));
     }
     
     public function show2(){
@@ -108,6 +108,7 @@ class BeerController extends Controller
         // Pasar las cervezas a la vista
         return view('product-pack24', compact('beers'));
     }
+    
     
 
     /**
