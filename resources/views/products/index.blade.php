@@ -108,7 +108,7 @@
                 <td> <!-- Nueva columna para botones de editar y eliminar -->
                   <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-outline-warning">Editar</a>
 
-                  <form href="{{ route('products.destroy', $product->id) }}">
+                  <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-outline-danger">
