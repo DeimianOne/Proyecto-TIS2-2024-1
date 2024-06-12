@@ -48,7 +48,7 @@ class ProducttypeController extends Controller
             'name' => $request->input('name'),
         ]);
 
-        return redirect()->route('producttypes.store')->with('mensaje','Producto agregado con éxito');
+        return redirect()->route('producttypes.index')->with('succes','Tipo producto agregado con éxito');
         
     }
 
@@ -94,7 +94,7 @@ class ProducttypeController extends Controller
             'name' => $request->input('name'),
         ]);
         
-        return redirect()->route('producttypes.index')->with('mensaje','Producto actualizado con éxito');
+        return redirect()->route('producttypes.index')->with('success','Tipo producto actualizado con éxito');
         
     }
 
@@ -107,6 +107,6 @@ class ProducttypeController extends Controller
     public function destroy(Producttype $producttype)
     {
         $producttype->delete();
-        return redirect()->route('producttypes.index');
+        return redirect()->route('producttypes.index')->with('success', 'Tipo producto eliminado con éxito');
     }
 }

@@ -23,7 +23,7 @@
 
                 <div class="form-group mb-4">
                     <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de la compañía de cerveza" value="{{ old('name') }}">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre del distribuidor" value="{{ old('name') }}">
                 </div>
                 <div class="form-group mb-4">
                     <label for="address">Dirección</label>
@@ -35,7 +35,9 @@
                 </div>
                 <div class="form-group mb-4">
                     <label for="phone_number">Teléfono</label>
-                    <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="+569 1234 1234" value="{{ old('phone_number') }}">
+                    <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Teléfono"
+                        value="{{ old('phone_number') }}" pattern="^[9]\d{8}$"
+                        title="Debe empezar con 9 y contener 9 dígitos en total">
                 </div>
                 <div class="form-group mb-4">
                     <label for="email">Email</label>
@@ -44,7 +46,7 @@
 
                 <div class="form-group">
                     <label for="company_id">Compañías</label>
-                    <select name="company_id[]" id="company_id" class="form-control" multiple>
+                    <select name="company_id[]" id="company_id" class="form-control js-example-basic-multiple" multiple="multiple">
                         @foreach($companies as $company)
                             <option value="{{ $company->id }}" {{ in_array($company->id, old('company_id', [])) ? 'selected' : '' }}>
                                 {{ $company->name }}
@@ -71,4 +73,15 @@
         });
     </script>
 @endif
+
+<!-- Select2 CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({
+            theme: "classic"
+        });
+    });
+</script>
 @endsection

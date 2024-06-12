@@ -43,7 +43,7 @@ class DistributorController extends Controller
             'name' => 'required|string|max:100',
             'address' => 'required|string|max:100',
             'address_number' => 'required|numeric',
-            'phone_number' => 'required|string|max:11',
+            'phone_number' => 'required|string|max:9',
             'email' => 'required|string|email|max:100',
             'company_id' => 'required|array',
             'company_id.*' => 'exists:companies,id',
@@ -93,8 +93,8 @@ class DistributorController extends Controller
     public function edit(Distributor $distributor)
     {
         $companies = Company::all();
-        return view('distributors.edit', compact('distributor'));
-    }
+        return view('distributors.edit', compact('distributor','companies'));
+    }   
     
 
     /**
@@ -110,7 +110,7 @@ class DistributorController extends Controller
             'name' => 'required|string|max:100',
             'address' => 'required|string|max:100',
             'address_number' => 'required|numeric',
-            'phone_number' => 'required|numeric',
+            'phone_number' => 'required|string|max:9',
             'email' => 'required|string|email|max:100',
             'company_id' => 'required|array',
             'company_id.*' => 'exists:companies,id',
@@ -137,7 +137,7 @@ class DistributorController extends Controller
 
         $distributor->companies()->sync($request->input('company_id'));
         
-        return redirect()->route('distributors.index')->with('succes','Compañía actualizado con éxito');
+        return redirect()->route('distributors.index')->with('success','Distribuidor actualizado con éxito');
 
     }
 
@@ -150,6 +150,6 @@ class DistributorController extends Controller
     public function destroy(Distributor $distributor)
     {
         $distributor->delete();
-        return redirect()->route('distributors.index');
+        return redirect()->route('distributors.index')->with('success', 'Distribuidor eliminado con éxito');
     }
 }

@@ -45,7 +45,7 @@
 
                 <div class="form-group">
                     <label for="company_id">Compañías</label>
-                    <select name="company_id[]" id="company_id" class="form-control" multiple>
+                    <select name="company_id[]" id="company_id" class="form-control js-example-basic-multiple" multiple="multiple">
                         @foreach($companies as $company)
                             <option value="{{ $company->id }}" {{ in_array($company->id, old('company_id', $event->companies->pluck('id')->toArray())) ? 'selected' : '' }}>
                                 {{ $company->name }}
@@ -59,4 +59,18 @@
         </div>
     </div>
 </div>
+
+<!-- Select2 CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2({
+        theme: "classic"
+    });
+});
+</script>
+
 @endsection
+
+

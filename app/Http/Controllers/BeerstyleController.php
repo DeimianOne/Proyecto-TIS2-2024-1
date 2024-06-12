@@ -48,7 +48,7 @@ class BeerstyleController extends Controller
             'name' => $request->input('name'),
         ]);
 
-        return redirect()->route('beerstyles.store')->with('mensaje','Estilo agregado con éxito');
+        return redirect()->route('beerstyles.index')->with('success','Estilo agregado con éxito');
         
     }
 
@@ -94,7 +94,7 @@ class BeerstyleController extends Controller
             'name' => $request->input('name'),
         ]);
         
-        return redirect()->route('beerstyles.index')->with('mensaje','Estilo actualizado con éxito');
+        return redirect()->route('beerstyles.index')->with('success','Estilo actualizado con éxito');
         
     }
 
@@ -107,6 +107,6 @@ class BeerstyleController extends Controller
     public function destroy(Beerstyle $beerstyle)
     {
         $beerstyle->delete();
-        return redirect()->route('beerstyles.index');
+        return redirect()->route('beerstyles.index')->with('success', 'Estilo eliminado con éxito');
     }
 }

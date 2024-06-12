@@ -15,12 +15,12 @@ class Province extends Model
         'region_id',
     ];
 
-    public function regions()
+    public function region()
     {
         return $this->belongsTo(Region::class);
     }
 
-    public function communes()
+    public function commune()
     {
         return $this->hasMany(Commune::class);
     }

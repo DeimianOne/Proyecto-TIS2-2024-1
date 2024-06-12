@@ -52,7 +52,7 @@ class BeerformatController extends Controller
             'liters' => $request->input('liters'),
         ]);
 
-        return redirect()->route('beerformats.store')->with('mensaje','Formato de cerveza agregado con éxito');
+        return redirect()->route('beerformats.index')->with('success','Formato de cerveza agregado con éxito');
         
     }
 
@@ -105,7 +105,7 @@ class BeerformatController extends Controller
             'liters' => $request->input('liters'),
         ]);
 
-        return redirect()->route('beerformats.index')->with('mensaje','Formato de cerveza actualizado con éxito');
+        return redirect()->route('beerformats.index')->with('success','Formato de cerveza actualizado con éxito');
     }
 
     /**
@@ -117,6 +117,6 @@ class BeerformatController extends Controller
     public function destroy(Beerformat $beerformat)
     {
         $beerformat->delete();
-        return redirect()->route('beerformats.index');
+        return redirect()->route('beerformats.index')->with('success', 'Formato de cerveza eliminado con éxito');
     }
 }
