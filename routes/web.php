@@ -52,7 +52,7 @@ Route::get('/armatupack', function () {
 })->name('armatupack');
 
 Route::get('/product-pack6', [BeerController::class, 'show2'])->name('/product-pack6');
-Route::get('/product-pack12', [BeerController::class, 'show2'])->name('/product-pack12');
+Route::get('/product-pack12', [BeerController::class, 'show3'])->name('/product-pack12');
 Route::get('/product-pack24', [BeerController::class, 'show4'])->name('/product-pack24');
 Route::get('/contacto', function () {
     return view('contacto');
@@ -70,14 +70,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::prefix('/cervezas')->group(function () {
-    Route::get('/', [CartController::class, 'shop'])->name('shop');
+    Route::get('/', [BeerController::class, 'show'])->name('shop');
     Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
     Route::post('/add', [CartController::class, 'add'])->name('cart.store');
     Route::post('/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
-    Route::get('/cerveza', [BeerController::class, 'index'])->name('cervezas');
+    Route::get('/cerveza', [BeerController::class, 'show'])->name('cervezas');
 });
+
 // Rutas Dashmix
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administrador']], function () {
     Route::get('/', function () {
