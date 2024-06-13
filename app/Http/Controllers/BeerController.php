@@ -79,18 +79,21 @@ class BeerController extends Controller
     public function show(Request $request)
     {
 
-        // $beers = Beer::with('product')->get();
+        // Obtener todos los formatos de contenedor
+        $beerformats = Beerformat::all();
+
         $query = Beer::with('product');
 
-        if ($request->has('min_price') && $request->has('max_price')) {
-            $minPrice = $request->input('min_price');
-            $maxPrice = $request->input('max_price');
-
-            $query->whereHas('product', function ($q) use ($minPrice, $maxPrice) {
-                $q->whereBetween('value', [$minPrice, $maxPrice]);
-            });
+        // Aplicar filtros independientemente
+        if ($request->has('min_price') || $request->has('max_price')) {
+            $query = $this->applyPriceFilter($request, $query);
         }
 
+        if ($request->has('containers')) {
+            $query = $this->applyContainerFilter($request, $query);
+        }
+
+        // Obtener los resultados filtrados
         $beers = $query->get();
 
         // Calcular valores mínimo y máximo de precio entre las cervezas filtradas
@@ -99,7 +102,32 @@ class BeerController extends Controller
 
         // Pasar las cervezas a la vista
         // return view('shop', compact('beers'));
-        return view('shop', compact('beers', 'minBeerPrice', 'maxBeerPrice'));
+        return view('shop', compact('beers', 'minBeerPrice', 'maxBeerPrice', 'beerformats'));
+    }
+
+    private function applyPriceFilter(Request $request, $query)
+    {
+        $minPrice = $request->input('min_price', 0);
+        $maxPrice = $request->input('max_price', INF);
+
+        $query->whereHas('product', function ($q) use ($minPrice, $maxPrice) {
+            $q->whereBetween('value', [$minPrice, $maxPrice]);
+        });
+
+        return $query;
+    }
+
+    private function applyContainerFilter(Request $request, $query)
+    {
+        $containers = $request->input('containers', []);
+
+        if (!empty($containers)) {
+            $query->whereHas('beerformats', function ($q) use ($containers) {
+                $q->whereIn('container', $containers);
+            });
+        }
+
+        return $query;
     }
 
     public function show2(){

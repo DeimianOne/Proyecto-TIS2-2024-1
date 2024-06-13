@@ -4,13 +4,38 @@
 <div class="container-fluid py-5">
     <div class="container">
         <div class="row justify-content-center">
-            <!-- Columna del filtro de precios -->
-            <div class="col-lg-3" style="margin-top: 9em;">
-                <form action="{{ route('shop') }}" method="GET" id="price-filter-form">
-                    <div id="price-slider" style="margin-bottom: 20px;"></div>
-                    <input type="hidden" name="min_price" id="min-price" value="{{ request('min_price', $minBeerPrice) }}">
-                    <input type="hidden" name="max_price" id="max-price" value="{{ request('max_price', $maxBeerPrice) }}">
-                    <button type="submit" class="btn btn-primary btn-block">Filtrar</button>
+            <!-- Columna del filtro -->
+            <div class="col-lg-3" style="margin-top: 100px;">
+                <!-- Filtro de precios -->
+                <form action="{{ route('shop') }}" method="GET" id="price-filter-form" class="mb-4">
+                    <div class="form-group">
+                        <label for="price-slider">Rango de Precios</label>
+                        <div id="price-slider" style="margin-bottom: 20px;"></div>
+                        <input type="hidden" name="min_price" id="min-price" value="{{ request('min_price', $minBeerPrice) }}">
+                        <input type="hidden" name="max_price" id="max-price" value="{{ request('max_price', $maxBeerPrice) }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Filtrar por Precio</button>
+                </form>
+
+                <!-- Filtro de formato de contenedor -->
+                <form action="{{ route('shop') }}" method="GET" id="container-filter-form">
+                    <div class="form-group">
+                        <label for="container">Formato de Contenedor</label>
+                        @foreach($beerformats as $format)
+                            <div class="form-check">
+                                <input type="checkbox" name="containers[]" value="{{ $format->container }}" class="form-check-input" id="container-{{ $format->id }}" {{ in_array($format->container, request('containers', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="container-{{ $format->id }}">
+                                    {{ ucfirst($format->container) }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Filtrar por Contenedor</button>
+                </form>
+
+                <!-- Botón para restablecer los filtros -->
+                <form action="{{ route('shop') }}" method="GET" id="reset-filter-form" class="mt-4">
+                    <button type="submit" class="btn btn-secondary btn-block">Restablecer Filtros</button>
                 </form>
             </div>
 
@@ -20,7 +45,7 @@
                     @foreach($beers as $beer)
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card h-100">
-                                <img src="{{ $beer->product->image }}" class="card-img-top" style="height: 300px; object-fit: cover;" alt="{{ $beer->product->name }}">
+                                <img src="{{ $beer->product->image }}" class="card-img-top" style="height: auto; object-fit: cover;" alt="{{ $beer->product->name }}">
                                 <div class="card-body">
                                     <a href="#" class="text-decoration-none">
                                         <h6 class="card-title">{{ $beer->product->name }}</h6>
