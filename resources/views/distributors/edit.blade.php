@@ -3,7 +3,7 @@
 @section('content')
 <div class="block block-rounded">
     <div class="block-header block-header-default">
-        <h3 class="block-title">Crear Nuevo Distribuidor</h3>
+        <h3 class="block-title">Editar Distribuidor</h3>
     </div>
     <div class="block-content block-content-full d-flex justify-content-center">
         <div class="col-lg-8">
@@ -23,7 +23,7 @@
 
                 <div class="form-group mb-4">
                     <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de la compañia de cerveza" value="{{ old('name', $distributor->name) }}">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de la compañía de cerveza" value="{{ old('name', $distributor->name) }}">
                 </div>
                 <div class="form-group mb-4">
                     <label for="address">Dirección</label>
@@ -41,12 +41,21 @@
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email del distribuidor" value="{{ old('email', $distributor->email) }}">
                 </div>
+                <div class="form-group">
+                    <label for="company_id">Compañías</label>
+                    <select name="company_id[]" id="company_id" class="form-control js-example-basic-multiple" multiple="multiple">
+                        @foreach($companies as $company)
+                            <option value="{{ $company->id }}" {{ in_array($company->id, old('company_id', $distributor->companies->pluck('id')->toArray())) ? 'selected' : '' }}>
+                                {{ $company->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary mt-3">Guardar</button>
             </form>
         </div>
     </div>
 </div>
-
 
 <!-- SweetAlert2 Script -->
 @if(session('success'))
@@ -60,4 +69,15 @@
         });
     </script>
 @endif
+
+<!-- Select2 CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2({
+        theme:"classic"
+    });
+});
+</script>
 @endsection

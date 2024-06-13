@@ -48,7 +48,7 @@ class CompanyController extends Controller
             'name' => $request->input('name'),
         ]);
 
-        return redirect()->route('companies.store')->with('mensaje','Compañia agregada con éxito');
+        return redirect()->route('companies.store')->with('success','Compañia agregada con éxito');
 
     }
 
@@ -94,7 +94,7 @@ class CompanyController extends Controller
             'name' => $request->input('name'),
         ]);
         
-        return redirect()->route('companies.index')->with('mensaje','Compañía actualizado con éxito');
+        return redirect()->route('companies.index')->with('success','Compañía actualizado con éxito');
 
     }
 
@@ -107,6 +107,6 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return redirect()->route('companies.index');
+        return redirect()->route('companies.index')->with('success', 'Compañía eliminada con éxito');
     }
 }

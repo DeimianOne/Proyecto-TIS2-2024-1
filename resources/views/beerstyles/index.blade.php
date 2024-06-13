@@ -35,8 +35,9 @@
         <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">CERVECERIA FUZZ</h1>
         <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">Examples</li>
-            <li class="breadcrumb-item active" aria-current="page">Plugin</li>
+            <li class="breadcrumb-item">App</li>
+            <li class="breadcrumb-item">Secciones</li>
+            <li class="breadcrumb-item active" aria-current="page">Estilo cerveza</li>
           </ol>
         </nav>
       </div>
@@ -86,7 +87,7 @@
                 <td> <!-- Nueva columna para botones de editar y eliminar -->
                   <div class="d-inline-flex">
                     <a href="{{ route('beerstyles.edit', $beerstyle->id) }}" class="btn btn-sm btn-outline-warning me-2">Editar</a>
-                    <form action="{{ route('beerstyles.destroy', $beerstyle->id) }}" method="POST">
+                    <form action="{{ route('beerstyles.destroy', $beerstyle->id) }}" method="POST" class="formEliminar">
                       @csrf
                       @method('DELETE')
                       <button type="submit" class="btn btn-sm btn-outline-danger">
@@ -101,4 +102,49 @@
         </table>
       </div>
     </div>
+
+   <!-- SweetAlert2 CSS -->
+   <link href="{{ asset('js/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
+
+<!-- SweetAlert2 JS -->
+<script src="{{ asset('js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+@if(session('success'))
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    Swal.fire({
+        title: "Buen trabajo!",
+        text: "{{ session('success') }}",
+        icon: "success"
+    });
+});
+</script>
+@endif
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var forms = document.querySelectorAll('.formEliminar');
+    Array.prototype.slice.call(forms)
+        .forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                Swal.fire({
+                    title: "¿Estás seguro de eliminar este dato?",
+                    text: "No podrás revertir este proceso!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    cancelButtonText: "Cancelar",
+                    confirmButtonText: "Confirmar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.submit();
+                    }
+                });
+            }, false);
+        });
+});
+</script>
 @endsection

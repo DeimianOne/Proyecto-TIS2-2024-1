@@ -33,8 +33,9 @@
         <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">CERVECERIA FUZZ</h1>
         <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">Examples</li>
-            <li class="breadcrumb-item active" aria-current="page">Plugin</li>
+            <li class="breadcrumb-item">App</li>
+            <li class="breadcrumb-item">Secciones</li>
+            <li class="breadcrumb-item active" aria-current="page">Cervezas</li>
           </ol>
         </nav>
       </div>
@@ -70,6 +71,7 @@
             <tr>
               <th class="text-center" style="width: 80px;">id</th>
               <th>Producto</th>
+              <th>Nombre</th>
               <th>Estilo cerveza</th>
               <th>Formato cerveza</th>
               <th>Valor litro</th>
@@ -84,10 +86,13 @@
                   <a href="javascript:void(0)">{{$beer -> product_id }}</a>
                 </td>
                 <td>
-                  <a>{{$beer -> beerstyle_id }}</a>
+                  <a>{{$beer -> product -> name }}</a>
                 </td>
                 <td>
-                  <a>{{$beer -> beerformat_id }}</a>
+                  <a>{{$beer -> beerstyle -> name}}</a>
+                </td>
+                <td>
+                  <a>{{$beer -> beerformat->container}}</a>
                 </td>
                 <td>
                   <a>{{$beer -> liter_value}}</a>

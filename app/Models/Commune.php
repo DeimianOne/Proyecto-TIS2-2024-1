@@ -14,7 +14,7 @@ class Commune extends Model
         'province_id',
     ];
 
-    public function provinces()
+    public function province()
     {
         return $this->belongsTo(Province::class);
     }

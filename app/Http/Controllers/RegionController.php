@@ -49,7 +49,7 @@ class RegionController extends Controller
             'name' => $request->input('name'),
         ]);
 
-        return redirect()->route('regions.store')->with('mensaje','Region agregado con éxito');
+        return redirect()->route('regions.index')->with('success','Region agregado con éxito');
 
     }
 
@@ -95,7 +95,7 @@ class RegionController extends Controller
             'name' => $request->input('name'),
         ]);
         
-        return redirect()->route('regions.index')->with('mensaje','Región actualizado con éxito');
+        return redirect()->route('regions.index')->with('success','Región actualizado con éxito');
 
     }
 
@@ -108,6 +108,6 @@ class RegionController extends Controller
     public function destroy(Region $region)
     {
         $region->delete();
-        return redirect()->route('regions.index');
+        return redirect()->route('regions.index')->with('success','Región eliminada con éxito');
     }
 }
