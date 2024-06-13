@@ -8,7 +8,7 @@
         <div class="block-content block-content-full d-flex justify-content-center">
             <div class="col-lg-8">
 
-            @dump($errors)
+            {{-- @dump($errors) --}}
 
             <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
