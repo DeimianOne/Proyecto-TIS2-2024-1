@@ -26,8 +26,7 @@ class Beer extends Model
     }
 
     //Muchos a Muchos
-    public function beerformat()
-    {
-        return $this->belongsTo(Beerformat::class, 'beerformat_id');
+    public function beerformats(){
+        return $this->belongsToMany(Beerformat::class, 'beer_beerformat', 'beer_id', 'beerformat_id');
     }
 }

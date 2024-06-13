@@ -14,7 +14,7 @@ class Beerstyle extends Model
     ];
 
     //Uno a Muchos
-    public function beer(){
+    public function beers(){
         return $this->hasMany(Beer::class, 'beerstyle_id');
     }
 }

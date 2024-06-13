@@ -66,12 +66,15 @@ class ProductController extends Controller
             'product-type.required' => 'El tipo de producto es obligatorio.',
             'product-type.in' => 'El tipo de producto debe ser "beer" o "merchandise".',
         ]);
+
         $imageUrl = null;
+
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/images');
             $imageUrl = Storage::url($imagePath);
             Log::info('Imagen subida', ['path' => $imagePath, 'url' => $imageUrl]);
         }
+
         // Manejar la creación específica de cerveza
         if($request->input('product-type') == 'beer'){
 
@@ -145,8 +148,6 @@ class ProductController extends Controller
                 'description' => $request->input('description'),
                 'value' => $request->input('value'),
                 'image' => $imageUrl,
-                'beer_style_id' => $request->input('beer-style'),
-                'beer_format_id' => $request->input('beer-format'),
                 'stock' => $request->input('stock'),
                 'visualizations' => 0, // Valor inicial
                 'visibility' => true, // Asumiendo que los productos nuevos son visibles por defecto
@@ -182,9 +183,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        // $beerStyles = Beerstyle::all();
-        // $beerFormats = Beerformat::all();
-        return view('products.edit', compact('product'));
+        $beerstyles = BeerStyle::all();
+        $beerformats = BeerFormat::all();
+        return view('products.edit', compact('product', 'beerstyles', 'beerformats'));
     }
 
     /**
@@ -201,7 +202,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|string|max:125|unique:products,name,' . $product->id,
             'description' => 'required|string',
-            'image' => 'nullable|url',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'stock' => 'required|integer|min:0',
             'product-type' => 'required|string|in:beer,merchandise',
         ], [
@@ -209,13 +210,23 @@ class ProductController extends Controller
             'name.max' => 'El nombre no puede superar los 125 caracteres.',
             'name.unique' => 'El nombre del producto debe ser único.',
             'description.required' => 'La descripción es obligatoria.',
-            'image.url' => 'La URL de la imagen no es válida.',
+            'image.image' => 'El archivo debe ser una imagen.',
+            'image.mimes' => 'La imagen debe ser un archivo de tipo: jpeg, png, jpg, gif, svg.',
+            'image.max' => 'La imagen no puede superar los 4MB.',
             'stock.required' => 'El stock es obligatorio.',
             'stock.integer' => 'El stock debe ser un número entero.',
             'stock.min' => 'El stock no puede ser negativo.',
             'product-type.required' => 'El tipo de producto es obligatorio.',
             'product-type.in' => 'El tipo de producto debe ser "beer" o "merchandise".',
         ]);
+
+        $imageUrl = $product->image;
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $imageUrl = Storage::url($imagePath);
+            Log::info('Imagen subida', ['path' => $imagePath, 'url' => $imageUrl]);
+        }
 
         // Manejar la actualización específica de cerveza
         if($request->input('product-type') == 'beer') {
@@ -247,24 +258,27 @@ class ProductController extends Controller
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
                 'value' => $beerValue,
-                'image' => $request->input('image'),
+                'image' => $imageUrl,
                 'stock' => $request->input('stock'),
             ]);
 
             Log::info('Producto actualizado', ['product_id' => $product->id]);
 
-            $beer = Beer::where('product_id', $product->id)->firstOrFail();
-            $beer->update([
-                'beerstyle_id' => $request->input('beer-style'),
-                'liter_value' => $request->input('liter-value'),
-            ]);
+            $beer = $product->beer;
 
-            // Sincronizar los formatos de la cerveza en la tabla intermedia
-            $beer->beerformats()->sync([$beerFormat->id => [
-                'updated_at' => now(),
-            ]]);
+            if ($beer) {
+                $beer->update([
+                    'beerstyle_id' => $request->input('beer-style'),
+                    'liter_value' => $request->input('liter-value'),
+                ]);
 
-            Log::info('Cerveza actualizada', ['beer_id' => $beer->id]);
+                // Sincronizar los formatos de la cerveza en la tabla intermedia
+                $beer->beerformats()->sync([$beerFormat->id => [
+                    'updated_at' => now(),
+                ]]);
+
+                Log::info('Cerveza actualizada', ['beer_id' => $beer->id]);
+            }
         }
 
         // Manejar la actualización específica de merchandise
@@ -286,7 +300,7 @@ class ProductController extends Controller
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
                 'value' => $request->input('value'),
-                'image' => $request->input('image'),
+                'image' => $imageUrl,
                 'stock' => $request->input('stock'),
             ]);
 

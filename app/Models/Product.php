@@ -16,8 +16,6 @@ class Product extends Model
         'image',
         'stock',
         'visualizations',
-        'beer_style_id',
-        'beer_format_id',
         'visibility',
     ];
 
@@ -27,13 +25,5 @@ class Product extends Model
 
     public function merchandise(){
         return $this->hasOne(Merchandise::class, 'product_id');
-    }
-    public function beerstyle()
-    {
-        return $this->belongsTo(Beerstyle::class, 'beer_style_id');
-    }
-    public function beerformat()
-    {
-        return $this->belongsTo(Beerformat::class, 'beer_format_id');
     }
 }
