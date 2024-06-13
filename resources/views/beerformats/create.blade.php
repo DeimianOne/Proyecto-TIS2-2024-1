@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group mb-4">
                     <label for="liters">Cantidad litros</label>
-                    <input type="number" class="form-control" id="liters" name="liters" placeholder="litros del formato" value="{{ old('liters') }}">
+                    <input type="number" step="0.001" class="form-control" id="liters" name="liters" placeholder="litros del formato" value="{{ old('liters') }}">
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Guardar</button>
             </form>
