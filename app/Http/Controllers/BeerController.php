@@ -20,7 +20,7 @@ class BeerController extends Controller
         $beers = Beer::all();
         return view('beers.index', compact('beers'));
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -76,19 +76,36 @@ class BeerController extends Controller
      * @param  \App\Models\Beer  $beer
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request)
     {
 
-        $beers = Beer::with('product')->get();
-        
+        // $beers = Beer::with('product')->get();
+        $query = Beer::with('product');
+
+        if ($request->has('min_price') && $request->has('max_price')) {
+            $minPrice = $request->input('min_price');
+            $maxPrice = $request->input('max_price');
+
+            $query->whereHas('product', function ($q) use ($minPrice, $maxPrice) {
+                $q->whereBetween('value', [$minPrice, $maxPrice]);
+            });
+        }
+
+        $beers = $query->get();
+
+        // Calcular valores mínimo y máximo de precio entre las cervezas filtradas
+        $minBeerPrice = Beer::with('product')->get()->min('product.value');
+        $maxBeerPrice = Beer::with('product')->get()->max('product.value');
+
         // Pasar las cervezas a la vista
-        return view('shop', compact('beers'));
+        // return view('shop', compact('beers'));
+        return view('shop', compact('beers', 'minBeerPrice', 'maxBeerPrice'));
     }
-    
+
     public function show2(){
 
         $beers = Beer::with('product')->get();
-        
+
         // Pasar las cervezas a la vista
         return view('product-pack6', compact('beers'));
     }
@@ -96,20 +113,20 @@ class BeerController extends Controller
     public function show3(){
 
         $beers = Beer::with('product')->get();
-        
+
         // Pasar las cervezas a la vista
         return view('product-pack12', compact('beers'));
     }
-    
+
     public function show4(){
 
         $beers = Beer::with('product')->get();
-        
+
         // Pasar las cervezas a la vista
         return view('product-pack24', compact('beers'));
     }
-    
-    
+
+
 
     /**
      * Show the form for editing the specified resource.
