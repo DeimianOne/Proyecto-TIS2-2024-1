@@ -20,7 +20,7 @@
                         Tienda
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="cervezas">Cervezas</a>
+                        <a class="dropdown-item" href="{{ route('shop') }}">Cervezas</a>
                         <a class="dropdown-item disabled" href="productos">Productos</a>
                     </div>
                 </div>
@@ -51,6 +51,8 @@
                                     <i class="fa fa-shopping-cart"></i> {{ \Cart::getTotalQuantity()}}
                                 </span>
                             </a>
+                
+
 
                             @if (Route::has('login'))
                             <a href="{{ route('iniciarsesion') }}" class="nav-item nav-link">

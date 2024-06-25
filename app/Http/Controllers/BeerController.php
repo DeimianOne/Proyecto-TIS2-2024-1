@@ -154,7 +154,20 @@ class BeerController extends Controller
         return view('product-pack24', compact('beers'));
     }
 
-
+    public function showAndIncrement($id)
+    {
+        // Encuentra la cerveza
+        $beer = Beer::findOrFail($id);
+    
+        // Incrementa el contador de visitas en el producto relacionado
+        $product = $beer->product;
+        $product->visualizations += 1;
+        $product->save();
+    
+        // Redirige a la vista del catálogo con la cerveza específica
+        return view('catalogue', compact('beer'));
+    }
+    
 
     /**
      * Show the form for editing the specified resource.

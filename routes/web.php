@@ -66,6 +66,7 @@ Route::get('/dondeestamos', function () {
     return view('dondeestamos');
 })->name('dondeestamos');
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -77,6 +78,7 @@ Route::prefix('/cervezas')->group(function () {
     Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
     Route::get('/cerveza', [BeerController::class, 'show'])->name('cervezas');
+    Route::get('/{id}', [BeerController::class, 'showAndIncrement'])->name('cervezas.showAndIncrement');
 });
 
 // Rutas Dashmix

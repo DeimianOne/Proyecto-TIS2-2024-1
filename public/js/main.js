@@ -124,7 +124,8 @@
     });
     
     
-      
+
+    
 
     // Back to top button
     $(window).scroll(function () {
@@ -159,6 +160,8 @@
             format: 'dd/MM/yyyy'
         }
     });
+
+    
 
 })(jQuery);
 
