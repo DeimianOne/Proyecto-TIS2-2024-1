@@ -67,7 +67,12 @@ Route::get('/dondeestamos', function () {
 })->name('dondeestamos');
 
 
+
 Auth::routes();
+
+Route::get('/profileusers', [UserController::class, 'editProfile'])->name('profileusers');
+Route::post('/profileusers', [UserController::class, 'updateProfile'])->name('profile.update');
+Route::post('/profileusers/change-password', [UserController::class, 'changePassword'])->name('profile.change_password');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::prefix('/cervezas')->group(function () {

@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -119,6 +120,56 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
+    public function editProfile()
+    {
+        $user = Auth::user();
+        return view('profileusers', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+        
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone_number' => 'nullable|string|max:15',
+            'home' => 'nullable|string|max:50',
+            'address' => 'nullable|string|max:255',
+            'number_address' => 'nullable|string|max:50',
+            'postal_code' => 'nullable|string|max:10',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $user->update($validatedData);
+        
+        if ($request->hasFile('image')) {
+            $imageName = $user->id . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $user->image = $imageName;
+            $user->save();
+        }
+
+        return redirect()->route('profileusers')->with('success', 'Profile updated successfully');
+    }
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'La contraseña actual no coincide.']);
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->route('profileusers')->with('success', 'Contraseña actualizada correctamente.');
+    }
     /**
      * Remove the specified resource from storage.
      *
