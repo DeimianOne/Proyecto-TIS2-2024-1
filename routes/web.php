@@ -31,9 +31,7 @@ use App\Http\Controllers\CartController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [App\Http\Controllers\BeerController::class, 'show5'])->name('welcome');
 
 Route::get('/packs', function () {
     return view('packs');

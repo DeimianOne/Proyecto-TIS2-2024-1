@@ -1,8 +1,11 @@
 @include('layouts.head')
 @include('layouts.navbar')
 
+
 <div class="container-fluid py-5">
-    <div class="container">
+    <div class="container mt-5 pt-5">
+        <div class="section-title">
+        </div>
         <div class="row justify-content-center">
             <!-- Columna del filtro -->
             <div class="col-lg-3" style="margin-top: 100px;">
@@ -68,17 +71,6 @@
                                     <input type="hidden" value="{{ $beer->product->value }}" name="price">
                                     <input type="hidden" value="{{ $beer->product->image }}" name="img">
                                     <input type="hidden" value="1" name="quantity">
-                                    <div class="text-center mt-3">
-                                        @if($beer->product->stock > 0)
-                                        <button class="btn btn-secondary btn-sm" type="submit">
-                                            <i class="fa fa-shopping-cart"></i> Agregar al carrito
-                                        </button>
-                                        @else
-                                        <button class="btn btn-secondary btn-sm" type="button" disabled>
-                                            <i class="fa fa-shopping-cart"></i> Fuera de stock
-                                        </button>
-                                        @endif
-                                    </div>
                                 </form>
                             </div>
                         </div>

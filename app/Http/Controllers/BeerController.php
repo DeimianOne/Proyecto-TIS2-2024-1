@@ -154,6 +154,14 @@ class BeerController extends Controller
         return view('product-pack24', compact('beers'));
     }
 
+    public function show5(){
+
+        $beers = Beer::with('product')->get();
+        
+        return view('welcome', compact('beers'));
+
+    }
+
     public function showAndIncrement($id)
     {
         // Encuentra la cerveza
