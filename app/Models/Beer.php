@@ -24,9 +24,17 @@ class Beer extends Model
     public function product(){
         return $this->belongsTo(Product::class, 'product_id');
     }
+    public function beerformat()
+    {
+        return $this->belongsTo(Beerformat::class);
+    }
 
     //Muchos a Muchos
     public function beerformats(){
         return $this->belongsToMany(Beerformat::class, 'beer_beerformat', 'beer_id', 'beerformat_id');
     }
+    public function favoritedBy()
+{
+    return $this->belongsToMany(User::class, 'favorites');
+}
 }

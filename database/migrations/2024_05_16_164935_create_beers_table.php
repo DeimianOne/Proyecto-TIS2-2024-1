@@ -17,6 +17,7 @@ class CreateBeersTable extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products');
             $table->foreignId('beerstyle_id')->constrained('beerstyles');
+            $table->string('container')->default('default_container');
             $table->integer('liter_value');
             $table->timestamps();
         });

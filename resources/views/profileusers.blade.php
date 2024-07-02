@@ -5,9 +5,9 @@
     <div class="container mt-5 pt-5">
         <h1>Editar Perfil</h1>
         @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
         @endif
         <div class="row">
             <!-- Left Side: Profile Picture and Update Form -->
@@ -17,7 +17,8 @@
                     @csrf
                     <div class="form-group">
                         @if ($user->image)
-                            <img src="{{ asset('images/' . $user->image) }}" alt="Profile Image" class="img-thumbnail mt-2" style="width: 150px;">
+                        <img src="{{ asset('images/' . $user->image) }}" alt="Profile Image" class="img-thumbnail mt-2"
+                            style="width: 150px;">
                         @endif
                         <label for="image">Cambiar Foto de Perfil</label>
                         <input type="file" class="form-control-file" id="image" name="image">
@@ -34,11 +35,13 @@
                     </div>
                     <div class="form-group">
                         <label for="last_name">Apellido</label>
-                        <input type="text" class="form-control" id="last_name" name="last_name" value="{{ $user->last_name }}">
+                        <input type="text" class="form-control" id="last_name" name="last_name"
+                            value="{{ $user->last_name }}">
                     </div>
                     <div class="form-group">
                         <label for="phone_number">Teléfono de Contacto</label>
-                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $user->phone_number }}">
+                        <input type="text" class="form-control" id="phone_number" name="phone_number"
+                            value="{{ $user->phone_number }}">
                     </div>
                     <div class="form-group">
                         <label for="home">Vivienda</label>
@@ -46,15 +49,18 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Dirección</label>
-                        <input type="text" class="form-control" id="address" name="address" value="{{ $user->address }}">
+                        <input type="text" class="form-control" id="address" name="address"
+                            value="{{ $user->address }}">
                     </div>
                     <div class="form-group">
                         <label for="number_address">Número de Dirección</label>
-                        <input type="text" class="form-control" id="number_address" name="number_address" value="{{ $user->number_address }}">
+                        <input type="text" class="form-control" id="number_address" name="number_address"
+                            value="{{ $user->number_address }}">
                     </div>
                     <div class="form-group">
                         <label for="postal_code">Código Postal</label>
-                        <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ $user->postal_code }}">
+                        <input type="text" class="form-control" id="postal_code" name="postal_code"
+                            value="{{ $user->postal_code }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Actualizar Datos</button>
                 </form>
@@ -72,7 +78,8 @@
                     </div>
                     <div class="form-group">
                         <label for="new_password_confirmation">Confirmar Nueva Contraseña</label>
-                        <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation">
+                        <input type="password" class="form-control" id="new_password_confirmation"
+                            name="new_password_confirmation">
                     </div>
                     <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
                 </form>
@@ -80,7 +87,6 @@
             <!-- Right Side: Additional Information -->
             <div class="col-md-4">
                 <h3>Favoritos</h3>
-                <!-- Aquí puedes agregar el código para mostrar los favoritos del usuario -->
                 <hr>
                 <h3>Historial de Compra</h3>
                 <!-- Aquí puedes agregar el código para mostrar el historial de compra del usuario -->
