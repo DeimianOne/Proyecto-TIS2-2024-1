@@ -112,8 +112,8 @@
         </div>
     </div>
 
-       <!-- SweetAlert2 CSS -->
-       <link href="{{ asset('js/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
+<!-- SweetAlert2 CSS -->
+<link href="{{ asset('js/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet">
 
 <!-- SweetAlert2 JS -->
 <script src="{{ asset('js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>

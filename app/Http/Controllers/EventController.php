@@ -72,7 +72,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+
     }
 
     /**
@@ -132,5 +132,22 @@ class EventController extends Controller
         
         $event->delete();
         return redirect()->route('events.index')->with('success', 'Evento eliminado con éxito');
+    }
+
+    public function getEvents()
+    {
+        $events = Event::all();
+
+        $formattedEvents = $events->map(function($event) {
+            return [
+                'title' => $event->name,
+                'start' => $event->start_date_time,
+                'end' => $event->end_date_time,
+                'latitude' => $event->location_latitude,
+                'longitude' => $event->location_longitude
+            ];
+        });
+
+        return response()->json($formattedEvents);
     }
 }
