@@ -123,7 +123,8 @@ class UserController extends Controller
     public function editProfile()
     {
         $user = Auth::user();
-        return view('profileusers', compact('user'));
+        $favorites = $user->favorites; // Obtener los favoritos del usuario autenticado
+        return view('profileusers', compact('user', 'favorites'));
     }
 
     public function updateProfile(Request $request)

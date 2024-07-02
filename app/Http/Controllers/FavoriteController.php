@@ -3,25 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Beer;
-use Auth;
 
 class FavoriteController extends Controller
 {
-    public function toggleFavorite(Beer $beer)
+
+
+    public function index()
+    {
+        $favorites = Auth::user()->favorites()->with('product')->get();
+        return view('favorites.index', compact('favorites'));
+    }
+    public function toggleFavorite($beerId)
     {
         $user = Auth::user();
-    
-        if ($user->favorites->contains($beer)) {
-            $user->favorites()->detach($beer);
-            return back()->with('success', 'Cerveza eliminada de favoritos.');
+        $beer = Beer::findOrFail($beerId);
+
+        if ($user->favorites()->where('beer_id', $beerId)->exists()) {
+            $user->favorites()->detach($beerId);
+            return response()->json(['status' => 'removed']);
         } else {
-            $user->favorites()->attach($beer);
-            return back()->with('success', 'Cerveza agregada a favoritos.');
+            $user->favorites()->attach($beerId);
+            return response()->json(['status' => 'added']);
         }
     }
-    
 }
+
 
 
 

@@ -88,12 +88,24 @@
             <div class="col-md-4">
                 <h3>Favoritos</h3>
                 <hr>
-                <h3>Historial de Compra</h3>
-                <!-- Aquí puedes agregar el código para mostrar el historial de compra del usuario -->
-                <hr>
-                <h3>Tiempo de Suscripción</h3>
-                <!-- Aquí puedes agregar el código para mostrar el tiempo de suscripción del usuario -->
+                @auth
+                @if($favorites->isEmpty())
+                <p>No tienes cervezas en favoritos.</p>
+                @else
+                <ul>
+                    @foreach($favorites as $favorite)
+                    <li>
+                        <img src="{{ $favorite->product->image }}" alt="{{ $favorite->product->name }}" width="100">
+                        <p>{{ $favorite->product->name }}</p>
+                    </li>
+                    @endforeach
+                </ul>
+                @endif
+                @else
+                <p>Debes iniciar sesión para ver tus favoritos.</p>
+                @endauth
             </div>
+
         </div>
     </div>
 </div>

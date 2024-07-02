@@ -77,8 +77,15 @@
                                     <button class="btn btn-dark btn-sm" style="margin-right: 10px;"><i
                                             class="fa fa-trash"></i></button>
                                 </form>
+                                @auth
+                                <button class="btn btn-light btn-sm toggle-favorite" data-beer-id="{{ $item->id }}">
+                                    <i
+                                        class="fa{{ Auth::user()->favorites->contains($item->id) ? 's' : 'r' }} fa-star"></i>
+                                </button>
+                                @endauth
                             </div>
                         </div>
+
                     </div>
                     <hr>
                     @endforeach
@@ -105,15 +112,41 @@
         </div>
     </div>
 </div>
-    @include('layouts.footer')
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const cartToggle = document.getElementById('cart-toggle');
-        const floatingCart = document.getElementById('floating-cart');
+@include('layouts.footer')
 
-        cartToggle.addEventListener('click', function() {
-            floatingCart.classList.toggle('d-none');
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.toggle-favorite').forEach(button => {
+        button.addEventListener('click', function() {
+            const beerId = this.getAttribute('data-beer-id');
+            const icon = this.querySelector('i');
+
+            fetch(`/favorite/${beerId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                })
+                .then(response => {
+                    if (response.status === 401) { // Usuario no autenticado
+                        alert('Debes iniciar sesión para agregar favoritos.');
+                        return;
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === 'added') {
+                        icon.classList.remove('fa-regular');
+                        icon.classList.add('fa-solid');
+                    } else if (data.status === 'removed') {
+                        icon.classList.remove('fa-solid');
+                        icon.classList.add('fa-regular');
+                    }
+                });
         });
     });
-    </script>
+});
+
+</script>

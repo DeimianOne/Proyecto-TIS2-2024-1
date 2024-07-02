@@ -72,11 +72,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profileusers', [UserController::class, 'editProfile'])->name('profileusers');
     Route::post('/profileusers', [UserController::class, 'updateProfile'])->name('profile.update');
     Route::post('/profileusers/change-password', [UserController::class, 'changePassword'])->name('profile.change_password');
-    
-    Route::post('/favorite/{beer}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
-
 });
 
+
+Route::post('/favorite/{beer}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::prefix('/cervezas')->group(function () {
