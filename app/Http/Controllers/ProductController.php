@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sale;
 use App\Models\Product;
 use App\Models\Beer;
 use App\Models\Beerformat;
@@ -9,6 +10,7 @@ use App\Models\Beerstyle;
 use App\Models\Merchandise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -329,4 +331,26 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Producto eliminado exitosamente.');
     }
+
+
+    public function chart()
+    {
+        // Obtener los productos con sus visualizaciones
+        $productos = Product::all();
+        $productos = Product::select('name', 'visualizations')->get();
+        return view('reports.index', compact('productos'));
+    }
+
+    public function getSalesData()
+    {
+        // Obtener los datos de ventas, agrupados por fecha
+        $productos = Product::all();
+        $sales = Sale::selectRaw('DATE(sale_date) as date, SUM(sale_total) as total')
+                    ->groupBy('date')
+                    ->orderBy('date')
+                    ->get();
+
+        return view('reports.index', compact('sales','productos'));
+    }
+    
 }

@@ -26,6 +26,8 @@
                 </div>
                 <a href="{{ route('dondeestamos') }}" class="nav-item nav-link">¿Dónde estamos?</a>
                 <a href="{{ route('contacto') }}" class="nav-item nav-link">Contacto</a>
+                <a href="{{ route('eventcalendar') }}" class="nav-item nav-link">Calendario Eventos</a>
+
             </div>
 
             <div class="navbar-nav ml-auto">

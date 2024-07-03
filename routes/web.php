@@ -21,6 +21,9 @@ use App\Http\Controllers\CompanyEventController;
 use App\Http\Controllers\CompanyDistributorController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\LdgfooterController;
+use App\Http\Controllers\SaleController;
+
 use App\Http\Controllers\FavoriteController;
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +35,7 @@ use App\Http\Controllers\FavoriteController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [App\Http\Controllers\welcomeController::class, 'index'])->name('home');
 
 Route::get('/', [App\Http\Controllers\BeerController::class, 'show5'])->name('welcome');
 
@@ -66,10 +70,17 @@ Route::get('/dondeestamos', function () {
     return view('dondeestamos');
 })->name('dondeestamos');
 
+Route::get('/eventcalendar', function () {
+    return view('eventcalendar');
+})->name('eventcalendar');
 
 
 Auth::routes();
 
+    // Ruta para optener datos de eventos
+Route::get('/api/events', [EventController::class, 'getEvents']);
+    //Ruta para obtener los datos de ldgfooters
+Route::get('/footer', [LdgfooterController::class, 'show'])->name('footer');
 Route::middleware(['auth'])->group(function () {
     Route::get('/profileusers', [UserController::class, 'editProfile'])->name('profileusers');
     Route::post('/profileusers', [UserController::class, 'updateProfile'])->name('profile.update');
@@ -119,7 +130,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administra
     Route::resource('companyevents', CompanyEventController::class);
     Route::resource('companydistributors', CompanyDistributorController::class);
     Route::resource('branches', BranchController::class);
+    Route::resource('ldgfooters', LdgfooterController::class);
+    Route::resource('reports', SaleController::class);
+    Route::get('/reports', [App\Http\Controllers\ProductController::class, 'chart'])->name('reports.chart');
+    Route::get('/reports', [ProductController::class, 'getSalesData']);
 
 
 
+    
 });

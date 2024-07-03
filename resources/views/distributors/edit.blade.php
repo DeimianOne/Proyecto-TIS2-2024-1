@@ -3,11 +3,11 @@
 @section('content')
 <div class="block block-rounded">
     <div class="block-header block-header-default">
-        <h3 class="block-title">Editar Distribuidor</h3>
+        <h3 class="block-title">Editar footer</h3>
     </div>
     <div class="block-content block-content-full d-flex justify-content-center">
         <div class="col-lg-8">
-            <form method="POST" action="{{ route('distributors.update', $distributor->id) }}">
+            <form method="POST" action="{{ route('ldgfooters.update', $ldgfooter->id) }}">
                 @csrf
                 @method('PUT') 
                 <!-- Error Display Section -->
@@ -41,16 +41,7 @@
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email del distribuidor" value="{{ old('email', $distributor->email) }}">
                 </div>
-                <div class="form-group">
-                    <label for="company_id">Compañías</label>
-                    <select name="company_id[]" id="company_id" class="form-control js-example-basic-multiple" multiple="multiple">
-                        @foreach($companies as $company)
-                            <option value="{{ $company->id }}" {{ in_array($company->id, old('company_id', $distributor->companies->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                {{ $company->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+
                 <button type="submit" class="btn btn-primary mt-3">Guardar</button>
             </form>
         </div>

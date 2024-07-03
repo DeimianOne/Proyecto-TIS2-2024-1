@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LandingEdit;
+use App\Models\Ldgfooter;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,9 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $landingDatos = LandingEdit::all();
+        $footerDatas = Ldgfooter::find(1);
         
-        return view('layouts.footer', compact('landingDatos'));
+        return view('/')->with(compact('footerDatas'));
         
     }
 }

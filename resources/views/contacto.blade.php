@@ -30,7 +30,7 @@
                 <p>
                     También puedes llamarnos directamente al siguiente número:
                 </p>
-                <p class="fw-bold">Teléfono: +123456789</p>
+                <p class="fw-bold">Teléfono: {{ $footerData->phone_number ?? 'Número no disponible' }}</p>
             </div>
         </div>
     </div>
