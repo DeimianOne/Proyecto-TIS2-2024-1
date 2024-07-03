@@ -29,4 +29,8 @@ class Beer extends Model
     public function beerformats(){
         return $this->belongsToMany(Beerformat::class, 'beer_beerformat', 'beer_id', 'beerformat_id');
     }
+
+    public function displays(){
+        return $this->belongsToMany(Display::class, 'beer_display', 'beer_id', 'display_id');
+    }
 }

@@ -31,6 +31,11 @@
                         placeholder="Descripción del producto" required></textarea>
                 </div>
 
+                <div class="mb-2 form-group value-group">
+                    <label class="form-label" for="value">Valor</label>
+                    <input type="text" class="form-control" id="value" name="value" placeholder="Valor del producto">
+                </div>
+
                 <div class="beer-fields mb-2 form-group" style="display: none;">
                     <label class="form-label" for="liter-value">Valor por litro</label>
                     <input type="text" class="form-control" id="liter-value" name="liter-value" placeholder="Valor por litro de la cerveza">
@@ -55,7 +60,7 @@
                 </div>
 
                 <div class="mb-2 form-group">
-                    <label class="image" for="image">Imagen</label>
+                    <label class="form-label image" for="image">Imagen</label>
                     <input type="file" class="form-control" id="image" name="image" placeholder="URL de la imagen del producto">
                 </div>
 

@@ -1,11 +1,13 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProducttypeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\DisplayController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\BeerController;
 use App\Http\Controllers\BeerformatController;
@@ -95,6 +97,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administra
     Route::resource('companies', CompanyController::class);
     Route::resource('products', ProductController::class);
     Route::resource('beers', BeerController::class);
+    Route::resource('displays', DisplayController::class);
     Route::resource('beerstyles', BeerstyleController::class);
     Route::resource('producttypes', ProducttypeController::class);
     Route::resource('beerformats', BeerFormatController::class);

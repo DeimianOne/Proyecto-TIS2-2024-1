@@ -26,4 +26,8 @@ class Product extends Model
     public function merchandise(){
         return $this->hasOne(Merchandise::class, 'product_id');
     }
+
+    public function display(){
+        return $this->hasOne(Display::class, 'product_id');
+    }
 }
