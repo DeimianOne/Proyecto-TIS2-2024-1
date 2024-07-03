@@ -25,6 +25,9 @@ use App\Http\Controllers\LdgfooterController;
 use App\Http\Controllers\SaleController;
 
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\WebpayController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -102,6 +105,22 @@ Route::prefix('/cervezas')->group(function () {
     Route::get('/{id}', [BeerController::class, 'showAndIncrement'])->name('cervezas.showAndIncrement');
 });
 
+// Rutas Checkout
+Route::get('/checkout', [SaleController::class, 'checkout'])->name('checkout.index');
+Route::post('/checkout', [SaleController::class, 'processCheckout'])->name('checkout.store');
+
+// Rutas Webpay
+Route::post('/webpay/create', [WebpayController::class, 'create'])->name('webpay.create');
+Route::get('/webpay/confirm', [WebpayController::class, 'confirm'])->name('webpay.confirm');
+
+Route::get('/success', function () {
+    return view('success');
+})->name('success');
+
+Route::get('/failure', function () {
+    return view('failure');
+})->name('failure');
+
 // Rutas Dashmix
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administrador']], function () {
     Route::get('/', function () {
@@ -137,5 +156,5 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administra
 
 
 
-    
+
 });

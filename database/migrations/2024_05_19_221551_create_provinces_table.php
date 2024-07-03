@@ -20,6 +20,7 @@ class CreateProvincesTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('region_id')->constrained('regions');
+            $table->timestamps();
         });
     }
 
