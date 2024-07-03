@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyEmail;
 
 class UserController extends Controller
 {
@@ -43,23 +45,24 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
-        ]);
-        
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-        
-        $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed',
+    ]);
 
-        return redirect()->route('users.index');
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+    ]);
 
-    }
+    // Envío de correo de confirmación
+    Mail::to($user->email)->send(new VerifyEmail($user));
+
+    return redirect()->route('home')->with('success', '¡Registro exitoso! Se ha enviado un correo de confirmación.');
+}
     
     /**
      * Display the specified resource.

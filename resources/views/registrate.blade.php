@@ -8,18 +8,23 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Registrarse</h5>
-                        <form action="registro.php" method="post">
+                        <form action="{{ route('register') }}" method="post">
+                            @csrf
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre">
+                                <input type="text" class="form-control" id="nombre" name="name" value="{{ old('name') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="contrasena" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="contrasena" name="contrasena">
+                                <input type="password" class="form-control" id="contrasena" name="password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmar_contrasena" class="form-label">Confirmar Contraseña</label>
+                                <input type="password" class="form-control" id="confirmar_contrasena" name="password_confirmation">
                             </div>
                             <button type="submit" class="btn btn-primary">Registrarse</button>
                         </form>

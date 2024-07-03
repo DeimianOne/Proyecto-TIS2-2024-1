@@ -20,6 +20,7 @@ use App\Http\Controllers\CompanyDistributorController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FavoriteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,8 +43,9 @@ Route::get('/iniciarsesion', function () {
 })->name('iniciarsesion');
 
 Route::get('/registrate', function () {
-    return view('auth/register');
+    return view('auth.register');
 })->name('registrate');
+Route::post('/registrate', [UserController::class, 'store'])->name('register');
 
 Route::get('/armatupack', function () {
     return view('armatupack');
