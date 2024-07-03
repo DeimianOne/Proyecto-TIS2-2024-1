@@ -30,12 +30,12 @@ class CartController extends Controller
     public function add(Request $request)
     {
         $product = Product::find($request->id);
-    
+
         // Verificar si el producto tiene stock disponible
         if ($product->stock <= 0) {
             return redirect()->route('shop')->with('alert_msg', 'Producto fuera de stock');
         }
-    
+
         \Cart::add([
             'id' => $product->id,
             'name' => $product->name,
@@ -45,7 +45,7 @@ class CartController extends Controller
                 'image' => $product->image,
             ]
         ]);
-    
+
         return redirect()->route('cart.index')->with('success_msg', 'Item Agregado a su Carrito!');
     }
 
