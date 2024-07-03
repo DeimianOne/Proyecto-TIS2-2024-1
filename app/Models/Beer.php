@@ -33,4 +33,12 @@ class Beer extends Model
     public function displays(){
         return $this->belongsToMany(Display::class, 'beer_display', 'beer_id', 'display_id');
     }
+
+    public function favoritedBy(){
+        return $this->belongsToMany(User::class, 'favorites');
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'favorites', 'beer_id', 'user_id');
+    }
 }
