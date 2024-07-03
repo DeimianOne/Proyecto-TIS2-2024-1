@@ -22,6 +22,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\LdgfooterController;
 use App\Http\Controllers\SaleController;
 
+use App\Http\Controllers\FavoriteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,9 +35,7 @@ use App\Http\Controllers\SaleController;
 */
 Route::get('/', [App\Http\Controllers\welcomeController::class, 'index'])->name('home');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [App\Http\Controllers\BeerController::class, 'show5'])->name('welcome');
 
 Route::get('/packs', function () {
     return view('packs');
@@ -80,6 +79,14 @@ Auth::routes();
 Route::get('/api/events', [EventController::class, 'getEvents']);
     //Ruta para obtener los datos de ldgfooters
 Route::get('/footer', [LdgfooterController::class, 'show'])->name('footer');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profileusers', [UserController::class, 'editProfile'])->name('profileusers');
+    Route::post('/profileusers', [UserController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/profileusers/change-password', [UserController::class, 'changePassword'])->name('profile.change_password');
+});
+
+
+Route::post('/favorite/{beer}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::prefix('/cervezas')->group(function () {
@@ -90,6 +97,7 @@ Route::prefix('/cervezas')->group(function () {
     Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
     Route::get('/cerveza', [BeerController::class, 'show'])->name('cervezas');
+    Route::get('/{id}', [BeerController::class, 'showAndIncrement'])->name('cervezas.showAndIncrement');
 });
 
 // Rutas Dashmix

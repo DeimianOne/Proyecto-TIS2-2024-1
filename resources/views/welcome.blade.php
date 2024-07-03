@@ -39,294 +39,56 @@
 </div>
 
 <!-- Packs -->
-
-
 <div class="container-fluid py-5">
     <div class="container">
         <div class="section-title">
             <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packs</h4>
-            <h1 class="display-4">6 Packs</h1>
+            <h1 class="display-4">Elige tu Pack</h1>
         </div>
-        <div class="row row-cols-3">
-            <div class="col mb-4">
-                <img src="img/fuzz/latas/devil1.png" class="img-fluid" alt="Devil Pack">
-            </div>
-            <div class="col mb-4">
-                <img src="img/fuzz/latas/distorsion.png" class="img-fluid" alt="Devil Pack">
-            </div>
-            <div class="col mb-4">
-                <img src="img/fuzz/latas/thewall.png" class="img-fluid" alt="Devil Pack">
-            </div>
-            <div class="col mb-4">
-                <img src="img/fuzz/latas/thewall.png" class="img-fluid" alt="Devil Pack">
-            </div>
+        <div class="row">
+            @foreach($beers as $beer)
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ $beer->product->image }}" class="card-img-top" alt="{{ $beer->product->name }}">
+                        <div class="card-body">
+                            <h6 class="card-title">{{ $beer->product->name }}</h6>
+                            <p class="card-text">${{ $beer->product->value }}</p>
+                            <div class="d-flex justify-content-between">
+                                <form action="{{ route('cart.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ $beer->product->id }}" name="id">
+                                    <input type="hidden" value="{{ $beer->product->name }}" name="name">
+                                    <input type="hidden" value="{{ $beer->product->value }}" name="price">
+                                    <input type="hidden" value="{{ $beer->product->image }}" name="img">
+                                    <input type="hidden" value="6" name="quantity">
+                                    <button class="btn btn-secondary btn-sm" type="submit">Agregar 6</button>
+                                </form>
+                                <form action="{{ route('cart.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ $beer->product->id }}" name="id">
+                                    <input type="hidden" value="{{ $beer->product->name }}" name="name">
+                                    <input type="hidden" value="{{ $beer->product->value }}" name="price">
+                                    <input type="hidden" value="{{ $beer->product->image }}" name="img">
+                                    <input type="hidden" value="12" name="quantity">
+                                    <button class="btn btn-secondary btn-sm" type="submit">Agregar 12</button>
+                                </form>
+                                <form action="{{ route('cart.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ $beer->product->id }}" name="id">
+                                    <input type="hidden" value="{{ $beer->product->name }}" name="name">
+                                    <input type="hidden" value="{{ $beer->product->value }}" name="price">
+                                    <input type="hidden" value="{{ $beer->product->image }}" name="img">
+                                    <input type="hidden" value="24" name="quantity">
+                                    <button class="btn btn-secondary btn-sm" type="submit">Agregar 24</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>
 
-
-<div class="container-fluid py-5">
-    <div class="container">
-        <div class="section-title">
-            <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packs</h4>
-            <h1 class="display-4">12 Packs</h1>
-        </div>
-        <div class="row row-cols-3">
-            <div class="col mb-4">
-                <img src="img/fuzz/latas/devil1.png" class="img-fluid" alt="Devil Pack">
-            </div>
-            <div class="col mb-4">
-                <img src="img/fuzz/latas/distorsion.png" class="img-fluid" alt="Devil Pack">
-            </div>
-            <div class="col mb-4">
-                <img src="img/fuzz/latas/thewall.png" class="img-fluid" alt="Devil Pack">
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="section-title">
-                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packs</h4>
-                <h1 class="display-4">24 Packs</h1>
-            </div>
-            <div class="row row-cols-3">
-                <div class="col mb-4">
-                    <img src="img/fuzz/latas/devil1.png" class="img-fluid" alt="Devil Pack">
-                </div>
-                <div class="col mb-4">
-                    <img src="img/fuzz/latas/distorsion.png" class="img-fluid" alt="Devil Pack">
-                </div>
-                <div class="col mb-4">
-                    <img src="img/fuzz/latas/thewall.png" class="img-fluid" alt="Devil Pack">
-                </div>
-            </div>
-        </div>
-
-        <!-- Packs -->
-
-
-        <!-- Service Start -->
-
-        <div class="container-fluid py-5">
-            <div class="container">
-                <div class="section-title">
-                    <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packs</h4>
-                    <h1 class="display-4">Arma tu Pack</h1>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="image-armatupack">
-                            <img src="img\fuzz\6pack.png" class="img-fluid" alt="6pack">
-                            <a href="product-pack6">6Pack</a>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="image-armatupack">
-                            <img src="img\fuzz\12pack.png" class="img-fluid" alt="12pack">
-                            <a href="product-pack12">12Pack</a>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="image-armatupack">
-                            <img src="img\fuzz\24pack.png" class="img-fluid" alt="24pack">
-                            <a href="product-pack24">24Pack</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Service End -->
-
-
-        <!-- Offer Start
-            <div class="offer container-fluid my-5 py-5 text-center position-relative overlay-top overlay-bottom">
-                <div class="container py-5">
-                    <h1 class="display-3 text-primary mt-3">50% OFF</h1>
-                    <h1 class="text-white mb-3">Sunday Special Offer</h1>
-                    <h4 class="text-white fw-normal mb-4 pb-3">Only for Sunday from 1st Jan to 30th Jan 2045</h4>
-                    <form class="d-flex align-items-center justify-content-center mb-4">
-                        <div class="input-group">
-                            <input type="text" class="form-control p-4" placeholder="Your Email" style="height: 60px;">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary fw-bold px-4" type="submit">Sign Up</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            Offer End -->
-
-
-        <!-- Menu Start 
-    <div class="container-fluid pt-5">
-        <div class="container">
-            <div class="section-title">
-                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Menu & Pricing</h4>
-                <h1 class="display-4">Competitive Pricing</h1>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1 class="mb-5">Hot Coffee</h1>
-                    <div class="row align-items-center mb-5">
-                        <div class="col-4 col-sm-3">
-                            <img class="w-100 rounded-circle mb-3 mb-sm-0" src="img/menu-1.jpg" alt="">
-                            <h5 class="menu-price">$5</h5>
-                        </div>
-                        <div class="col-8 col-sm-9">
-                            <h4>Black Coffee</h4>
-                            <p class="m-0">Sit lorem ipsum et diam elitr est dolor sed duo guberg sea et et lorem dolor
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row align-items-center mb-5">
-                        <div class="col-4 col-sm-3">
-                            <img class="w-100 rounded-circle mb-3 mb-sm-0" src="img/menu-2.jpg" alt="">
-                            <h5 class="menu-price">$7</h5>
-                        </div>
-                        <div class="col-8 col-sm-9">
-                            <h4>Chocolete Coffee</h4>
-                            <p class="m-0">Sit lorem ipsum et diam elitr est dolor sed duo guberg sea et et lorem dolor
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row align-items-center mb-5">
-                        <div class="col-4 col-sm-3">
-                            <img class="w-100 rounded-circle mb-3 mb-sm-0" src="img/menu-3.jpg" alt="">
-                            <h5 class="menu-price">$9</h5>
-                        </div>
-                        <div class="col-8 col-sm-9">
-                            <h4>Coffee With Milk</h4>
-                            <p class="m-0">Sit lorem ipsum et diam elitr est dolor sed duo guberg sea et et lorem dolor
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <h1 class="mb-5">Cold Coffee</h1>
-                    <div class="row align-items-center mb-5">
-                        <div class="col-4 col-sm-3">
-                            <img class="w-100 rounded-circle mb-3 mb-sm-0" src="img/menu-1.jpg" alt="">
-                            <h5 class="menu-price">$5</h5>
-                        </div>
-                        <div class="col-8 col-sm-9">
-                            <h4>Black Coffee</h4>
-                            <p class="m-0">Sit lorem ipsum et diam elitr est dolor sed duo guberg sea et et lorem dolor
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row align-items-center mb-5">
-                        <div class="col-4 col-sm-3">
-                            <img class="w-100 rounded-circle mb-3 mb-sm-0" src="img/menu-2.jpg" alt="">
-                            <h5 class="menu-price">$7</h5>
-                        </div>
-                        <div class="col-8 col-sm-9">
-                            <h4>Chocolete Coffee</h4>
-                            <p class="m-0">Sit lorem ipsum et diam elitr est dolor sed duo guberg sea et et lorem dolor
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row align-items-center mb-5">
-                        <div class="col-4 col-sm-3">
-                            <img class="w-100 rounded-circle mb-3 mb-sm-0" src="img/menu-3.jpg" alt="">
-                            <h5 class="menu-price">$9</h5>
-                        </div>
-                        <div class="col-8 col-sm-9">
-                            <h4>Coffee With Milk</h4>
-                            <p class="m-0">Sit lorem ipsum et diam elitr est dolor sed duo guberg sea et et lorem dolor
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  Menu End -->
-
-
-        <!-- Reservation Start
-    <div class="container-fluid my-5">
-        <div class="container">
-            <div class="reservation position-relative overlay-top overlay-bottom">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 my-5 my-lg-0">
-                        <div class="p-5">
-                            <div class="mb-4">
-                                <h1 class="display-3 text-primary">30% OFF</h1>
-                                <h1 class="text-white">For Online Reservation</h1>
-                            </div>
-                            <p class="text-white">Lorem justo clita erat lorem labore ea, justo dolor lorem ipsum ut sed
-                                eos,
-                                ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea
-                            </p>
-                            <ul class="list-inline text-white m-0">
-                                <li class="py-2"><i class="fa fa-check text-primary me-3"></i>Lorem ipsum dolor sit amet
-                                </li>
-                                <li class="py-2"><i class="fa fa-check text-primary me-3"></i>Lorem ipsum dolor sit amet
-                                </li>
-                                <li class="py-2"><i class="fa fa-check text-primary me-3"></i>Lorem ipsum dolor sit amet
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="text-center p-5" style="background: rgba(51, 33, 29, .8);">
-                            <h1 class="text-white mb-4 mt-5">Book Your Table</h1>
-                            <form class="mb-5">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control bg-transparent border-primary p-4"
-                                        placeholder="Name" required="required" />
-                                </div>
-                                <div class="mb-3">
-                                    <input type="email" class="form-control bg-transparent border-primary p-4"
-                                        placeholder="Email" required="required" />
-                                </div>
-                                <div class="mb-3">
-                                    <div class="input-group log-event" id="date" data-td-target-input="nearest"
-                                        data-td-target-toggle="nearest">
-                                        <input id="dateInput" type="text"
-                                            class="form-control bg-transparent border-primary p-4" placeholder="Date"
-                                            data-td-target="#date" />
-                                        <span class="input-group-text border-primary rounded-0" data-td-target="#date"
-                                            data-td-toggle="datetimepicker">
-                                            <i class="fas fa-calendar"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="time" id="time" data-target-input="nearest">
-                                        <input type="text"
-                                            class="form-control bg-transparent border-primary p-4 datetimepicker-input"
-                                            placeholder="Time" data-bs-target="#time" data-bs-toggle="datetimepicker" />
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <select class="form-select bg-transparent border-primary px-4"
-                                        style="height: 49px;">
-                                        <option selected>Person</option>
-                                        <option value="1">Person 1</option>
-                                        <option value="2">Person 2</option>
-                                        <option value="3">Person 3</option>
-                                        <option value="3">Person 4</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <button class="btn btn-primary btn-block fw-bold py-3" type="submit">Book
-                                        Now</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-     Reservation End -->
-    </div>
-</div>
-<!-- Footer Start -->
 
 @include('layouts.footer')
-<!-- Footer End -->

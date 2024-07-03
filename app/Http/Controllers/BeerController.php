@@ -48,16 +48,19 @@ class BeerController extends Controller
             'product_id' => 'required|string|max:100',
             'beerstyle_id' => 'required|numeric|max:50',
             'beerformat_id' => 'required|numeric|max:50',
-            'liter_value' => 'required|numeric|max:20000'
+            'liter_value' => 'required|numeric|max:20000',
+            'container' => 'required|string|max:255', // Añade la validación para el campo 'container'
         ], [
             'product_id.required' => 'La selección del producto es obligatoria.',
             'product_id.max' => 'El producto no puede superar los 100 caracteres.',
             'beerstyle_id.required' => 'La selección del estilo es obligatoria.',
-            'beerstyle_id.max' => 'El estilo no puede superar los 20 caracteres.',
+            'beerstyle_id.max' => 'El estilo no puede superar los 50 caracteres.',
             'beerformat_id.required' => 'La selección del formato es obligatoria.',
-            'beerformat_id.max' => 'El formato no puede superar los 20 caracteres.',
+            'beerformat_id.max' => 'El formato no puede superar los 50 caracteres.',
             'liter_value.required' => 'El valor es obligatorio.',
             'liter_value.max' => 'El valor máximo es de 20000.',
+            'container.required' => 'El campo container es obligatorio.', // Añade el mensaje de error para 'container'
+            'container.max' => 'El container no puede superar los 255 caracteres.', // Añade el mensaje de error para 'container'
         ]);
 
         Beer::create([
@@ -65,9 +68,10 @@ class BeerController extends Controller
             'beerstyle_id' => $request->input('beerstyle_id'),
             'beerformat_id' => $request->input('beerformat_id'),
             'liter_value' => $request->input('liter_value'),
+            'container' => $request->input('container'), // Añade el campo 'container' a los datos a insertar
         ]);
 
-        return redirect()->route('beers.store')->with('mensaje','Cerveza agregada con éxito');
+        return redirect()->route('beers.index')->with('mensaje','Cerveza agregada con éxito');
     }
 
     /**
@@ -154,7 +158,28 @@ class BeerController extends Controller
         return view('product-pack24', compact('beers'));
     }
 
+    public function show5(){
 
+        $beers = Beer::with('product')->get();
+        
+        return view('welcome', compact('beers'));
+
+    }
+
+    public function showAndIncrement($id)
+    {
+        // Encuentra la cerveza
+        $beer = Beer::findOrFail($id);
+    
+        // Incrementa el contador de visitas en el producto relacionado
+        $product = $beer->product;
+        $product->visualizations += 1;
+        $product->save();
+    
+        // Redirige a la vista del catálogo con la cerveza específica
+        return view('catalogue', compact('beer'));
+    }
+    
 
     /**
      * Show the form for editing the specified resource.

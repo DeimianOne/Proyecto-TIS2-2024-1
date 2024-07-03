@@ -1,8 +1,11 @@
 @include('layouts.head')
 @include('layouts.navbar')
 
+
 <div class="container-fluid py-5">
     <div class="container mt-5 pt-5">
+        <div class="section-title">
+        </div>
         <h4 class="text-center text-primary mb-4 " style="letter-spacing: 5px;">Contáctanos</h4>
         <div class="row justify-content-center align-items-center">
             <div class="col-md-6 mb-4">

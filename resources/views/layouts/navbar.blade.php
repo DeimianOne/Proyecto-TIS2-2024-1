@@ -1,6 +1,6 @@
 <!-- Navbar -->
-<div class="container-fluid p-0 nav-bar ">
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 ">
+<div class="container-fluid p-0 nav-bar">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
         <a href="{{ route('welcome') }}" class="navbar-brand px-lg-4 m-0 align-items-center d-flex">
             <img src="{{ asset('img/fuzz/logo4.png') }}" alt="Cerveza Fuzz Logo" class="logo align-middle">
             <span class="align-middle">Cerveza Fuzz</span>
@@ -20,7 +20,7 @@
                         Tienda
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="cervezas">Cervezas</a>
+                        <a class="dropdown-item" href="{{ route('shop') }}">Cervezas</a>
                         <a class="dropdown-item disabled" href="productos">Productos</a>
                     </div>
                 </div>
@@ -30,8 +30,13 @@
 
             </div>
 
-
             <div class="navbar-nav ml-auto">
+                <!-- Carrito de compras visible para todos -->
+                <a href="{{ route('cart.index') }}" class="nav-item nav-link">
+                    <span class="badge badge-pill badge-dark">
+                        <i class="fa fa-shopping-cart"></i> {{ \Cart::getTotalQuantity()}}
+                    </span>
+                </a>
 
                 @guest
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -42,57 +47,46 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="{{ route('cart.index') }}" class="nav-link dropdown-toggle" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="badge badge-pill badge-dark">
-                                    <i class="fa fa-shopping-cart"></i> {{ \Cart::getTotalQuantity()}}
-                                </span>
-                            </a>
-
-                            @if (Route::has('login'))
-                            <a href="{{ route('iniciarsesion') }}" class="nav-item nav-link">
-                                <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-                            </a>
-                            @endif
-
-                            @if (Route::has('register'))
-                            <a href="{{ route('registrate') }}" class="nav-item nav-link">
-                                <i class="fas fa-user-plus"></i> Registrarse
-                            </a>
-                            @endif
-                            @else
-
-                            @if(auth()->user()->hasRole('Administrador'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
-                        </li>
+                        <li class="nav-item"></li>
+                        @if (Route::has('login'))
+                        <a href="{{ route('iniciarsesion') }}" class="nav-item nav-link">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                        </a>
                         @endif
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle mr-3" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        </li>
+                        @if (Route::has('register'))
+                        <a href="{{ route('registrate') }}" class="nav-item nav-link">
+                            <i class="fas fa-user-plus"></i> Registrarse
+                        </a>
+                        @endif
                     </ul>
-                    @endguest
                 </div>
+                @else
+                @if(auth()->user()->hasRole('Administrador'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
+                </li>
+                @endif
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle mr-3" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('profileusers')}}">Perfil </a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+                @endguest
             </div>
+        </div>
     </nav>
 
     <div id="ageVerificationPopup" class="age-verification-popup">
@@ -110,6 +104,4 @@
                 nuestra página.</p>
         </div>
     </div>
-
-
 </div>
