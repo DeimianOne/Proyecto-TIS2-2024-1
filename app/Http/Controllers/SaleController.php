@@ -14,7 +14,7 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        return view('reports.index');
     }
 
     /**
@@ -82,4 +82,6 @@ class SaleController extends Controller
     {
         //
     }
+
+    
 }

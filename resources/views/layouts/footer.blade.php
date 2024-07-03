@@ -15,6 +15,7 @@
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">¿Quieres trabajar con nosotros?</h4>
+            <a class="text-white " href="#">{{ $footerData->contact_email ?? 'Email no disponible' }}</a><br>
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Política</h4>

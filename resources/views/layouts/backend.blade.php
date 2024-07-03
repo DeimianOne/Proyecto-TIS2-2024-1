@@ -479,6 +479,14 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('dashboard/reports') ? ' active' : '' }}" href="{{ url('dashboard/reports') }}">
+                                <i class="nav-main-link-icon fa fa-chart-line"></i>
+                                <span class="nav-main-link-name">Reportes</span>
+                            </a>
+                        </li>
+                        
                         <li class="nav-main-heading">More</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="/">

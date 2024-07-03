@@ -20,7 +20,7 @@ use App\Http\Controllers\CompanyDistributorController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LdgfooterController;
-use App\Http\Controllers\welcomeController;
+use App\Http\Controllers\SaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,6 +120,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administra
     Route::resource('companydistributors', CompanyDistributorController::class);
     Route::resource('branches', BranchController::class);
     Route::resource('ldgfooters', LdgfooterController::class);
+    Route::resource('reports', SaleController::class);
+    Route::get('/dashboard/reports', [ProductController::class, 'showReports'])->name('reports.index');
+
+
 
     
 });
