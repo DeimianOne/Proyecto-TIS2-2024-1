@@ -129,7 +129,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Administra
     Route::resource('branches', BranchController::class);
     Route::resource('ldgfooters', LdgfooterController::class);
     Route::resource('reports', SaleController::class);
-    Route::get('/dashboard/reports', [ProductController::class, 'showReports'])->name('reports.index');
+    Route::get('/reports', [App\Http\Controllers\ProductController::class, 'chart'])->name('reports.chart');
+    Route::get('/reports', [ProductController::class, 'getSalesData']);
 
 
 
