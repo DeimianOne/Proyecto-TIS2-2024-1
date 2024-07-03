@@ -23,9 +23,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LdgfooterController;
 use App\Http\Controllers\SaleController;
-
 use App\Http\Controllers\FavoriteController;
-use App\Http\Controllers\SaleController;
 use App\Http\Controllers\WebpayController;
 
 /*
