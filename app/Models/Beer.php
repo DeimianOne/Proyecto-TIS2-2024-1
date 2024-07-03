@@ -21,28 +21,16 @@ class Beer extends Model
         return $this->belongsTo(Beerstyle::class, 'beerstyle_id');
     }
 
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
+    public function product(){
+        return $this->belongsTo(Product::class, 'product_id');
     }
-    public function beerformat()
-    {
-        return $this->belongsTo(Beerformat::class);
-    }
-
-    
 
     //Muchos a Muchos
     public function beerformats(){
         return $this->belongsToMany(Beerformat::class, 'beer_beerformat', 'beer_id', 'beerformat_id');
     }
-    public function favoritedBy()
-    {
-    return $this->belongsToMany(User::class, 'favorites');
-    }
-    public function users()
-    {
-    return $this->belongsToMany(User::class, 'favorites', 'beer_id', 'user_id');
-    }
 
+    public function displays(){
+        return $this->belongsToMany(Display::class, 'beer_display', 'beer_id', 'display_id');
+    }
 }

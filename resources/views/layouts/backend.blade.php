@@ -355,6 +355,11 @@
                     </a>
                 </li>
                 <li class="nav-main-item">
+                    <a class="nav-main-link{{ request()->is('dashboard/displays') ? ' active' : '' }}" href="{{ url('dashboard/displays') }}">
+                        <span class="nav-main-link-name">Packs</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('dashboard/distributors') ? ' active' : '' }}" href="{{ url('dashboard/distributors') }}">
                         <span class="nav-main-link-name">Distribuidor</span>
                     </a>
